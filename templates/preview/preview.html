@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+
+<!--<meta name="viewport" content="width=device-width" />-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+<link href="/static/css/preview.css" rel="stylesheet" type="text/css"/>
+
+<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+<title>COOL</title>
+
+<meta property="fb:app_id" content="COOL"/>
+    
+</head>
+<body>
+    <div id="fb-root"></div>
+    <div id="principal">
+            <a href="javascript:parent.mostrarPagina()"><div id="menuCool"></div></a>           
+            <header>        
+                <div id="botonMenu"></div> 
+                <a href="javascript:void(0);"><img src="/static/img/novelles.png"/><img src="/static/img/novelles2.png"/></a>
+            </header> 
+            <input id="buscarInfo" name='search' type='text' placeholder='Recherche'>
+            <div id="menu">
+                <nav>
+                    <ul>  
+                        <li id="buscar"><img id="lupa1" src="/static/img/lupa1.png"/><img id="lupa2" src="/static/img/lupa2.png"/></li>  
+                        {%for cat in categories%}                   
+                            <li><a href="JavaScript:void(0);" >{{cat.suptag}}</a></li>
+                        {%endfor%}
+                    </ul>
+                </nav>        
+            </div>
+                  
+            
+            <section id="portada">
+            		<div id="portada1">
+                    	<h1></h1>
+                        <h2></h2>
+                        <img src=""/>
+                        <p></p>
+                        <span></span>
+                    </div>
+                    <div id="recientes">
+                        {%for news in recent_news_list%}
+                            {%if news.first%}
+                                <article class="recientes1"> 
+                                    <h2>{{news.title}}</h2>
+                                    <img src="/media/{{news.picture.0.img.name}}" />
+                                    <p>{{news.lid}}</p>
+                                    <span>{{news.slug}}/{{news.id}}</span>
+                                </article>    
+                            {%else%}
+                                <article class="recientes2"> 
+                                    <h2>{{news.title}}</h2>
+                                    <img src="/media/{{news.picture.0.img.name}}" />
+                                    <p>{{news.lid}}</p>
+                                    <span>{{news.slug}}/{{news.id}}</span>
+                                </article>   
+                            {%endif%}
+                        {%endfor%}
+                    </div>          	
+                </section>        
+              
+               
+               
+                    <div id="trasfondo">
+                        <div id="banner"></div>                       
+                        
+                        <section id="noticias">
+                        {%for news in other_news_list%}
+                            <article> 
+                                <h3>{{news.title}}</h3>
+                                <img src="/media/{{news.picture.0.img.name}}" />
+                                <p>{{news.lid|striptags}}</p>     
+                                <a href="JavaScript:void(0);">{{news.category}}</a>
+                                <div class="boton" > Lire</div>
+                                <span>{{news.slug}}/{{news.id}}</span>
+                            </article>  
+                        {%endfor%} 
+                            <div id="navegacion">
+                                <div id="anterior" href="/page/{{last_page}}">Antérieur</div>
+                                 
+                                <div id="siguiente" href="/page/{{next_page}}">Suivant</div>
+                            </div>
+                    </section>             
+                    
+                    
+                    <aside id="apartado">
+                        <h1>NOUVELLES</h1>
+                        {%for mr in most_read%}
+                        <article>
+                            <h4>{{mr.title}}</h4>
+                            <p>{{mr.lid|striptags}}</p>
+                            <span>{{mr.slug}}/{{mr.id}}</span>
+                        </article>
+                        {%endfor%}
+                    </aside>
+                       
+                    
+                    <div id="cuadro"></div>
+            </div>
+           
+            <div id="shown1" style="opacity:1">
+                <section id="shown2">
+            		<div id="shown3">
+                        <h2>{{news.tittle}}</h2>
+                        <img />
+                        <p>{{news.content}}</p>                       
+                        <div class="fb-comments"  data-numposts="5" data-colorscheme="light"></div>
+                    </div>
+                    <div id="botonr"></div>
+                    <ul>
+                        <li><a href="JavaScript:open('https://www.facebook.com/sharer/sharer.php?app_id=309437425817038&sdk=joey&u=http%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&display=popup','','top=300,left=300,width=800,height=400') ; "><img src="/static/img/fb.png" /></a></li>
+                        <li><a href="JavaScript:open('https://twitter.com/intent/tweet?hashtags=RadioCoolHaiti%2C&original_referer=http%3A%2F%2Flocalhost%2FCOOL%2Ftemplates%2520-%2520done%2Findex.html&text=Estoy%20escuchando%20buena%20musica%20en%20esta%20emisora&tw_p=tweetbutton','','top=300,left=300,width=800,height=400') ; "><img src="/static/img/tw.png" /></a></li>
+                        <li><img src="/static/img/mail.png" /></li>
+                        <li><a href="JavaScript: window.print();"><img src="/static/img/print.png" /></a></li>
+                    </ul>
+                </section>
+            </div>            
+            <footer><h1>(R)Droits Réservés Cool Fm</h1></footer>   
+    </div>
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+</body>
+</html>

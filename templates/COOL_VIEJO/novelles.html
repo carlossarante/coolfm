@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>COOL</title>
+    <link href="static/css/main.css" rel="stylesheet" type="text/css"/>
+    <!-- Desktop -->
+    <link href="/static/css/desktop2.css" rel="stylesheet" type="text/css" media="only screen and (min-width:920px)" />
+    <!-- Tablet -->
+    <link href="/static/css/tablet2.css" rel="stylesheet" type="text/css" media="only screen and (min-width:481px) and (max-width:919px)" />
+    <!-- movil -->
+    <link href="/static/css/movil2.css" rel="stylesheet" type="text/css" media="only screen and (max-width:480px)" />
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/animacion.js"></script>
+    
+</head>
+<body id="principal">
+        <div id="menuCool"> 
+        	<nav>
+            	<ul>
+                	<li><a href="">Menú 1</a></li>
+                    <li><a href="">Menú 2</a></li>
+                    <li><a href="">Menú 3</a></li>
+                    <li><a href="">Menú 4</a></li>
+                    <li><a href="">Menú 5</a></li>
+                </ul>
+            </nav>   
+        </div>
+		<header>       	
+        	<div id="botonMenu"></div> 
+        </header>  
+        
+        <div id="menu">
+			<nav>
+            	<ul>
+                    {%for cat in categories%}
+                    <li><a href="">{{cat.suptag}}</a></li>
+                    {%endfor%}
+                </ul>
+            </nav>        
+        </div>        
+        <section id="portada">
+            {%for news in recent_news_list%}
+                {%if news.first%}
+                    <article class="recientes1"> 
+                        <h2>{{news.title}}</h2>
+                        <img src="/media/{{news.picture.img.name}}" />
+                        <p>{{news.content}}</p>
+                    </article>    
+                {%else%}
+                    <article class="recientes2"> 
+                        <h2>{{news.title}}</h2>
+                        <img src="/media/{{news.picture.img.name}}" />
+                        <p>{{news.content}}</p>
+                    </article>   
+                {%endif%}
+            {%endfor%}
+            {%csrftoken%}
+            </section>        
+            <div id="trasfondo">
+            <div id="banner"></div>                    
+            <section id="noticias">
+                {%for news in other_news_list%}
+                    <article> 
+                        <h2>{{news.title}}</h2>
+                        <img src="/media/{{news.picture.img.name}}" />
+                        <p>{{news.content|striptags}}</p> 
+                        <div class="boton"> Leer mas</div>
+                    </article>   
+                {%endfor%}              
+            </section>   
+            <aside id="apartado">
+                <h1>NOTICIAS</h1>
+                <article>
+                <h4>Titulo de la Noticica</h4>
+                <p> Sobre el exministro y empresario de la construcción pesa varias acusaciones y la fiscal del Distrito Nacional, Yeni Berenice Reynoso ha asegurado que se trata de un caso sólido, con suficientes indicios para echar hacia adelante las investigaciones.
+                </p>
+                </article>
+                <article>
+                        <h4>Titulo de la Noticica</h4>
+                        <p> Sobre el exministro y empresario de la construcción pesa varias acusaciones y la fiscal del Distrito Nacional, Yeni Berenice Reynoso ha asegurado que se trata de un caso sólido, con suficientes indicios para echar hacia adelante las investigaciones.
+                        </p>
+                    </article><article>
+                        <h4>Titulo de la Noticica</h4>
+                        <p> Sobre el exministro y empresario de la construcción pesa varias acusaciones y la fiscal del Distrito Nacional, Yeni Berenice Reynoso ha asegurado que se trata de un caso sólido, con suficientes indicios para echar hacia adelante las investigaciones.
+                        </p>
+                    </article>
+                </aside>
+                <div id="cuadro"></div>
+        </div>
+        <div id="shown1">
+        	<section id="shown2">
+            </section>
+      	</div>
+        <footer>
+            <h1>(c)Todos los derchos reservados</h1>
+        </footer>   
+        
+    </body>
+</html>
