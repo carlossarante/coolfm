@@ -15,7 +15,7 @@ class Categories(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(unique=True)
-    date_posted = models.DateTimeField(default=timezone.now())
+    date_posted = models.DateTimeField(default=timezone.now)
     content = models.TextField()
     is_published = models.BooleanField(default=True)
     category= models.ForeignKey(Categories,null=True)
