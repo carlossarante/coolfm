@@ -13,6 +13,7 @@ from schedules.functions import querysetToArray
 from news_Manager.functions import removeHTML,serialize_post,setLid
 from news_Manager.models import *
 
+
 def newsLoader(request,page_num=1):
   return render_to_response('index.html',RequestContext(request))
 
@@ -62,7 +63,6 @@ def setTemplate(recent_news_list):
 
 def newsPage(request,category=None,pagindex=1):
   pagindex = int(pagindex)
-  #return HttpResponse("%s %s" % (pagindex,category))
   categories = Categories.objects.all()
   recent_news_list=[]
   other_news_list = []
@@ -71,16 +71,15 @@ def newsPage(request,category=None,pagindex=1):
     recent_news_list = Post.objects.filter(is_published=True).order_by('-date_posted')[:5]
     other_news_list = Post.objects.filter(is_published=True).order_by('-date_posted')[6:]
     pags = Paginator(other_news_list,3)
+    recent_news_list=setLid(recent_news_list)
+    other_news_list=setLid(other_news_list)
+    most_read=setLid(most_read)
     recent_news_list = setTemplate(recent_news_list)
     other_news_list = pags.page(pagindex).object_list
-    #return HttpResponse(other_news_list)
     other_news_list=getMultiplePostPicture(other_news_list)
     data = []
-   # return HttpResponse(other_news_list)
     try:
       a = request.POST['keyword']
-      #raise("im here")
-        #return HttpResponse(request.POST['keyword'])
       for r in recent_news_list:
         data.append(serialize_post(r,r.category)) 
       for o in other_news_list:
@@ -90,8 +89,7 @@ def newsPage(request,category=None,pagindex=1):
       data.append({'last':pags.num_pages})
       return HttpResponse(json.dumps(data),mimetype='application/json')
     except:
-      #raise(ValueError)
-      return render_to_response('novelles.html',{'recent_news_list':setLid(recent_news_list),'other_news_list':setLid(other_news_list),'most_read': setLid(most_read),'categories':categories,'page':pagindex,'last_page':pagindex-1,'next_page':pagindex+1,'last':pags.num_pages},RequestContext(request))
+      return render_to_response('novelles.html',{'recent_news_list':recent_news_list,'other_news_list':other_news_list,'most_read': setLid(most_read),'categories':categories,'page':pagindex,'last_page':pagindex-1,'next_page':pagindex+1,'last':pags.num_pages},RequestContext(request))
   else:
     cat = Categories.objects.get(suptag=category)
     posts = querysetToArray(Post.objects.filter(Q(category=cat),Q(is_published=True)).order_by('-date_posted'))

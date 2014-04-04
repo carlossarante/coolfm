@@ -2,9 +2,9 @@
 
 '''
 Created on Jan 21, 2014
-
 @author: Carlos
 '''
+
 from django.template.defaultfilters import removetags
 from django.utils.html import strip_tags
 from news_Manager.models import Post
@@ -46,6 +46,6 @@ def setLid(posts):
 def getLid(content):
     try:
         lid = re.search('(.*)</preview>',content).group()
-        return removetags(lid,'preview')
+        return strip_tags(lid)
     except:
         return content [:100]
