@@ -13,6 +13,8 @@ from suit_ckeditor.widgets import CKEditorWidget
 
 class AddImageFields(admin.StackedInline):
     model = Images
+    list_display=('img_thumbnail',)
+
 
 class NewsForm(forms.ModelForm):
    # content = forms.CharField()

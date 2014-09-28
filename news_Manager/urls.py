@@ -10,14 +10,8 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     url(r'^$', 'news_Manager.views.newsLoader'), 
-    url(r'^preview/$','news_Manager.views.getPreviewPage'),
-    url(r'^landpage/$','news_Manager.views.newsPage'), 
     url(r'^search/(?P<cat>\w+)/$','news_Manager.views.search'),
   	url(r'^search/$','news_Manager.views.search'),
-  	url(r'^((?P<category>\w+)/(?P<pagindex>\d+)/$)','news_Manager.views.newsPage'),
-    url(r'^(?P<pagindex>\d+)/$','news_Manager.views.newsPage'),
-    url(r'^((?P<category>\w+))/$','news_Manager.views.newsPage'),
-    url(r'^(?P<slug>[a-z0-9-]+)/(?P<id>\d+)/$','news_Manager.views.getNewsBySlug'),
-
-    #url (r'(?P<post_slug>[a-z0-9-]+)/$','news_Manager.views.count'),
+    url(r'^section/((?P<category>\w+))/$','news_Manager.views.newsByCategory'),
+    url(r'^(?P<slug>[a-z0-9-]+)/$','news_Manager.views.getNewsBySlug'),
 )

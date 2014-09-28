@@ -11,14 +11,21 @@ from news_Manager.models import Post
 from django.core.paginator import Paginator,EmptyPage
 
 
-from news_Manager.functions import removeHTML,serialize_post,setLid
+from news_Manager.serializers import PostSerializer
+from news_Manager.functions import formatted_render
 from news_Manager.models import *
 
+def newsLoader(request): 
+  news = Post().getIndexPageNews() 
+  return formatted_render(request,news)
 
-def newsLoader(request,page_num=1):
-  news = Post().getIndexPageNews()
-  return render(request,'test.html',{'news_list':news})
-            
+def newsByCategory(request,category):
+  news = Post().getNewsByCategory(category)
+  return formatted_render(request,news)
+
+def getNewsBySlug(request,slug):
+  news = Post().getBySlug(slug)
+  return formatted_render(request,news)
 
 def count(request,post_slug):
   try:

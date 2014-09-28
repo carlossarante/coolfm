@@ -1,8 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
-
-
+from user_Manager.models import User
 
 # Create your models here
 class Categories(models.Model):
@@ -19,24 +17,26 @@ class Post(models.Model):
     content = models.TextField()
     is_published = models.BooleanField(default=True)
     category= models.ForeignKey(Categories,null=True)
-    reads = models.BigIntegerField(default=0)
+    reads = models.BigIntegerField(default=0)   
+    user = models.ForeignKey(User,default=1)
 
     def __unicode__(self):
         return self.title
 
     def get_absolute_url(self):
-        return '/nouvelles/'+self.slug
+        return '/nouvelles/'+self.slug.lower()
     
     def get_votes(self):
         return self.reads
     
-    def getLastestNews(self):
-        return Post.objects.all().order_by('-date_posted')        
-    
-    def getCategory(self):
-        return self.category
-        image_img.short_description = 'Thumb'
-        image_img.allow_tags = True
+    def getBySlug(self,slug):
+        news = Post.objects.get(slug=slug)
+        return [news,]
+
+    def getNewsByCategory(self,category):
+        cat = Categories.objects.get(suptag=category)
+        news = cat.post_set.all().order_by('-date_posted')
+        return news
 
     def getLastestByCategory(self):
         categories = Categories.objects.all()
@@ -62,6 +62,8 @@ class Post(models.Model):
 class Images(models.Model):
     post = models.ForeignKey(Post)
     img = models.ImageField(upload_to='post_images')
+    def __unicode__(self):
+        return '/media/post_images/%s' % self.img.name
     def img_thumbnail(self):
         if self.image:
             return u'<img src="%s" />' % self.image.url_125x125

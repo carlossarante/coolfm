@@ -15,7 +15,7 @@ from django.conf.urls.static import static
 
 
 def index(request):
-    return render_to_response('index.html',RequestContext(request))
+    return render_to_response('home.html',RequestContext(request))
 
 def load_staff(request):
     user = User.objects.filter(is_superuser=False)
