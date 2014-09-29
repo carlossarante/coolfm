@@ -14,4 +14,4 @@ def formatted_render(request,queryset):
     ser_news = PostSerializer(queryset).data #Converted, to json.
     return HttpResponse(ser_news,mimetype='application/json')
   else:
-    return render(request,'index.html')
+    return render(request,'news.html')
