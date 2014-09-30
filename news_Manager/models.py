@@ -46,8 +46,7 @@ class Post(models.Model):
             if post:
                 news.append(post[0])
         return news
-    
-    
+
     def getIndexPageNews(self,page=1):
         posts = Post.objects.all().order_by('-date_posted')
         news = self.getLastestByCategory()
@@ -63,7 +62,7 @@ class Images(models.Model):
     post = models.ForeignKey(Post)
     img = models.ImageField(upload_to='post_images')
     def __unicode__(self):
-        return self.img.name
+        return '/media/'self.img.name
     def img_thumbnail(self):
         if self.image:
             return u'<img src="%s" />' % self.image.url_125x125
