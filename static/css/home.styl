@@ -1,0 +1,809 @@
+@import "nib"
+
+*
+	margin 0px
+	padding 0px
+body 
+	font-family Montserrat, helvetica
+	font-size 16px
+	height 100%
+	margin 0px
+	overflow hidden
+	padding 0px
+	width 100%
+figure
+	margin 0px
+section
+	height 100%
+	position relative
+	width 100%
+a
+	text-decoration none
+ul
+	padding 0px
+	li 
+		list-style none
+.inline-pos
+	display inline-block
+.block-pos
+	display block
+.absolute
+	position absolute
+.relative
+	position relative
+.gradient-a
+	height 75%
+	position absolute
+	top 0
+	width 100%
+.gradient-b
+	height 25%
+	position absolute
+	bottom 0
+	width 100%
+a
+	font-weight bold
+	&:active
+		color yellow
+nav
+	background-color rgba(255,255,255,0.94)
+	border-radius 0px 0px 40px 40px
+	box-shadow 0px 0px 15px rgba(0,0,0,0.7)
+	position fixed
+	right 2%
+	text-align center
+	top 0px
+	width 640px
+	z-index 10
+	ul
+		font-size 0px
+		text-align center
+		li
+			display inline-block
+			color black
+			cursor pointer
+			font-size 1rem
+			padding 20px 4%
+			&:first-child
+				padding-left 0px
+			&:last-child
+				padding-right 0px
+			&:hover 
+				color yellow
+			a
+				padding 20px 0px
+				color inherit		
+#logo
+	cursor pointer
+	margin 0 0 0 5%
+	position fixed
+	text-align center
+	width 250px
+	z-index 10
+	#cool-logo-bg
+		left 0px
+		position absolute
+		top 0px
+		width 100%
+	#cool-logo
+		position relative
+		width 75%
+.main-container
+	float left
+	position absolute
+	transition left 1s ease-out	
+#intro
+	z-index 1
+	.gradient-a
+		background linear-gradient(#c00 0%, #c00 70%, #900 100%)
+	.gradient-b
+		background linear-gradient(9deg,#c00 0%, #c00 45%, #400 90%)
+	.nous-sommes
+		background-color white
+		height 36px
+		position absolute
+		text-align right
+		top 40%
+		width 40%
+		&:after
+			//height 25px
+			border-right 30px solid transparent
+			border-top 36px solid white
+			content ''
+			position absolute
+			top 0%
+		span
+			color #e54c23
+			cursor default
+			font-size 2.5rem
+			font-weight bold
+			margin 0px 6px 0px 0px
+	.nous-anim
+		animation-duration 8s
+		animation-iteration-count infinite
+		bottom 19%
+		color white
+		cursor default
+		font-size 7rem
+		font-weight bold
+		left -1000px
+		margin 0px 0px 0px 8%
+		position absolute
+	.famille
+		animation-name famille
+	.novelle
+		animation-name novelle
+	.musique
+		animation-name musique
+	#escuchanos
+			display none
+	#play-img
+		z-index 2
+		position absolute
+		height 60%
+		left 45%
+		top 15%
+		width 50%
+		#listen
+			animation escuchar 6s
+			animation-delay 4s
+			background-color white
+			bottom -45px
+			box-shadow 0px 0px 2px black
+			font-size 1.8rem
+			font-weight bold
+			left 38%
+			padding-top 5px
+			position absolute
+			text-align center
+			transform-origin top
+			transition all 0.5s
+			visibility hidden
+			width 240px
+			&:after
+				border-bottom 15px solid white
+				border-left 9px solid transparent
+				border-right 9px solid transparent
+				content ''
+				height 25px
+				left 110px
+				position absolute
+				top -40px
+		img
+			position absolute
+			transition margin-left 1s ease-out
+			width 100%
+		/*#circle1
+			z-index 2
+		#circle2
+			z-index 3
+		#circle3
+			z-index 4*/
+		#play-cont
+			bottom 0
+			left 33%
+			position absolute
+			width 45%
+			z-index 5
+			#circle4
+				position relative
+				bottom 0px
+				width 100%
+			#play1
+				animation playing 6s
+				animation-delay 4s
+				animation-play-state running
+				background url(../img/Cool-web-play-Blanco2.png) no-repeat
+				background-size 100% 100%
+				left 34%
+				top 30%
+				position absolute
+				transition all 0.3s
+				width 40%
+				height 40%
+				z-index 5
+				cursor pointer
+				&:hover
+					background url(../img/Cool-web-play-Mamei3.png) no-repeat
+					background-size 100% 100%
+		#play
+			bottom -36%
+			left -12%
+			opacity 0 
+			width 110%
+			z-index 4
+#program
+	z-index 2
+	.gradient-a
+		background linear-gradient(#1a1d5e 0%, #1a1d5e 10%, #1d3ee0 100%)
+	.gradient-b
+		background linear-gradient(-6deg,#1d3ee0 0%, #1d3ee0 45%, #1a1d5e 90%)
+	#deco-1
+		background url("../img/DecoRED.png") no-repeat
+		height 10%
+		top 40%
+		width 50%
+		background-size: 100%
+	#deco-2
+		height 8%	
+		width 38%
+		background-size 100%
+		right 0px
+		top 82%
+		background url("../img/DecoGreen.png") no-repeat
+	#playing-now
+		background linear-gradient(15deg,#eee 0%,#fff 40%)
+		height 40%
+		left 4%
+		margin 0px
+		position absolute
+		top 25%
+		width 40%
+		div
+			&:first-child
+				background url(../img/05.jpg) 0% 0% no-repeat
+				background-size 100% 100%
+				height 96.5%
+				margin 1%
+				width 98%
+		p
+			color white
+			font-family Montserrat,arial
+			margin 2% 0px 0px 0px
+			&:first-child
+				font-size 40px
+		img
+			left 118%
+			position absolute
+			top 36%
+			width 20%
+	#current-schedule
+		height 60%
+		position absolute
+		right 10%
+		top 18%
+		width 30%
+		.schedule
+			background-color white
+			box-shadow 0px 0px 10px black
+			color black
+			height 17.5%
+			margin 2.5% 1%
+			width 98%
+			.hour
+				box-shadow 10px 0px 5px -7px #aaa
+				font-size 1.2rem
+				font-weight bold
+				height 17%
+				line-height 100px
+				overflow hidden
+				position absolute
+				text-align center
+				vertical-align middle
+				width 40%
+			.program-name
+				font-size 1.2rem
+				font-weight bold
+				height 17%
+				line-height 100px
+				overflow hidden
+				position absolute
+				right 1%
+				text-align center
+				vertical-align middle
+				width 58%
+	#share-section
+		color white
+		height 8%
+		left 4%
+		position absolute
+		top 85%
+		width 40%
+		.share-style
+			height 100%
+			width 45%
+			cursor pointer				
+			span
+				position absolute
+				top 40%
+		#facebook-share
+			background-color rgb(63,84,186)
+			box-shadow 0px 0px 1px white
+			float left
+		#twitter-share
+			background-color rgb(0,200,250)
+			box-shadow 0px 0px 1px white
+			float right
+			img
+				margin 2% 0 0 3%
+		img
+			height 80%
+			margin 2% 0 0 2%
+#broadcasters
+	z-index 3
+	.gradient-a
+		background linear-gradient(#0d3c06 0%, #0d3c06 10%, #1f8f0f 100%)
+	.gradient-b
+		background linear-gradient(-6deg,#1f8f0f 0%, #1f8f0f 45%, #0d3c06 90%)
+	.scroll-item
+		border-radius 50%
+		height 15%
+		opacity 0.5
+		position absolute
+		top 35%
+		transition background 0.2s ease-out
+		width 8%
+		z-index 2
+		&:before
+			transform rotateZ(45deg)
+			transform-origin 15%
+		&:after
+			transform rotateZ(-45deg)
+			transform-origin 15%
+		&:after
+		&:before
+			background-color white
+			border-radius 2px
+			content ''
+			height 15%
+			left 25%
+			position absolute
+			top 40%
+			width 50%
+		&:hover
+			background-color black
+	.left-scroll
+		left 1%
+	.right-scroll
+		right 1%
+		transform rotateY(180deg)
+	#broadcaster-show
+		height 50%
+		overflow hidden
+		padding-left 300px
+		position absolute
+		top 20%
+		width 100%
+		#hide-casters
+			ul
+				list-style-type none
+				li
+					.cover-narrator
+						background-color #ececec
+						border-radius 100%
+						box-shadow 10px 10px 10px black
+						content ''
+						position absolute
+						top 10%
+					.narrator
+						background url(../img/06.jpg)
+						background-size 100%
+						border-radius 50%
+						box-shadow 6px 6px 10px black
+						margin auto
+						margin-top 0.5%
+	#broadcaster-info
+		color white
+		left 5%
+		position absolute
+		top 65%
+		span
+			font-size 1rem
+			&:first-child
+				font-size 4rem
+
+#contact
+	z-index 4
+	.gradient-a
+		background linear-gradient(#6c6c6c 0%, #6c6c6c 10%, #d7d7d7 100%)
+	.gradient-b
+		background linear-gradient(-6deg,#d7d7d7 0%, #d7d7d7 45%, #6c6c6c 90%)
+	#map
+		background linear-gradient(15deg,#222 0%,#000 40%)
+		border 2px solid black
+		color black
+		font-size 1.2rem
+		height 51%
+		left 4%
+		position absolute
+		text-shadow 0px 0px 10px white
+		top 25%
+		width 40%
+		object
+			height 97%
+			margin 1%
+			width 98%
+	form
+		left 60%
+		position absolute
+		top 125px
+		width 25%
+		height 45%
+		p
+			color black
+			font-size 3.5rem
+			margin 0
+			margin-left -20px
+			padding 1%
+		input
+			font-size inherit
+			&[type=submit]
+				background-color black
+				border 1px solid #222
+				border-radius 3px
+				color white
+				float right
+				margin 1%
+				padding 10px 0px
+				width 100px
+				cursor pointer
+			&:not([type=submit])
+				border 1px solid #ccc
+				border-radius 3px
+				height 6%
+				min-height 25px
+				margin 10px 0px
+				padding 1.5%
+				width 95%
+		textarea
+			font-size inherit
+			font-family inherit
+			border 1px solid #ccc
+			border-radius 3px
+			height 45%
+			min-height 100px
+			margin-bottom 10px
+			padding 1.5%
+			resize none
+			width 95%
+	#deco-3
+		background url(../img/DecoRED2.png) no-repeat
+		background-size 100%
+		height 8%
+		position absolute
+		right 0
+		top 80%
+		width 40%
+		span
+			color white
+			font-size 1.5rem
+			left 4%
+			position absolute
+			top 25%
+#news
+	background-color black
+	bottom 0px
+	box-shadow 0px 0px 10px black
+	height 30px
+	position absolute
+	transition height 0.5s
+	width 100%
+	z-index 20
+	#botonNews
+		background linear-gradient(to bottom, rgb(100,100,100) 0%, rgb(14,14,14) 61%)
+		border-radius 150px 150px 0px 0px
+		bottom 40px
+		box-shadow 0px 0px 10px black
+		cursor pointer
+		height 150px
+		margin 0 auto
+		position relative
+		transition height 0.5s
+		width 200px
+		p
+			color white
+			position relative
+			margin auto
+			bottom -30px
+			font-size 1.8rem
+			text-align center
+		#noticias
+			position absolute
+			z-index 21
+			bottom 0px
+			left 0px
+			width 100%
+			height 0px
+			transition all 0.5s
+
+@media only screen and (max-width 1025px)
+	nav
+		width 100%
+		right 0
+		height 70px
+		border-radius 0
+		background rgb(242,245,246)
+		background linear-gradient(to right,rgba(255,255,255,1),rgba(255,255,255,0)),linear-gradient(135deg, rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%)
+		ul
+			position relative
+			top 70px
+			width 100%
+			height 0px
+			overflow hidden
+			background-color rgba(255,255,255,0.98)
+			transition all 1s
+			box-shadow 0px 0px 10px black inset
+			li 
+				padding 10px 0
+				display block
+				border-bottom 2px solid rgba(0,0,0,0.3)
+				&:last-child
+					border-bottom 0
+				a
+					padding 10px 0
+		#botonHdr
+			width 60px
+			height 60px
+			border-radius 50%
+			top 5px
+			right 20px
+			position absolute
+			z-index 40
+			background url(../img/menu.png) 12.5px 12.5px no-repeat
+			background-size 35px 35px
+			background-color white
+			cursor pointer
+
+	#logo
+		position fixed
+		z-index 10
+		height 70px
+		width auto
+		top 0
+		margin 0
+		left 20px
+		#cool-logo
+			width auto
+			height 100%
+		#cool-logo-bg
+			display none
+	
+
+	#intro
+		#play-img
+			height auto
+			left 40%
+			margin-top 90px
+			position relative
+			top 0
+			width 20%
+			img 
+				display none	
+			#play-cont
+				position relative
+				width 100%
+				left initial
+				bottom initial
+				img
+					display block
+				#play1
+					animation-play-state paused
+			#listen
+				display none
+		#escuchanos
+			display block
+			position relative
+			overflow hidden 
+			margin 0 auto
+			margin-top 10px	
+			text-align center
+			width 35%	
+			span
+				color white
+				font-size 1rem
+			div
+				background-color rgba(255,255,255,0.5)
+				font-size 0
+				padding 10px
+				width auto
+				a
+					img
+						width 25.33333333333333%
+						padding 0px 4% 
+						display inline-block
+		.nous-sommes
+			margin-top 5px
+			position relative
+			width 40%
+			top initial
+			height initial
+			&:after
+				border-right 22px solid transparent
+				border-top 28px solid white
+
+			span
+				font-size 1.5rem
+				
+		.nous-anim
+			font-size 4rem
+			width 99%
+			margin-left 0.5%
+			text-align center
+	#program
+		#deco-1
+		#deco-2
+		#playing-now
+		#share-section
+			display none
+		#current-schedule
+			width 90%
+			position relative
+			right initial
+			margin 0 auto
+	#contact
+		form
+			position relative
+			top 90px
+			width 90%
+			left 5%
+			p
+				color white
+				font-size 2.5rem
+				margin 0
+		#map
+			top initial
+			bottom 50px
+			width 30%
+			height 20%
+			figcaption
+				display none
+		#deco-3
+			display none
+
+@media only screen and (max-width 624px)
+	#logo
+		height 45px
+	nav
+		height 45px
+		#botonHdr
+			width 40px
+			height 40px
+			top 2px
+			background-position 10.7px 11px
+			background-size 20px
+		ul
+			top 45px
+	#intro
+		#play-img
+			margin-top 55px
+			width 30%
+			left 35%
+			#play-cont
+				bottom 45%
+		#escuchanos
+			width 80%
+		.nous-sommes
+			width 50%
+			&:after
+				border-right 18px solid transparent
+				border-top 24px solid white
+			span
+				font-size 1.25rem
+				
+		.nous-anim
+			font-size 2.5rem
+			
+	#contact
+		#map
+			bottom 60px 
+	#news
+		#botonNews
+			bottom 20px
+			p
+				font-size 1.2rem
+				bottom -20px
+
+@keyframes famille
+	1%
+		left 0px
+	33%
+		left 0px
+	35%
+		left -1000px
+	99%
+		left -1000px
+
+@keyframes musique
+	0%
+		left -1000px
+	33%
+		left -1000px
+	35%
+		left 0px
+	65%
+		left 0px
+	67%
+		left -1000px
+	100%
+		left -1000px
+
+@keyframes novelle
+	0%
+		left -1000px
+	65%
+		left -1000px
+	67%
+		left 0px
+	99%
+		left 0px
+
+@keyframes escuchar
+	0%
+		transform: scale(0.5,0.5)
+		visibility visible
+	10%
+		transform scale(1.1,1.1)
+		visibility visible
+	20%
+		transform scale(0.9,0.9)
+		visibility visible
+	30%
+		transform scale(1.1,1.1)
+		visibility visible
+	 40%
+		transform scale(0.9,0.9)
+		visibility visible
+	50%
+		transform scale(1.1,1.1)
+		visibility visible
+	60%
+		transform scale(0.9,0.9)
+		visibility visible
+	70%
+		transform scale(1.1,1.1)
+		visibility visible
+	80%
+		transform scale(0.9,0.9)
+		visibility visible
+	90%
+		transform scale(1.1,1.1)
+		visibility visible
+	100%
+		transform scale(0,0)
+		visibility hidden
+
+@keyframes playing 
+	0%
+		transform scale(1,1)
+		background url("../img/Cool-web-Play-Blanco2.png") 0px 0px  no-repeat
+		background-size 100% 100%
+	10%
+		transform scale(1.1,1.1)
+		background url("../img/Cool-web-Play-Mamei3.png") 0px 0px  no-repeat
+		background-size: 100% 100%
+	20%
+		transform scale(0.9,0.9)
+		background url("../img/Cool-web-Play-Blanco2.png") 0px 0px  no-repeat
+		background-size 100% 100%
+	30%
+		transform scale(1.1,1.1)
+		background url("../img/Cool-web-Play-Mamei3.png") 0px 0px  no-repeat
+		background-size 100% 100%
+	40%
+		transform scale(0.9,0.9)
+		background url("../img/Cool-web-Play-Blanco2.png") 0px 0px  no-repeat
+		background-size 100% 100%
+	50%
+		transform scale(1.1,1.1)
+		background url("../img/Cool-web-Play-Mamei3.png") 0px 0px  no-repeat
+		background-size 100% 100%
+	60%
+		transform scale(0.9,0.9)
+		background url("../img/Cool-web-Play-Blanco2.png") 0px 0px  no-repeat
+		background-size 100% 100%
+	70%
+		transform scale(1.1,1.1)
+		background url("../img/Cool-web-Play-Mamei3.png") 0px 0px  no-repeat
+		background-size 100% 100%
+	80%
+		transform scale(0.9,0.9)
+		background url("../img/Cool-web-Play-Blanco2.png") 0px 0px  no-repeat
+		background-size 100% 100%
+	90%
+		transform scale(1.1,1.1)
+		background url("../img/Cool-web-Play-Mamei3.png") 0px 0px  no-repeat
+		background-size 100% 100%
+	100%
+		transform scale(1,1)
+		background url("../img/Cool-web-Play-Blanco2.png") 0px 0px  no-repeat
+		background-size 100% 100%
