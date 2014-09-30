@@ -63,7 +63,7 @@ class Images(models.Model):
     post = models.ForeignKey(Post)
     img = models.ImageField(upload_to='post_images')
     def __unicode__(self):
-        return '/media/post_images/%s' % self.img.name
+        return self.img.name
     def img_thumbnail(self):
         if self.image:
             return u'<img src="%s" />' % self.image.url_125x125
