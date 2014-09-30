@@ -1,0 +1,36 @@
+[
+	{"title" : "Obama",
+		"text" : "Au nom de l'innovation et de la création C'était un pari qui n'était pas gagné d'avance.'' Proposer du neuf '' à un public aussi avisé que vous, a été le défi que la direction de la radio cool fm voulait relever.Car,il est beaucoup plus facile et simple de reproduire ce qui a été déjà fait,répéter les mêmes schémas, en feignant d'apporter quelque chose de nouveau.Mais en réalité, on ne fait que promouvoir la routine et tuer l'imagination.",
+		"img"	: "/media/post_images/1.jpg",
+		"section" : "Sociales",
+		"slug" : "muere-obama"
+	},
+	{
+		"title" : "Revive Jesucristo",
+		"text": "Au nom de l'innovation et de la création C'était un pari qui n'était pas gagné d'avance.'' Proposer du neuf '' à un public aussi avisé que vous, a été le défi que la direction de la radio cool fm voulait relever.Car,il est beaucoup plus facile et simple de reproduire ce qui a été déjà fait,répéter les mêmes schémas, en feignant d'apporter quelque chose de nouveau.Mais en réalité, on ne fait que promouvoir la routine et tuer l'imagination.",
+		"img"	: "/media/post_images/1004.jpg",
+		"section" : "Nationales",
+		"slug" : "revive-jesucristo"
+	},
+	{
+		"title" : "Cristobal descubre a America",
+		"text" : "Au nom de l'innovation et de la création C'était un pari qui n'était pas gagné d'avance.'' Proposer du neuf '' à un public aussi avisé que vous, a été le défi que la direction de la radio cool fm voulait relever.Car,il est beaucoup plus facile et simple de reproduire ce qui a été déjà fait,répéter les mêmes schémas, en feignant d'apporter quelque chose de nouveau.Mais en réalité, on ne fait que promouvoir la routine et tuer l'imagination.",
+		"img"	: "/media/post_images/Lionel_Messi_New_Pic_2013_07_1.jpg",
+		"section" : "Sports",
+		"slug" : "cristobal-descubre-a-america"
+	},
+	{
+		"title" : "La nacion estalla",
+		"text" : "Au nom de l'innovation et de la création C'était un pari qui n'était pas gagné d'avance.'' Proposer du neuf '' à un public aussi avisé que vous, a été le défi que la direction de la radio cool fm voulait relever.Car,il est beaucoup plus facile et simple de reproduire ce qui a été déjà fait,répéter les mêmes schémas, en feignant d'apporter quelque chose de nouveau.Mais en réalité, on ne fait que promouvoir la routine et tuer l'imagination.",
+		"img"	: "/media/post_images/1000.jpg",
+		"section" : "Sociales",
+		"slug" : "la-nacion-estalla"
+	},
+	{
+		"title" : "El continente explota",
+		"text" : "Au nom de l'innovation et de la création C'était un pari qui n'était pas gagné d'avance.'' Proposer du neuf '' à un public aussi avisé que vous, a été le défi que la direction de la radio cool fm voulait relever.Car,il est beaucoup plus facile et simple de reproduire ce qui a été déjà fait,répéter les mêmes schémas, en feignant d'apporter quelque chose de nouveau.Mais en réalité, on ne fait que promouvoir la routine et tuer l'imagination.",
+		"img"	: "/media/post_images/10003.jpg",
+		"section" : "Nationales",
+		"slug" : "el-continente-explota"
+	}
+]
