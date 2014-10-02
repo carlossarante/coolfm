@@ -16,20 +16,19 @@
 
     $routeProvider
       .when('/nouvelles', {
-        templateUrl: '/static/views/nouvelles.html',
-        //controller: 'MainController'
+        templateUrl: '/static/views/news.html',
+        controller: 'NouvellesController'
       })
-      .when('/nouvelles/:noticia', {
-        templateUrl: '/static/views/nouvelles.html',
-        //controller: 'MainController'
+      .when('/nouvelles/:singleNew', {
+        templateUrl: '/static/views/single.html',
+        controller: 'NewsSingleController'
       })
       .when('/nouvelles/section/:section', {
-        templateUrl: '/static/views/nouvelles.html',
-        //controller: 'MainController'
+        templateUrl: '/static/views/section.html',
+        controller: 'SectionController'
       })
       .otherwise({
         redirectTo: '/nouvelles'
       });
-
   	}]);
 })();

@@ -13,107 +13,42 @@
     <title>COOL</title>
 </head>
 
-<body>
-    <div ng-controller="MainController" ng-class="{hidden : newshow}">
-        <div class="header-cont">  
-            <header>
-                <a><div class="menuCool"></div></a>
-                <div class="botonMenu" ng-click="showMenu()"></div> 
-                <a href="javascript:void(0);" ng-click="hideSection();">
-                    <img src="/static/img/novelles.png"/><img src="/static/img/novelles2.png"/>
-                </a>            
-            </header> 
-        </div>
-        <div class="menu" ng-class="{'menu-active' : menushow}">
-            <nav>
-                <ul>                                   
-                    <li ng-repeat="tab in item track by $id(tab)" ng-click="showSection(tab);"><a href="JavaScript:void(0);">{% verbatim %}{{tab.section}}{%endverbatim%}</a></li>
-
-                    <li class="buscar">
-                        <div class="lupa"></div>
-                    </li>               
-                </ul>
-            </nav>        
-        </div>
-        <div class="buscar-cont">
-            <input class="buscarInfo" name="search" type="text" placeholder="Recherche">   
-        </div>    
-        <div class="principal" ng-click="hideMenu()">            
-                <section class="portada">             
-                    <div class="recientes">          
-                        <article class="recientes1" ng-repeat="noticia in portada track by $id(noticia)" ng-click="showNews(noticia)"> 
-                            <div>
-                                <img src="{%verbatim%}{{noticia.img}}{%endverbatim%}">
-                                <div class="text-cont">
-                                    <h2 style="bottom: 0px;">{%verbatim%}{{noticia.title}}{%endverbatim%}</h2>
-                                    <p><strong>{%verbatim%}{{noticia.text}}{%endverbatim%}</strong></p>
-                                </div>
-                            </div>
-                        </article>                     
-                        <img class="comodin" src="/media/post_images/Lionel_Messi_New_Pic_2013_07_1.jpg">
-                        <div class="secciones magictime" ng-class="{ slideUpReturn : sectionshow, slideUp : !sectionshow}" ng-click="showNews(noticia)" ng-repeat="noticia in nouvelles track by $id(noticia) ">
-                            <h1>{%verbatim%}{{noticia.section}}{%endverbatim%}</h1>
-                            <img src="{%verbatim%}{{noticia.img}}{%endverbatim%}">
-                            <div class="text-cont">
-                                <h2>{%verbatim%}{{noticia.title}}{%endverbatim%}</h2>
-                                <p>{%verbatim%}{{noticia.text}}{%endverbatim%}</p>
-                            </div>
-                        </div>              
-                    </div>              
-                </section>              
-                <div class="banner"></div>                  
-                <section class="noticias">
-                    <article ng-repeat="noticia in nouvelles track by $id(noticia)"> 
-                        <h2 ng-click="showNews(noticia)">{% verbatim %}{{noticia.title}}{% endverbatim %}</h2>
-                        <figure ng-click="showNews(noticia)">
-                            <img src="{%verbatim%}{{noticia.img}}{%endverbatim%}">
-                        </figure>
-                        <div class="content">
-                            <p>{% verbatim %}{{noticia.text}}{%endverbatim%}</p>                     
-                        </div>
-                        <a href="JavaScript:void(0);" ng-click="showSection(noticia)">{% verbatim %}{{noticia.section}}{%endverbatim%}</a>
-                        <div class="boton" ng-click="showNews(noticia)">Lire</div>
-                    </article>  
-                    <div class="navegacion">
-                        <div class="anterior" href="/page/0">Antérieur</div>
-                         
-                        <div class="siguiente" href="/page/2" style="display: inline-block;">Suivant</div>
-                    </div>
-                </section>             
-                    
-                <div class="aside-cont">
-                    <aside class="apartado">
-                        <div class="share-cool">
-                            <span class="span-styl">Suivez-nous</span>
-                            <a href="JavaScript:open('https://www.facebook.com/pages/radio-cool-fm-1039/124640610908149','','top=100,left=100,width=900,height=700');">
-                                <div class="fb-boton"></div>
-                            </a>
-                            <a href="JavaScript:open('https://twitter.com/radiocool1039','','top=100,left=100,width=900,height=700');">
-                                <div class="tw-boton"></div>
-                            </a>                        
-                        </div>
-                        <span class="span-styl">Top nouvelles</span>
-                        
-                        <article ng-repeat="noticia in topnouvelles track by $id(noticia)" ng-click="showNews(noticia)">
-                            <h3>{%verbatim%}{{noticia.title}}{%endverbatim%}</h3>
-                            <p>{%verbatim%}{{noticia.text}}{%endverbatim%}</p>
-                        </article>               
-                    </aside>            
-                    <div class="cuadro"></div>    
-                </div>                  
-                <div ng-view>
-                </div>               
-        </div>
-        <div class="footer-cont">
-            <footer><span>(R)Droits Réservés Cool Fm</span></footer>
-        </div>     
-    </div>  
+<body ng-controller="MainController" ng-class="{hidden : newshow}">
     
-<script type="text/javascript" src="/static/js/lib/angular.min.js"></script>
-<script type="text/javascript" src="/static/js/lib/angular-route.min.js"></script>
-<script type="text/javascript" src="/static/js/app.js"></script>
-<script type="text/javascript" src="/static/js/controllers.js"></script>
-<script type="text/javascript" src="/static/js/services.js"></script>
+    <div class="header-cont">  
+        <header>
+            <a><div class="menuCool"></div></a>
+            <div class="botonMenu" ng-click="showMenu()"></div> 
+            <a href="javascript:void(0);" ng-click="hideSection();">
+                <img src="/static/img/novelles.png"/><img src="/static/img/novelles2.png"/>
+            </a>            
+        </header> 
+    </div>
+    <div class="menu" ng-class="{'menu-active' : menushow}">
+        <nav>
+            <ul>                                   
+                <li ng-repeat="tab in item track by $id(tab)" ng-click="showSection(tab);"><a href="JavaScript:void(0);">{% verbatim %}{{tab.section}}{%endverbatim%}</a></li>
+
+                <li class="buscar">
+                    <div class="lupa"></div>
+                </li>               
+            </ul>
+        </nav>        
+    </div>
+    <div class="buscar-cont">
+        <input class="buscarInfo" name="search" type="text" placeholder="Recherche">   
+    </div>    
+    <div ng-view>
+    </div>
+    <div class="footer-cont">
+        <footer><span>(R)Droits Réservés Cool Fm</span></footer>
+    </div>    
+    
+    <script type="text/javascript" src="/static/js/lib/angular.min.js"></script>
+    <script type="text/javascript" src="/static/js/lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script type="text/javascript" src="/static/js/controllers.js"></script>
+    <script type="text/javascript" src="/static/js/services.js"></script>
 
 </body>
 

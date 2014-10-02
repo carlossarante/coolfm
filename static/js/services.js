@@ -26,10 +26,10 @@
         return deferred.promise;
       };
 
-      function getNews() {
+      function getNews(url) {
         var deferred = $q.defer();
 
-        $http.get('/static/nouvelle.json')
+        $http.get(url)
           .success(function (data) {
             deferred.resolve(data);
           });
