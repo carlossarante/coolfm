@@ -17,7 +17,7 @@
     
     <div class="header-cont">  
         <header>
-            <a><div class="menuCool"></div></a>
+            <a><div class="menuCool" ng-click="showHome()"></div></a>
             <div class="botonMenu" ng-click="showMenu()"></div> 
             <a href="javascript:void(0);" ng-click="hideSection();">
                 <img src="/static/img/novelles.png"/><img src="/static/img/novelles2.png"/>
@@ -38,10 +38,47 @@
     <div class="buscar-cont">
         <input class="buscarInfo" name="search" type="text" placeholder="Recherche">   
     </div>    
-    <div ng-view>
+    <div class="principal" ng-click="hideMenu()">            
+        <section class="portada">             
+            <div class="recientes">          
+                <article class="recientes1" ng-repeat="noticia in portada track by $id(noticia)" ng-click="showNews(noticia)"> 
+                    <div>
+                        <img src="{%verbatim%}{{noticia.img}}{%endverbatim%}">
+                        <div class="text-cont">
+                            <h2 style="bottom: 0px;">{%verbatim%}{{noticia.title}}{%endverbatim%}</h2>
+                            <p><strong>{%verbatim%}{{noticia.text}}{%endverbatim%}</strong></p>
+                        </div>
+                    </div>
+                </article>                     
+                <img class="comodin" src="{%verbatim%}{{nouvelles[0].img[0]}}{%endverbatim%}">
+                <div class="secciones magictime" ng-class="{ 'section-active' : sectionshow}">
+                    <div ng-repeat="noticia in sectionNew track by $id(noticia)"  ng-click="showNews(noticia)" ng-if="$first">
+                        <h1 ng-if="sectionshow">{%verbatim%}{{noticia.section}}{%endverbatim%}</h1>
+                        <img ng-if="sectionshow" src="{%verbatim%}{{noticia.img[0]}}{%endverbatim%}">
+                        <div ng-if="sectionshow" class="text-cont">
+                            <h2>{%verbatim%}{{noticia.title}}{%endverbatim%}</h2>
+                            <p>{%verbatim%}{{noticia.content}}{%endverbatim%}</p>
+                        </div>
+                        <h1 ng-if="!sectionshow">{%verbatim%}{{sectionNew.section}}{%endverbatim%}</h1>
+                        <img ng-if="!sectionshow" src="{%verbatim%}{{sectionNew.img[0]}}{%endverbatim%}">
+                        <div ng-if="!sectionshow" class="text-cont">
+                            <h2>{%verbatim%}{{sectionNew.title}}{%endverbatim%}</h2>
+                            <p>{%verbatim%}{{sectionNew.content}}{%endverbatim%}</p>
+                        </div>
+                    </div>
+                </div>              
+            </div>              
+        </section>              
+        <div class="banner"></div>                  
+        <div ng-view>
+        </div>
     </div>
     <div class="footer-cont">
-        <footer><span>(R)Droits Réservés Cool Fm</span></footer>
+        <footer>
+            <span>(R)Droits Réservés Cool Fm</span>
+            <a href="https://www.conuco.do/" target="_blank"><img src="/static/img/conuco-banner.png"/></a>
+        </footer>
+
     </div>    
     
     <script type="text/javascript" src="/static/js/lib/angular.min.js"></script>

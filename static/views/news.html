@@ -1,82 +1,39 @@
-<div class="principal" ng-click="hideMenu()">            
-    <section class="portada">             
-        <div class="recientes">          
-            <article class="recientes1" ng-repeat="noticia in portada track by $id(noticia)" ng-click="showNews(noticia)"> 
-                <div>
-                    <img src="{{noticia.img}}">
-                    <div class="text-cont">
-                        <h2 style="bottom: 0px;">{{noticia.title}}</h2>
-                        <p><strong>{{noticia.text}}</strong></p>
-                    </div>
-                </div>
-            </article>                     
-            <img class="comodin" src="{{nouvelles[0].img[0]}}">
-            <div class="secciones magictime" ng-class="{ slideUpReturn : sectionshow, slideUp : !sectionshow}" ng-click="showNews(noticia)">
-                <h1>{{sectionNew.section}}</h1>
-                <img src="{{sectionNew.img[0]}}">
-                <div class="text-cont">
-                    <h2>{{sectionNew.title}}</h2>
-                    <p>{{sectionNew.content}}</p>
-                </div>
-            </div>              
-        </div>              
-    </section>              
-    <div class="banner"></div>                  
-    <section class="noticias">
-        <article ng-repeat="noticia in nouvelles track by $id(noticia)"> 
-            <h2 ng-click="showNews(noticia)">{{noticia.title}}</h2>
-            <figure ng-click="showNews(noticia)">
-                <img src="{{noticia.img[0]}}">
-            </figure>
-            <div class="content">
-                <p>{{noticia.content}}</p>                     
-            </div>
-            <a href="JavaScript:void(0);" ng-click="showSection(noticia)">{{noticia.section}}</a>
-            <div class="boton" ng-click="showNews(noticia)">Lire</div>
-        </article>  
-        <div class="navegacion">
-            <div class="anterior" href="/page/0">Antérieur</div>
-             
-            <div class="siguiente" href="/page/2" style="display: inline-block;">Suivant</div>
+<section class="noticias">
+    <article ng-repeat="noticia in nouvelles track by $id(noticia)"> 
+        <h2 ng-click="showNews(noticia)">{{noticia.title}}</h2>
+        <span class="date">{{date}}</span>
+        <figure ng-click="showNews(noticia)">
+            <img src="{{noticia.img[0]}}">
+        </figure>
+        <div class="content">
+            <p>{{noticia.content}}</p>                     
         </div>
-    </section>
-    <div class="aside-cont">
-        <aside class="apartado">
-            <div class="share-cool">
-                <span class="span-styl">Suivez-nous</span>
-                <a href="JavaScript:open('https://www.facebook.com/pages/radio-cool-fm-1039/124640610908149','','top=100,left=100,width=900,height=700');">
-                    <div class="fb-boton"></div>
-                </a>
-                <a href="JavaScript:open('https://twitter.com/radiocool1039','','top=100,left=100,width=900,height=700');">
-                    <div class="tw-boton"></div>
-                </a>                        
-            </div>
-            <span class="span-styl">Top nouvelles</span>
-            
-            <article ng-repeat="noticia in topnouvelles track by $id(noticia)" ng-click="showNews(noticia)">
-                <h3>{{noticia.title}}</h3>
-                <p>{{noticia.text}}</p>
-            </article>               
-        </aside>            
-        <div class="cuadro"></div>    
-    </div>                  
-    <div class="news-overflow" ng-class="{ 'news-active' : newshow }">
-        <section class="news-page">
-            <div class="news">
-                <h2>{{newsSingle[0].title}}</h2>
-                <figure>
-                    <img src="{{newsSingle[0].img[0]}}">
-                </figure>
-                <p>{{newsSingle[0].content}}</p>             
-                <div class="fbcomments"></div>
-            </div>
-            <span class="boton" ng-click="hideNews()">Regresar</span>
-            <ul>
-                <li><a href="JavaScript:open('https://www.facebook.com/sharer/sharer.php?app_id=113869198637480&sdk=joey&u='+document.URL+'%2F&display=popup','','top=300,left=300,width=800,height=400') ;"><img src="/static/img/fb.png"></a></li>
-                <li><a href="JavaScript:open('https://twitter.com/intent/tweet?hashtags=RadioCoolHaiti%2C&original_referer=http%3A%2F%2Flocalhost%2FCOOL%2Ftemplates%2520-%2520done%2Findex.html&text='+document.URL+'&tw_p=tweetbutton','','top=300,left=300,width=800,height=400');"><img src="/static/img/tw.png"></a></li>
-                <li><a href="JavaScript:open('mailto: &subject= &body='+document.URL+'');"><img src="/static/img/mail.png"></a></li>
-                <li><a href="JavaScript: window.print();"><img src="/static/img/print.png"></a></li>
-            </ul>
-        </section>
-    </div>            
-</div>
+        <a href="JavaScript:void(0);" ng-click="showSection(noticia)">{{noticia.section}}</a>
+        <div class="boton" ng-click="showNews(noticia)">Lire</div>
+    </article>  
+    <div class="navegacion">
+        <div class="anterior" href="{{next}}" ng-if="(next!='')">Antérieur</div>
+         
+        <div class="siguiente" href="{{prev}}}}" ng-if="(prev!='')" style="display: inline-block;">Suivant</div>
+    </div>
+</section>
+<div class="aside-cont">
+    <aside class="apartado">
+        <div class="share-cool">
+            <span class="span-styl">Suivez-nous</span>
+            <a href="JavaScript:open('https://www.facebook.com/pages/radio-cool-fm-1039/124640610908149','','top=100,left=100,width=900,height=700');">
+                <div class="fb-boton"></div>
+            </a>
+            <a href="JavaScript:open('https://twitter.com/radiocool1039','','top=100,left=100,width=900,height=700');">
+                <div class="tw-boton"></div>
+            </a>                        
+        </div>
+        <span class="span-styl">Top nouvelles</span>
+        
+        <article ng-repeat="noticia in topnouvelles track by $id(noticia)" ng-click="showNews(noticia)">
+            <h3>{{noticia.title}}</h3>
+            <p>{{noticia.text}}</p>
+        </article>               
+    </aside>            
+    <div class="cuadro"></div>    
+</div>                  
