@@ -16,12 +16,12 @@ from news_Manager.functions import formatted_render,paginationSerializer
 
 def newsByCategory(request,category):
   news = Post().getNewsByCategory(category)
-  data = PostSerializer(news).data
+  data = PostSerializer(news,many=True).data
   return formatted_render(request,data)
 
 def getNewsBySlug(request,slug):
   news = Post().getBySlug(slug)
-  data = PostSerializer(news).data
+  data = PostSerializer(news,many=True).data
   return formatted_render(request,data)
 
 
