@@ -1,0 +1,66 @@
+<header>
+    <figure id='logo' ng-click="showHome()">
+        <img id='cool-logo-bg' src='/static/img/cool-web.png' alt='cool web'/>
+        <img id='cool-logo' class="inline-pos" src='/static/img/cool-logo-2.png' alt='cool 103.9 fm'/>
+    </figure>
+    <div id="botonHdr"></div>
+</header>
+<nav>
+    <ul>
+        <li ng-click="showCoolSection('Entrée')">
+            <a id="hogar" href='#' class='nav' data-page='a'>Entrée</a>
+        </li>
+        <li ng-click="showCoolSection('Programmation')">
+            <a href='#' class='nav' data-page='b'>Programmation</a>
+        </li>
+        <li ng-click="showCoolSection('Animateurs')">
+            <a href='#' class='nav' data-page='c'>Animateurs</a>
+        </li>
+        <li ng-click="showCoolSection('Contact')">
+            <a href='#' class='nav' data-page='d'>Contact</a>
+        </li>
+    </ul>
+</nav>
+<section class='intro main-container'>
+    <div class='gradient-a'></div>
+    <div class='gradient-b'></div>
+    
+    <figure id='play-img'>
+        <img id='circle1' src='/static/img/cool-circ-parall-1.png' alt='circle 1'/>
+        <img id='circle2' src='/static/img/cool-circ-parall-2.png' alt='circle 2'/>
+        <img id='circle3' src='/static/img/cool-circ-parall-3.png' alt='circle 3'/>
+        <div id="play-cont">
+            <img id='circle4' src='/static/img/cool-circ-parall-4.png' alt='circle 4'/>
+            <div id="play1"></div>
+        </div>
+        <div id="listen">Écouter la radio</div>
+    </figure>
+    
+    <div id="escuchanos">
+        <span>Ecoutez-nous!</span>
+        <div>
+            <a href="http://s3.voscast.com:7762/listen.pls"><img src="/static/img/apple.png" /></a>
+            <a href="http://radiocoolhaiti.com/static/listen.m3u"><img src="/static/img/andro.png" /></a>
+            <a href="http://s3.voscast.com:7762/;stream.mp3"><img src="/static/img/bb.png" /></a>
+        </div>
+    </div>
+    
+    <div class='nous-sommes'>
+        <span>
+            Nous sommes
+        </span>
+    </div>
+    <p class='famille nous-anim'>
+        Famille
+    </p>
+    <p class='novelle nous-anim'>
+        Informations 
+    </p>
+    <p class='musique nous-anim'>
+        Musiques
+    </p>
+</section>
+<section id="news">
+    <div id="botonNews" ng-click="showNouvelles()"><p>Nouvelles</p></div>
+    <object id="noticias" type="text/html" data="/nouvelles"></object>
+</section>

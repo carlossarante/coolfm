@@ -1,662 +1,271 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat)
-@import 'nib'
+//@import 'nib'
+//@import './magic.styl'
 //@import 'angular-csp.styl'
-@import './magic.styl'
 
-*
+
+.activo.ng-enter
+.activo.ng-leave
+	transition all 0.5s
+.activo
+	.ng-enter
+		opacity 0
+	.ng-enter-active
+		opacity 1
+	.ng-leave
+		opacity 0
+	.ng-leave-active
+		opacity 1
+
+/**
+	margin 0
+	padding 0
+a
+	text-decoration none
 	margin 0px
 	padding 0px
-h1
-h2
-h3
-h4
-h5
-h6
-	font-family: 'Montserrat',sans-serif
+
 li
 	list-style none
 a
 	text-decoration none
 html
-	background-color black
-body
+	background-color black*/
+.newsBody
 	font-size 16px
 	font-family 'Open Sans',sans-serif
 	background rgb(255,116,0)
 	background linear-gradient(to bottom, rgba(255,116,0,1) 0%,rgba(252,75,0,1) 100%)
 	//filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ff7400',endColorstr='.fc4b00',GradientType=0 )
-.header-cont
-	z-index 3
-	box-shadow 0px 0px 10px black
-	background-color black
-	height 42px
-	position relative
-	width 100%
-	text-align center
-	header
-		width 1024px
-		height 100%
-		display inline-block
-		text-align left
-		img
-			height 100%
-			margin-left 70px
-			&:last-child
-				display none
-		a
-			.menuCool
-				position absolute
-				height 75px
-				width 150px
-				background url(../img/flechas.png) 50% 25% no-repeat
-				background-size 50%
-				background-color rgba(255,255,255,0.8)
-				left 437px
-				top 0
-				cursor pointer
-				border-radius 0% 0% 75% 75%
-				transform scale(0.5,0.5)
-				transform-origin top
-				animation menuanimate 3s
-				animation-delay 5s
-		.botonMenu
-			display none
-.menu
-	width 100%
-	height 0px
-	position absolute
-	top 42px
-	z-index 4
-	nav
-		position relative
-		margin 0 auto
-		width 1024px
-		height 100%
-		text-align right
-		font-size 0
-		ul
-			height 42px
-			position relative
-			bottom 42px
-			display inline-block
-			text-align right
-			li
-				vertical-align middle
-				display inline-block
-				line-height 42px
-				font-size 1rem
-				padding 0px 10px
-				cursor pointer
-				&:hover
-					background-color white
-					a
-						color black
-				a
-					color white
-				&:last-child
-					height 100%
-					width 42px
-					.lupa
-						width 100%
-						height 100%
-						background url(/static/img/lupa1.png) no-repeat
-						background-position 50%
-						background-size 80%
-						background-color black
-					&:hover
-						.lupa
-							background url(/static/img/lupa2.png) no-repeat
-							background-position 50%
-							background-size 80%
-							background-color white
-.buscar-cont
-	position relative
-	width 100%
-	height 0px
-	overflow hidden
-	.buscarInfo
-		width 100%	
-		border 0
-		font-size 2rem
-		text-align center
-		box-shadow 0px 0px 10px black inset	
-		color #999			
-		height 100px
-
-.principal
-	position relative
-	width 1024px
-	min-height 600px
-	margin 0 auto
-	margin-top 350px
-	background-color white
-	box-shadow 0px 0px 10px black
-	font-size 0
-	.portada
-		position relative
-		top -350px
-		width 980px
-		height 0		
-		margin 0 auto 
-		margin 0 auto
-		.recientes
-			position relative
-			background linear-gradient(to bottom, rgba(175,175,175,0.88) 0%,rgba(0,0,0,1) 100%)
-			height 416.8354px
-			width 100%
-			font-size 0rem
-			.comodin
-				display none
-			article
-				cursor pointer
-				vertical-align top
-				position relative
-				font-size 1rem
-				display inline-block
-				width 33.33333333333333%
-				height 166.5384px
-				&:first-child
-				&:nth-child(2)
-					width 50% 	
-					height 250px
-					overflow hidden
-					div
-						height 240px
-						//img
-						//	height 240px
-						//.text-cont							
-				div	
-					position relative
-					margin 5px
-					height 156.8354px
-					img
-						width 100%
-						height 100%
-						position relative
-					.text-cont
-						overflow hidden
-						position absolute
-						width 100%
-						height 39px
-						bottom 0 
-						margin 0
-						background-color rgba(0,0,0,0.4)
-						transition height 0.3s
-						&:hover
-							height 100%
-						h2 
-							position relative
-							color white
-							padding 5px
-						p
-							padding 5px
-							color white
-							position relative
-							font-size 1rem
-			.secciones
-				cursor pointer
-				display block
-				position absolute
-				width 100%
-				height 100%
-				background-color black
-				top -100% 
-				right 0
-				transition all 0.5s ease-out
-				div
-					height 100%
-					img
-						width 100%
-						height 100%
-					h1
-						position absolute 
-						background-color rgba(255,255,255,0.8)
-						font-size 3.4rem
-						right -20px
-						top 40px
-						padding 0px 10px
-					.text-cont
-						overflow hidden
-						position absolute
-						width 100%
-						height auto
-						padding-bottom 10px
-						bottom 0 
-						margin 0
-						background-color rgba(0,0,0,0.4)
-						color white
-						h2
-							font-size 2rem
-							padding 0px 10px
-						p
-							font-size 1rem
-							padding 0px 10px
-			.section-active
-				top 0
-	.banner
-		width 725px
-		height 90px
-		background-color black
-		margin 20px auto
-		margin-top 80px
-	.noticias
-		vertical-align top
-		display inline-block
-		width 72%
-		font-size 1rem
-		.navegacion
-			padding-bottom 20px
-			text-align center
-			div
-				cursor pointer
-				padding 10px
-				display inline-block
-				background-color orange
-				color white
-				font-size 1.3rem
-		article
-			position relative
-			font-size 0
-			margin-left 20px
-			margin-right 10px
-			margin-bottom 20px
-			border-bottom 2px solid rgba(0,0,0,0.1)
-			padding-bottom 10px
-			h2
-				font-size 1.4rem
-				color rgba(0,0,0,0.8)
-				cursor pointer
-			.date
-				font-size 0.8rem
-				display block
-				color rgb(180,180,180)
-			figure
-				cursor pointer
-				vertical-align top
-				display inline-block
-				width 30%
-				img
-					width 202px
-					padding 5px
-			.content
-				margin-top 5px
-				vertical-align top
-				width 70%
-				display inline-block
-				p
-					word-wrap break-word
-					padding-bottom 50px
-					font-size 1rem
-					text-align justify
-			.boton
-				cursor pointer
-				position absolute
-				bottom 15px
-				right 0px
-				display inline-block
-				background-color rgba(255,50,0,0.5)
-				color white
-				font-size 1rem
-				padding 10px 30px
-				transition background 0.3s
-				&:hover
-					background-color rgba(255,50,0,1)
-			a
-				cursor pointer
-				bottom 15px
-				left 30%
-				position absolute
-				padding 10px
-				background-color rgba(180,180,180,0.8)
-				color white
-				font-size 1rem
-				transition background 0.3s
-				&:hover
-					background-color blue
-
-	.aside-cont
-		margin-bottom 20px
-		vertical-align top
-		display inline-block
-		width 28%
-		font-size 1rem
-		aside
-			padding 0px 20px 0px 10px
-			.span-styl
-				display block
-				background-color black
-				color white
-				text-align center
-			.share-cool
-				font-size 0rem
-				span
-					font-size 1.5rem
-					padding 5px 0px
-					margin-bottom 10px
-				a
-					div
-						width 125px
-						display inline-block
-						height 90.83px
-						transition background 0.3s
-				.fb-boton
-					background url(../img/Cool-web-FB.jpg) no-repeat
-					background-size 100%
-					margin-right 6px
-					&:hover
-						background url(../img/Cool-web.jpg) no-repeat
-						background-size 100%
-				.tw-boton
-					background url(../img/Cool-web-TW.jpg) no-repeat
-					background-size 100%
-					&:hover
-						background url(../img/Cool-web-over-tw.jpg) no-repeat
-						background-size 100%
-			span
-				padding 5px 0px				
-				font-size 1.2rem
-				margin 10px 0px
-			article
-				margin-bottom 10px
-				cursor pointer
-				h3
-					border-bottom 2px solid black
-					font-size 1.1rem
-				p
-					margin-top 5px
-					text-align justify
-					font-size 1rem
-		.cuadro
-			width 200px
-			height 200px
-			background-color black
-			float right
-			margin-right 10px
-
-	.news-overflow
-		visibility hidden		
-		opacity 0	
-		top 0
-		left 0
-		position fixed
-		z-index 10
-		background-color rgba(255,255,255,0.8)
-		width 100%
-		height 100%
-		animation-duration 0.5s
-		animation-timing-function ease-out
-		.news-page
-			position relative
-			top 5%
-			width 800px
-			margin 0 auto
-			height 90%
-			background-color white				
-			box-shadow 0px 0px 10px black
-			
-			.news
-				position relative
-				overflow auto
-				font-size 1rem
-				color black
-				height 100%
-				width 100%
-				h2
-					margin 0 auto
-					width 84%
-					padding-top 20px
-					margin-bottom 15px
-					border-bottom 2px solid orange
-				figure
-					margin-left 8%
-					float left
-					width 40%
-					padding-right 10px
-					img 
-						width 100%
-				p
-					word-wrap break-word
-					margin 0 auto
-					margin-bottom 20px
-					width 84%
-					text-align justify
-			ul
-				border-radius 5px 0px 0px 5px
-				box-shadow 0px 0px 10px black
-				background-color white
-				position absolute
-				width 50px
-				top 50px
-				left -50px
-				z-index -1
-				li
-					cursor pointer
-					margin 10px
-					padding-bottom 5px
-					border-bottom 1px solid rgba(0,0,0,0.3)
-					&:last-child 
-						border-bottom initial
-						padding-bottom initial
-					a
-						img
-							width 100%
-			.boton
-				border-radius 50%
-				box-shadow 0px 0px 5px black
-				font-size 0rem
-				cursor pointer
-				position absolute
-				top -25px
-				right -25px
-				background url(/static/img/x.png) no-repeat
-				background-size 140%
-				background-position 50%
-				width 35px
-				height 35px
-	.news-active
-		animation-name newsIn
-		visibility visible
-		opacity 1
-
-.footer-cont
-	position relative
-	background-color black
-	text-align center
-	color white
-	padding 30px
-	footer
-		position relative
-		width 1024px	
-		margin 0 auto
-		span
-			font-size 0.8rem
-		img
-			position absolute
-			right 0
-			top -13px
-
-@media only screen and (max-width 1025px)
+	h1
+	h2
+	h3
+	h4
+	h5
+	h6
+		font-family: 'Montserrat',sans-serif
 	.header-cont
-		top 70px
-		height 70px
-		position fixed
-		z-index 100
-		header
-			width 100%
+		z-index 3
+		box-shadow 0px 0px 10px black
+		background-color black
+		height 42px
+		position relative
+		width 100%
+		text-align center
+		.newsHdr
+			width 1024px
+			height 100%
 			display inline-block
 			text-align left
 			img
 				height 100%
-				margin-left 20px
-				&:first-child
-					display none
+				margin-left 70px
 				&:last-child
-					display initial
-			.botonMenu
-				display inline-block
-				width 60px
-				height 60px
-				border-radius 50%
-				top 5px
-				right 20px
-				position absolute
-				z-index 40
-				background url(../img/menu.png) 50% no-repeat
-				background-size 50%
-				background-color white
-				cursor pointer
+					display none
 			a
 				.menuCool
-					position fixed
-					height 70px
-					width 100%
-					//background url(../img/flechas.png) 50% 50% no-repeat
-					background-position 50%
-					background-size 50px
-					background-color rgba(255,255,255,1)
-					left 0
-					border-radius 0px
-					transform initial
-					transform-origin initial
-					animation initial
+					position absolute
+					height 75px
+					width 150px
+					background url(../img/flechas.png) 50% 25% no-repeat
+					background-size 50%
+					background-color rgba(255,255,255,0.8)
+					left 437px
+					top 0
+					cursor pointer
+					border-radius 0% 0% 75% 75%
+					transform scale(0.5,0.5)
+					transform-origin top
+					animation menuanimate 3s
+					animation-delay 5s
+			.botonMenu
+				display none
 	.menu
-		overflow hidden
-		z-index 11
 		width 100%
-		height auto
-		position fixed
-		top -100%
-		background-color rgba(255,255,255,0.95)
-		transition height 2s
-		transition top 0.5s ease-in
-		animation-duration 0.5s
-		box-shadow 0px 0px 10px black
+		height 0px
+		position absolute
+		top 42px
+		z-index 4
 		nav
-			width 100%
-			text-align initial
+			position relative
+			margin 0 auto
+			width 1024px
+			height 100%
+			text-align right
 			font-size 0
 			ul
-				height auto
+				height 42px
 				position relative
-				bottom initial
-				display block
-				text-align center
+				bottom 42px
+				display inline-block
+				text-align right
 				li
-					display block
-					border-bottom 2px solid rgba(0,0,0,0.5)
+					vertical-align middle
+					display inline-block
+					line-height 42px
+					font-size 1rem
+					padding 0px 10px
 					cursor pointer
-					&:last-child
-						border 0
 					&:hover
-						background-color gray
+						background-color white
 						a
-							color white
+							color black
 					a
-						color black
+						color white
 					&:last-child
 						height 100%
+						width 42px
 						.lupa
 							width 100%
+							height 100%
+							background url(/static/img/lupa1.png) no-repeat
+							background-position 50%
+							background-size 80%
+							background-color black
 						&:hover
 							.lupa
 								background url(/static/img/lupa2.png) no-repeat
 								background-position 50%
 								background-size 80%
 								background-color white
-	.menu-active
-		animation-name menuDownT
-		top 140px
 	.buscar-cont
-		margin-top 140px
-		height 0px
-		.buscarInfo
-			font-size 2rem		
-			height 100px
-	.principal
+		position relative
 		width 100%
-		margin-top initial
-		background-color initial
+		height 0px
+		overflow hidden
+		.buscarInfo
+			width 100%	
+			border 0
+			font-size 2rem
+			text-align center
+			box-shadow 0px 0px 10px black inset	
+			color #999			
+			height 100px
+
+	.principal
+		position relative
+		width 1024px
+		min-height 600px
+		margin 0 auto
+		margin-top 350px
+		background-color white
+		box-shadow 0px 0px 10px black
+		font-size 0
 		.portada
 			position relative
-			overflow hidden
-			top 0
-			width 100%
-			height auto 
+			top -350px
+			width 980px
+			height 0		
+			margin 0 auto 
+			margin 0 auto
 			.recientes
+				position relative
 				background linear-gradient(to bottom, rgba(175,175,175,0.88) 0%,rgba(0,0,0,1) 100%)
-				height auto
+				height 416.8354px
+				width 100%
+				font-size 0rem
 				.comodin
-					display block
-					width 100%
-					opacity 0
-					visibility hidden
+					display none
 				article
-					top 0
-					position absolute
+					cursor pointer
+					vertical-align top
+					position relative
+					font-size 1rem
 					display inline-block
-					width 100%
-					height 100%
-					animation-duration 32s 
-					animation-iteration-count infinite
+					width 33.33333333333333%
+					height 166.5384px
 					&:first-child
 					&:nth-child(2)
-						width 100% 	
-						height 100%
+						width 50% 	
+						height 250px
 						overflow hidden
 						div
-							height 100%	
-					&:nth-child(1)
-						animation-name slide1
-					&:nth-child(2)
-						animation-name slide2
-					&:nth-child(3)
-						animation-name slide3
-					&:nth-child(4)
-						animation-name slide4
-					&:nth-child(5)
-						animation-name slide5
+							height 240px
+							//img
+							//	height 240px
+							//.text-cont							
 					div	
-						margin 0px
-						height 100%
+						position relative
+						margin 5px
+						height 156.8354px
 						img
-							height auto
-						.text-cont
 							width 100%
-							height auto
-							background-color initial
+							height 100%
+							position relative
+						.text-cont
+							overflow hidden
+							position absolute
+							width 100%
+							height 39px
+							bottom 0 
+							margin 0
+							background-color rgba(0,0,0,0.4)
 							transition height 0.3s
 							&:hover
-								height auto
+								height 100%
 							h2 
-								background-color rgba(0,0,0,0.4)
-								bottom 0
+								position relative
+								color white
+								padding 5px
 							p
-								display none
-								
-							span 
-								display none
+								padding 5px
+								color white
+								position relative
+								font-size 1rem
 				.secciones
+					cursor pointer
+					display block
+					position absolute
+					width 100%
+					height 100%
+					background-color black
+					top -100% 
+					right 0
+					transition all 0.5s ease-out
 					div
+						height 100%
 						img
 							width 100%
+							height 100%
 						h1
+							position absolute 
+							background-color rgba(255,255,255,0.8)
 							font-size 3.4rem
-							right 0px
+							right -20px
+							top 40px
+							padding 0px 10px
 						.text-cont
+							overflow hidden
+							position absolute
+							width 100%
+							height auto
+							padding-bottom 10px
+							bottom 0 
+							margin 0
+							background-color rgba(0,0,0,0.4)
+							color white
 							h2
 								font-size 2rem
 								padding 0px 10px
 							p
-								display none
+								font-size 1rem
+								padding 0px 10px
+				.section-active
+					top 0
 		.banner
-			display none
+			width 725px
+			height 90px
+			background-color black
+			margin 20px auto
+			margin-top 80px
 		.noticias
-			padding-top 20px
-			display block
-			margin 0 auto
-			width 95%
-			background-color white
+			vertical-align top
+			display inline-block
+			width 72%
+			font-size 1rem
 			.navegacion
+				padding-bottom 20px
+				text-align center
 				div
 					cursor pointer
 					padding 10px
@@ -667,31 +276,42 @@ body
 			article
 				position relative
 				font-size 0
-				margin-left 0px
-				margin-right 0px
+				margin-left 20px
+				margin-right 10px
+				margin-bottom 20px
+				border-bottom 2px solid rgba(0,0,0,0.1)
 				padding-bottom 10px
 				h2
-					width 98%
-					display block 
-					margin 0 auto
 					font-size 1.4rem
+					color rgba(0,0,0,0.8)
+					cursor pointer
+				.date
+					font-size 0.8rem
+					display block
+					color rgb(180,180,180)
 				figure
-					display block
-					width 100%
+					cursor pointer
+					vertical-align top
+					display inline-block
+					width 30%
 					img
-						width 100%
-						padding 0px
+						width 202px
+						padding 5px
 				.content
-					display block
-					margin 0 auto
 					margin-top 5px
-					width 96%
-					padding-bottom 50px
+					vertical-align top
+					width 70%
+					display inline-block
+					p
+						word-wrap break-word
+						padding-bottom 50px
+						font-size 1rem
+						text-align justify
 				.boton
 					cursor pointer
 					position absolute
 					bottom 15px
-					right 20px
+					right 0px
 					display inline-block
 					background-color rgba(255,50,0,0.5)
 					color white
@@ -703,7 +323,7 @@ body
 				a
 					cursor pointer
 					bottom 15px
-					left 20px
+					left 30%
 					position absolute
 					padding 10px
 					background-color rgba(180,180,180,0.8)
@@ -712,139 +332,540 @@ body
 					transition background 0.3s
 					&:hover
 						background-color blue
-						
-				span
-					display none
 
 		.aside-cont
-			display none
+			margin-bottom 20px
+			vertical-align top
+			display inline-block
+			width 28%
+			font-size 1rem
+			aside
+				padding 0px 20px 0px 10px
+				.span-styl
+					display block
+					background-color black
+					color white
+					text-align center
+				.share-cool
+					font-size 0rem
+					span
+						font-size 1.5rem
+						padding 5px 0px
+						margin-bottom 10px
+					a
+						div
+							width 125px
+							display inline-block
+							height 90.83px
+							transition background 0.3s
+					.fb-boton
+						background url(../img/Cool-web-FB.jpg) no-repeat
+						background-size 100%
+						margin-right 6px
+						&:hover
+							background url(../img/Cool-web.jpg) no-repeat
+							background-size 100%
+					.tw-boton
+						background url(../img/Cool-web-TW.jpg) no-repeat
+						background-size 100%
+						&:hover
+							background url(../img/Cool-web-over-tw.jpg) no-repeat
+							background-size 100%
+				span
+					padding 5px 0px				
+					font-size 1.2rem
+					margin 10px 0px
+				article
+					margin-bottom 10px
+					cursor pointer
+					h3
+						border-bottom 2px solid black
+						font-size 1.1rem
+					p
+						margin-top 5px
+						text-align justify
+						font-size 1rem
+			.cuadro
+				width 200px
+				height 200px
+				background-color black
+				float right
+				margin-right 10px
 
 		.news-overflow
-			background-color white
-			overflow auto
-			display block
-			visibility auto
-			opacity 1
-			height 0
-			transition height 0.5s
+			visibility hidden		
+			opacity 0	
+			top 0
+			left 0
+			position fixed
+			z-index 10
+			background-color rgba(255,255,255,0.8)
+			width 100%
+			height 100%
+			animation-duration 0.5s
+			animation-timing-function ease-out
 			.news-page
-				top 0%
-				width 100%
-				height auto	
-				padding-top 140px
-				padding-bottom 45px
-				text-align center
-				box-shadow initial
+				position relative
+				top 5%
+				width 800px
+				margin 0 auto
+				height 90%
+				background-color white				
+				box-shadow 0px 0px 10px black
+				
 				.news
-					height auto	
-					overflow initial				
+					position relative
+					overflow auto
+					font-size 1rem
+					color black
+					height 100%
+					width 100%
 					h2
-						width initial
-						padding 0px 5px
-						padding-top 20px
-					figure
-						float initial
-						position relative
 						margin 0 auto
+						width 84%
+						padding-top 20px
+						margin-bottom 15px
+						border-bottom 2px solid orange
+					figure
+						margin-left 8%
+						float left
 						width 40%
-						border-radius 10px
-						padding 0
-						overflow hidden
-						margin-bottom 20px
+						padding-right 10px
 						img 
 							width 100%
 					p
-						width 94%
+						word-wrap break-word
+						margin 0 auto
+						margin-bottom 20px
+						width 84%
+						text-align justify
 				ul
-					display none
+					border-radius 5px 0px 0px 5px
+					box-shadow 0px 0px 10px black
+					background-color white
+					position absolute
+					width 50px
+					top 50px
+					left -50px
+					z-index -1
+					li
+						cursor pointer
+						margin 10px
+						padding-bottom 5px
+						border-bottom 1px solid rgba(0,0,0,0.3)
+						&:last-child 
+							border-bottom initial
+							padding-bottom initial
+						a
+							img
+								width 100%
 				.boton
-					font-size 1rem
-					color white
-					background orange
-					padding 10px
-					position relative
-					top initial
-					right initial
-					border-radius 0px
-					box-shadow initial
+					border-radius 50%
+					box-shadow 0px 0px 5px black
+					font-size 0rem
+					cursor pointer
+					position absolute
+					top -25px
+					right -25px
+					background url(/static/img/x.png) no-repeat
+					background-size 140%
+					background-position 50%
+					width 35px
+					height 35px
 		.news-active
+			animation-name newsIn
 			visibility visible
 			opacity 1
-			height 100%
+
 	.footer-cont
+		position relative
+		background-color black
+		text-align center
 		color white
+		padding 30px
 		footer
-			width 100%	
+			position relative
+			width 1024px	
+			margin 0 auto
+			span
+				font-size 0.8rem
+			img
+				position absolute
+				right 0
+				top -13px
 
-@media only screen and (max-width 624px)
-	.header-cont
-		height 45px
-		top 45px
-		header
-			.botonMenu
-				width 40px
-				height 40px
-				top 2px
-			a
-				.menuCool
-					height 45px
-					//background url(../img/flechas.png) 50% 50% no-repeat
-					//background-position 50%
-					background-size 35px
-	.menu
-		animation-name menuUpM
-
-	.menu-active
-		animation-name menuDownM
-		top 90px
-	.buscar-cont
-		margin-top 90px
-		height 0px
-		.buscarInfo
-			font-size 2rem		
-			height 100px
-	.principal
-		.portada
-			.recientes
-				.secciones
+@media only screen and (max-width 1025px)
+	.newsBody
+		.header-cont
+			top 70px
+			height 70px
+			position fixed
+			z-index 100
+			.newsHdr
+				width 100%
+				display inline-block
+				text-align left
+				img
+					height 100%
+					margin-left 20px
+					&:first-child
+						display none
+					&:last-child
+						display initial
+				.botonMenu
+					display inline-block
+					width 60px
+					height 60px
+					border-radius 50%
+					top 5px
+					right 20px
+					position absolute
+					z-index 40
+					background url(../img/menu.png) 50% no-repeat
+					background-size 50%
+					background-color white
+					cursor pointer
+				a
+					.menuCool
+						position fixed
+						height 70px
+						width 100%
+						//background url(../img/flechas.png) 50% 50% no-repeat
+						background-position 50%
+						background-size 50px
+						background-color rgba(255,255,255,1)
+						left 0
+						border-radius 0px
+						transform initial
+						transform-origin initial
+						animation initial
+		.menu
+			overflow hidden
+			z-index 11
+			width 100%
+			height auto
+			position fixed
+			top -100%
+			background-color rgba(255,255,255,0.95)
+			transition height 2s
+			transition top 0.5s ease-in
+			animation-duration 0.5s
+			box-shadow 0px 0px 10px black
+			nav
+				width 100%
+				text-align initial
+				font-size 0
+				ul
+					height auto
+					position relative
+					bottom initial
+					display block
+					text-align center
+					li
+						display block
+						border-bottom 2px solid rgba(0,0,0,0.5)
+						cursor pointer
+						&:last-child
+							border 0
+						&:hover
+							background-color gray
+							a
+								color white
+						a
+							color black
+						&:last-child
+							height 100%
+							.lupa
+								width 100%
+							&:hover
+								.lupa
+									background url(/static/img/lupa2.png) no-repeat
+									background-position 50%
+									background-size 80%
+									background-color white
+		.menu-active
+			animation-name menuDownT
+			top 140px
+		.buscar-cont
+			margin-top 140px
+			height 0px
+			.buscarInfo
+				font-size 2rem		
+				height 100px
+		.principal
+			width 100%
+			margin-top initial
+			background-color initial
+			.portada
+				position relative
+				overflow hidden
+				top 0
+				width 100%
+				height auto 
+				.recientes
+					background linear-gradient(to bottom, rgba(175,175,175,0.88) 0%,rgba(0,0,0,1) 100%)
+					height auto
+					.comodin
+						display block
+						width 100%
+						opacity 0
+						visibility hidden
+					article
+						top 0
+						position absolute
+						display inline-block
+						width 100%
+						height 100%
+						animation-duration 32s 
+						animation-iteration-count infinite
+						&:first-child
+						&:nth-child(2)
+							width 100% 	
+							height 100%
+							overflow hidden
+							div
+								height 100%	
+						&:nth-child(1)
+							animation-name slide1
+						&:nth-child(2)
+							animation-name slide2
+						&:nth-child(3)
+							animation-name slide3
+						&:nth-child(4)
+							animation-name slide4
+						&:nth-child(5)
+							animation-name slide5
+						div	
+							margin 0px
+							height 100%
+							img
+								height auto
+							.text-cont
+								width 100%
+								height auto
+								background-color initial
+								transition height 0.3s
+								&:hover
+									height auto
+								h2 
+									background-color rgba(0,0,0,0.4)
+									bottom 0
+								p
+									display none
+									
+								span 
+									display none
+					.secciones
+						div
+							img
+								width 100%
+							h1
+								font-size 3.4rem
+								right 0px
+							.text-cont
+								h2
+									font-size 2rem
+									padding 0px 10px
+								p
+									display none
+			.banner
+				display none
+			.noticias
+				padding-top 20px
+				display block
+				margin 0 auto
+				width 95%
+				background-color white
+				.navegacion
 					div
+						cursor pointer
+						padding 10px
+						display inline-block
+						background-color orange
+						color white
+						font-size 1.3rem
+				article
+					position relative
+					font-size 0
+					margin-left 0px
+					margin-right 0px
+					padding-bottom 10px
+					h2
+						width 98%
+						display block 
+						margin 0 auto
+						font-size 1.4rem
+					figure
+						display block
+						width 100%
 						img
 							width 100%
-						h1
-							font-size 1.5rem
-						.text-cont
-							h2
-								font-size 1.2rem
-								padding 0px 10px
-							p
-								font-size 1rem
-		.noticias
-			article
-				h2
-					font-size 1rem
-		.news-overflow
-			.news-page
-				padding-top 90px				
-				.news
-					h2
-						width initial
-						padding 0px 5px
-						padding-top 20px
-					figure
-						width 60%
-						img 
-							width 100%
-					p
-						width 94%
-				ul
-					display none
-	.footer-cont
-		padding 30px 10px
-		footer
-			span
+							padding 0px
+					.content
+						display block
+						margin 0 auto
+						margin-top 5px
+						width 96%
+						padding-bottom 50px
+					.boton
+						cursor pointer
+						position absolute
+						bottom 15px
+						right 20px
+						display inline-block
+						background-color rgba(255,50,0,0.5)
+						color white
+						font-size 1rem
+						padding 10px 30px
+						transition background 0.3s
+						&:hover
+							background-color rgba(255,50,0,1)
+					a
+						cursor pointer
+						bottom 15px
+						left 20px
+						position absolute
+						padding 10px
+						background-color rgba(180,180,180,0.8)
+						color white
+						font-size 1rem
+						transition background 0.3s
+						&:hover
+							background-color blue
+							
+					span
+						display none
+
+			.aside-cont
+				display none
+
+			.news-overflow
+				background-color white
+				overflow auto
 				display block
-				text-align left
-				font-size 0.8rem
+				visibility auto
+				opacity 1
+				height 0
+				transition height 0.5s
+				.news-page
+					top 0%
+					width 100%
+					height auto	
+					padding-top 140px
+					padding-bottom 45px
+					text-align center
+					box-shadow initial
+					.news
+						height auto	
+						overflow initial				
+						h2
+							width initial
+							padding 0px 5px
+							padding-top 20px
+						figure
+							float initial
+							position relative
+							margin 0 auto
+							width 40%
+							border-radius 10px
+							padding 0
+							overflow hidden
+							margin-bottom 20px
+							img 
+								width 100%
+						p
+							width 94%
+					ul
+						display none
+					.boton
+						font-size 1rem
+						color white
+						background orange
+						padding 10px
+						position relative
+						top initial
+						right initial
+						border-radius 0px
+						box-shadow initial
+			.news-active
+				visibility visible
+				opacity 1
+				height 100%
+		.footer-cont
+			color white
+			footer
+				width 100%	
+
+@media only screen and (max-width 624px)
+	.newsBody
+		.header-cont
+			height 45px
+			top 45px
+			.newsHdr
+				.botonMenu
+					width 40px
+					height 40px
+					top 2px
+				a
+					.menuCool
+						height 45px
+						//background url(../img/flechas.png) 50% 50% no-repeat
+						//background-position 50%
+						background-size 35px
+		.menu
+			animation-name menuUpM
+
+		.menu-active
+			animation-name menuDownM
+			top 90px
+		.buscar-cont
+			margin-top 90px
+			height 0px
+			.buscarInfo
+				font-size 2rem		
+				height 100px
+		.principal
+			.portada
+				.recientes
+					.secciones
+						div
+							img
+								width 100%
+							h1
+								font-size 1.5rem
+							.text-cont
+								h2
+									font-size 1.2rem
+									padding 0px 10px
+								p
+									font-size 1rem
+			.noticias
+				article
+					h2
+						font-size 1rem
+			.news-overflow
+				.news-page
+					padding-top 90px				
+					.news
+						h2
+							width initial
+							padding 0px 5px
+							padding-top 20px
+						figure
+							width 60%
+							img 
+								width 100%
+						p
+							width 94%
+					ul
+						display none
+		.footer-cont
+			padding 30px 10px
+			footer
+				span
+					display block
+					text-align left
+					font-size 0.8rem
 .hidden
 	overflow hidden
 

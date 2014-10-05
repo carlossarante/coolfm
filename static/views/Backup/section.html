@@ -1,0 +1,38 @@
+<section class="noticias">
+    <article ng-repeat="noticia in nouvelles track by $id(noticia)" ng-if="!$first"> 
+        <h2 ng-click="showNews(noticia)">{{noticia.title}}</h2>
+        <figure ng-click="showNews(noticia)">
+            <img src="{{noticia.img[0]}}">
+        </figure>
+        <div class="content">
+            <p>{{noticia.content}}</p>                     
+        </div>
+        <a href="JavaScript:void(0);" ng-click="showSection(noticia)">{{noticia.section}}</a>
+        <div class="boton" ng-click="showNews(noticia)">Lire</div>
+    </article>  
+    <div class="navegacion">
+        <div class="anterior" href="{{next}}" ng-if="(next!='')">Antérieur</div>
+         
+        <div class="siguiente" href="{{prev}}}}" ng-if="(prev!='')" style="display: inline-block;">Suivant</div>
+    </div>
+</section>
+<div class="aside-cont">
+    <aside class="apartado">
+        <div class="share-cool">
+            <span class="span-styl">Suivez-nous</span>
+            <a href="JavaScript:open('https://www.facebook.com/pages/radio-cool-fm-1039/124640610908149','','top=100,left=100,width=900,height=700');">
+                <div class="fb-boton"></div>
+            </a>
+            <a href="JavaScript:open('https://twitter.com/radiocool1039','','top=100,left=100,width=900,height=700');">
+                <div class="tw-boton"></div>
+            </a>                        
+        </div>
+        <span class="span-styl">Top nouvelles</span>
+        
+        <article ng-repeat="noticia in topnouvelles track by $id(noticia)" ng-click="showNews(noticia)">
+            <h3>{{noticia.title}}</h3>
+            <p>{{noticia.text}}</p>
+        </article>               
+    </aside>            
+    <div class="cuadro"></div>    
+</div>                  
