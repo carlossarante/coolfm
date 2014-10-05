@@ -26,18 +26,19 @@ def getNewsBySlug(request,slug):
 
 
 
+
 def newsLoader(request):
   query = request.GET.get('query','principals')
   page = request.GET.get('page',1)
   if query =='principals':
     news = Post().getLastestByCategory()
-    serialized_news = PostSerializer(news).data
+    serialized_news = PostSerializer(news,many=True).data
   elif query == 'nouvelles':
     news = Post().getIndexPageNews()
     serialized_news = paginationSerializer(request,news,page)
   elif query == 'top':
     news = Post().getTopNews()
-    serialized_news = PostSerializer(news).data
+    serialized_news = PostSerializer(news,many=True).data
   return formatted_render(request,serialized_news)
 
 
