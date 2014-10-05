@@ -7,25 +7,48 @@ from django.template.defaultfilters import removetags
 from django.shortcuts import render
 from django.http import Http404
 from django.http import HttpResponseRedirect,HttpResponse
-from news_Manager.models import Post
 from django.core.paginator import Paginator,EmptyPage
 
-
 from news_Manager.serializers import PostSerializer
-from news_Manager.functions import formatted_render
-from news_Manager.models import *
+from news_Manager.models import Post,Categories
+from news_Manager.functions import formatted_render,paginationSerializer
 
-def newsLoader(request): 
-  news = Post().getIndexPageNews() 
-  return formatted_render(request,news)
 
 def newsByCategory(request,category):
   news = Post().getNewsByCategory(category)
-  return formatted_render(request,news)
+  data = PostSerializer(news).data
+  return formatted_render(request,data)
 
 def getNewsBySlug(request,slug):
   news = Post().getBySlug(slug)
-  return formatted_render(request,news)
+  data = PostSerializer(news).data
+  return formatted_render(request,data)
+
+
+
+def newsLoader(request):
+  query = request.GET.get('query','principals')
+  page = request.GET.get('page',1)
+  if query =='principals':
+    news = Post().getLastestByCategory()
+    serialized_news = PostSerializer(news).data
+  elif query == 'nouvelles':
+    news = Post().getIndexPageNews()
+    serialized_news = paginationSerializer(request,news,page)
+  elif query == 'top':
+    news = Post().getTopNews()
+    serialized_news = PostSerializer(news).data
+  return formatted_render(request,serialized_news)
+
+
+def getCategories(request):
+  cat = []
+  data = {}
+  categories = Categories.objects.all()
+  for c in categories:
+    cat.append(c.suptag)
+  data['categories'] = cat
+  return formatted_render(request,data)
 
 def count(request,post_slug):
   try:
