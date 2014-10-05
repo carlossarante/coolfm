@@ -7,6 +7,9 @@
 			$scope.nouvelles = {};
 			$scope.portada = {};
 			$scope.newsSingle={};
+			$scope.next = "";
+			$scope.prev = "";
+			$scope.date = "25/05/2014 5:00";
 			$scope.sectionshow = false;
 
 			$scope.alternouvelles = function(val) {
@@ -21,8 +24,11 @@
 			$scope.altersectionshow = function () {
 				$scope.sectionshow = true;
 			}
-			$scope.alternewshow = function () {
-				$scope.newshow = true;
+			$scope.altersectionnew = function (val) {
+				$scope.sectionNew = val;
+			}
+			$scope.alternewshow = function (val) {
+				$scope.newshow = val;
 			}
 
 			nouvelleService.getMenu().then(function (data) {
@@ -36,6 +42,18 @@
         	nouvelleService.getTopNouvelles().then(function (data) {
           		$scope.topnouvelles = data;
         	});
+        	//Mostrar HOME COOL
+        	$scope.showHome = function(){
+        		console.log(typeof window.angular);
+        		if (typeof window.angular === "undefined"){
+        			window.parent.mostrarPagina();
+        		}
+        			
+        		else{
+        			window.location="/";
+        		}			
+        		
+        	}
 
 			//Mostrar Busqueda
 			$scope.showSearch = function () {
@@ -100,8 +118,10 @@
 
 		.controller('SectionController',['$scope','$location','$filter','$window','$routeParams','nouvelleService',function($scope,$location,$filter,$window,$routeParams,nouvelleService){
 			$scope.altersectionshow();
+			$scope.alternewshow(false);
 			nouvelleService.getSection($routeParams.section).then(function (data){
 				$scope.alternouvelles(data);
+				$scope.altersectionnew([data[0]]);
 			});
 		}])
 
