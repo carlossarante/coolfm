@@ -20,7 +20,7 @@ def paginationSerializer(request,queryset,page):
 	post_pages = Paginator(queryset,10)
 	posts = post_pages.page(page)
 	data['count'] = post_pages.num_pages
-	data['nouvelles'] = PostSerializer(posts.object_list).data
+	data['nouvelles'] = PostSerializer(posts.object_list,many=True).data
 	if posts.has_next():
 		data['next'] = posts.next_page_number()
 	else:
