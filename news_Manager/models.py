@@ -24,18 +24,18 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return '/nouvelles/'+self.slug.lower()
+        return '/nouvelles/' + self.slug.lower()
     
     def get_votes(self):
         return self.reads
     
-    def getBySlug(self,slug):
+    def getBySlug(self,slug): 
         news = Post.objects.get(slug=slug)
         return [news,]
 
     def getNewsByCategory(self,category):
         cat = Categories.objects.get(suptag=category)
-        news = cat.post_set.all().order_by('-date_posted')
+        news = cat.post_set.filter(is_published=True).order_by('-date_posted')
         return news
 
     def getLastestByCategory(self):
@@ -48,15 +48,16 @@ class Post(models.Model):
         return news
 
     def getIndexPageNews(self,page=1):
-        posts = Post.objects.all().order_by('-date_posted')
-        news = self.getLastestByCategory()
+        posts = Post.objects.filter(is_published=True).order_by('-date_posted')
+        last_by_section = self.getLastestByCategory()
+        news = []
         for p in posts:
-            if p not in news:
+            if p not in last_by_section:
                 news.append(p)
         return news
 
-
-
+    def getTopNews(self):
+        posts = Post.objects.filter(is_published=True).order_by('-reads')[:3]
 
 class Images(models.Model):
     post = models.ForeignKey(Post)
