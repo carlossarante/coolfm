@@ -67,4 +67,8 @@ class Contacts(models.Model):
     fax = models.BigIntegerField(null=True)
     
     
- 
+class Presenter(models.Model):
+    img = models.ImageField(upload_to='presenters_pic')
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    bio = models.TextField()
