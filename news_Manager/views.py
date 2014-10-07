@@ -14,9 +14,17 @@ from news_Manager.models import Post,Categories
 from news_Manager.functions import formatted_render,paginationSerializer
 
 
+
 def newsByCategory(request,category):
-  news = Post().getNewsByCategory(category)
-  data = PostSerializer(news,many=True).data
+  query = request.GET.get('query','')
+  if query == 'principals':
+      news = Post().getNewsByCategory(category)[0]
+      data = PostSerializer(news,many=False).data
+  else:
+      news = Post().getNewsByCategory(category)
+      page = request.GET.get('page',1)
+      data = paginationSerializer(request,news,page)
+  #data = PostSerializer(news,many=True).data
   return formatted_render(request,data)
 
 def getNewsBySlug(request,slug):
@@ -24,6 +32,10 @@ def getNewsBySlug(request,slug):
   data = PostSerializer(news,many=True).data
   return formatted_render(request,data)
 
+def getLastestNewsByCategory(request):
+  news = Post().getLastestByCategory()  
+  data = PostSerializer(news,many=True).data
+  return formatted_render(request,data)
 
 
 
