@@ -15,8 +15,19 @@
         return deferred.promise;
       };
 
+      function getCasters() {
+        var deferred = $q.defer();
+
+        $http.get('/static/narrator.json')
+          .success(function (data) {
+            deferred.resolve(data);
+          });
+
+        return deferred.promise;
+      };
       return {
         getProgramation : getProgramation,
+        getCasters : getCasters,
       };
 
     }])
@@ -37,7 +48,18 @@
       function getSection(section) {
         var deferred = $q.defer();
 
-        $http.get('/nouvelles/section/'+section+'/?format=json')
+        $http.get('/nouvelles/section/'+section+'/?format=json&query=principals')
+          .success(function (data) {
+            deferred.resolve(data);
+          });
+
+        return deferred.promise;
+      };
+
+      function getPrincipals() {
+        var deferred = $q.defer();
+
+        $http.get('/nouvelles/?format=json&query=principals')
           .success(function (data) {
             deferred.resolve(data);
           });
@@ -60,17 +82,6 @@
         var deferred = $q.defer();
 
         $http.get('/nouvelles/'+slug+'/?format=json')
-          .success(function (data) {
-            deferred.resolve(data);
-          });
-
-        return deferred.promise;
-      };
-
-      function getPrincipals() {
-        var deferred = $q.defer();
-
-        $http.get('/static/portada.json')
           .success(function (data) {
             deferred.resolve(data);
           });

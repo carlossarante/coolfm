@@ -3,20 +3,6 @@
 //@import './magic.styl'
 //@import 'angular-csp.styl'
 
-
-.activo.ng-enter
-.activo.ng-leave
-	transition all 0.5s
-.activo
-	.ng-enter
-		opacity 0
-	.ng-enter-active
-		opacity 1
-	.ng-leave
-		opacity 0
-	.ng-leave-active
-		opacity 1
-
 /**
 	margin 0
 	padding 0
@@ -31,6 +17,18 @@ a
 	text-decoration none
 html
 	background-color black*/
+.nouvellesAnim.ng-enter
+.nouvellesAnim.ng-leave
+	transition all 1s ease-out
+.nouvellesAnim.ng-enter
+	opacity 1
+.nouvellesAnim.ng-enter-active
+	opacity 1
+.nouvellesAnim.ng-leave
+	opacity 1
+.nouvellesAnim.ng-leave-active
+	opacity 1
+
 .newsBody
 	font-size 16px
 	font-family 'Open Sans',sans-serif
@@ -133,6 +131,7 @@ html
 		width 100%
 		height 0px
 		overflow hidden
+		z-index 1
 		.buscarInfo
 			width 100%	
 			border 0
@@ -141,6 +140,8 @@ html
 			box-shadow 0px 0px 10px black inset	
 			color #999			
 			height 100px
+	.buscarActive
+		height auto
 
 	.principal
 		position relative
@@ -250,6 +251,17 @@ html
 							p
 								font-size 1rem
 								padding 0px 10px
+				.sectionAnim.ng-enter
+				.sectionAnim.ng-leave
+					transition all 1s
+				.sectionAnim.ng-enter
+						top -100%
+				.sectionAnim.ng-enter-active
+						top 0
+				.sectionAnim.ng-leave
+						top 0
+				.sectionAnim.ng-leave-active
+						top -100%
 				.section-active
 					top 0
 		.banner
@@ -267,12 +279,15 @@ html
 				padding-bottom 20px
 				text-align center
 				div
+					visibility hidden
 					cursor pointer
 					padding 10px
 					display inline-block
 					background-color orange
 					color white
 					font-size 1.3rem
+				.navActive
+					visibility visible
 			article
 				position relative
 				font-size 0

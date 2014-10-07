@@ -13,13 +13,13 @@
             <ul>                                   
                 <li ng-repeat="tab in item track by $id(tab)" ng-click="showSection(tab);"><a href="JavaScript:void(0);">{{tab.section}}</a></li>
 
-                <li class="buscar">
+                <li class="buscar" ng-click="searchToggle()">
                     <div class="lupa"></div>
                 </li>               
             </ul>
         </nav>        
     </div>
-    <div class="buscar-cont">
+    <div class="buscar-cont" ng-class="{buscarActive:search}">
         <input class="buscarInfo" name="search" type="text" placeholder="Recherche">   
     </div>    
     <div class="principal" ng-click="hideMenu()">            
@@ -27,27 +27,21 @@
             <div class="recientes">          
                 <article class="recientes1" ng-repeat="noticia in portada track by $id(noticia)" ng-click="showNews(noticia)"> 
                     <div>
-                        <img src="{{noticia.img}}">
+                        <img src="{{noticia.img[0]}}">
                         <div class="text-cont">
                             <h2 style="bottom: 0px;">{{noticia.title}}</h2>
-                            <p><strong>{{noticia.text}}</strong></p>
+                            <p><strong>{{noticia.content}}</strong></p>
                         </div>
                     </div>
                 </article>                     
                 <img class="comodin" src="{{nouvelles[0].img[0]}}">
-                <div class="secciones magictime" ng-class="{ 'section-active' : sectionshow}">
-                    <div ng-repeat="noticia in sectionNew track by $id(noticia)"  ng-click="showNews(noticia)" ng-if="$first">
+                <div class="secciones sectionAnim" ng-repeat="noticia in sectionNew track by $id(noticia)"  ng-click="showNews(noticia)" ng-if="$first" ng-class="{ 'section-active' : sectionshow}">
+                    <div>
                         <h1 ng-if="sectionshow">{{noticia.section}}</h1>
                         <img ng-if="sectionshow" src="{{noticia.img[0]}}">
                         <div ng-if="sectionshow" class="text-cont">
                             <h2>{{noticia.title}}</h2>
                             <p>{{noticia.content}}</p>
-                        </div>
-                        <h1 ng-if="!sectionshow">{{sectionNew.section}}</h1>
-                        <img ng-if="!sectionshow" src="{{sectionNew.img[0]}}">
-                        <div ng-if="!sectionshow" class="text-cont">
-                            <h2>{{sectionNew.title}}</h2>
-                            <p>{{sectionNew.content}}</p>
                         </div>
                     </div>
                 </div>              
@@ -57,7 +51,7 @@
         <section class="noticias">
             <article class="activo" ng-repeat="noticia in nouvelles track by $id(noticia)"> 
                 <h2 ng-click="showNews(noticia)">{{noticia.title}}</h2>
-                <span class="date">{{date}}</span>
+                <span class="date">{{noticia.time_posted}}</span>
                 <figure ng-click="showNews(noticia)">
                     <img src="{{noticia.img[0]}}">
                 </figure>
@@ -68,9 +62,9 @@
                 <div class="boton" ng-click="showNews(noticia)">Lire</div>
             </article>  
             <div class="navegacion">
-                <div class="anterior" href="{{next}}" ng-if="(next!='')">Antérieur</div>
+                <div class="anterior" ng-class="{navActive:previous}">Antérieur</div>
                  
-                <div class="siguiente" href="{{prev}}}}" ng-if="(prev!='')" style="display: inline-block;">Suivant</div>
+                <div class="siguiente" ng-class="{navActive:next}" style="display: inline-block;">Suivant</div>
             </div>
         </section>
         <div class="aside-cont">
