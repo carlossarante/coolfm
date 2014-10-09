@@ -16,19 +16,6 @@ from django.conf.urls.static import static
 
 def index(request):
     return render_to_response('home.html',RequestContext(request))
-
-def load_staff(request):
-    user = User.objects.filter(is_superuser=False)
-    json_array=[]
-    for u in user:
-        data = {
-                'name': ('%s %s') % (u.first_name,u.last_name),
-                'picture': u.picture.name,
-                'bio': u.bio,
-                'programs': getShows(u)
-                }
-        json_array.append(data)
-    return HttpResponse(json.dumps(json_array),mimetype='application/json')    
     
 def getShows(user):
     shows = Shows.objects.filter(participants=user)
