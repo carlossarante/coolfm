@@ -8,5 +8,5 @@ from user_Manager.models import Presenter
 
 def getPresenters(request):
 	presenters = Presenter.objects.all()
-	data = PresenterSerializer(presenters).data
+	data = PresenterSerializer(presenters,many=True).data
 	return HttpResponse(json.dumps(data),mimetype='application/json')
