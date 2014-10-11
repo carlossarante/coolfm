@@ -1,13 +1,28 @@
+
 (function () {
 	angular.module('cool.controllers',[])
 		.controller('MainController',['$scope','$location','$filter','$window','$routeParams','coolService','nouvelleService',function($scope,$location,$filter,$window,$routeParams,coolService,nouvelleService){
 			$scope.home = true;
 			$scope.program= false;
 			$scope.casters ={};
-			$scope.caster= true;
+			$scope.caster= false;
 			$scope.contact = false;
 			$scope.casterActive= 0;
 			$scope.direction= 0;
+
+			angular.element($window).bind('resize',function(){
+				$scope.redimention();
+				$scope.$apply();
+			});
+	      		//$scope.redimention()
+	      		//$scope.$apply()
+
+			console.log($window);
+
+			/*window.onrezie = function(){
+				alert();
+				redimention();
+			}*/
 
 			///PETICIONES INICIALES JSON
 			coolService.getCasters().then(function (data) {
@@ -37,13 +52,40 @@
 			}
 
 			$scope.redimention = function (){
-				$scope.winW = $window.innerWidth; //window width
-				$scope.liW = $scope.winW * 0.25; //max-width li
-				$scope.liP = $scope.winW * 0.0415; //padding 
-				$scope.ulW = $scope.winW * ($scope.lastCaster + 1) / 3; //ul width
-
+				/*if(screen.width >624){
+					$scope.winW = $window.innerWidth; //window width
+					$scope.liW = $scope.winW * 0.20; //max-width li
+					$scope.liP = $scope.winW * 0.025; //padding 
+					$scope.ulW = $scope.winW * ($scope.lastCaster + 1) / 4; //ul width
+					$scope.contW = 25 ;
+				}*/
+				if(screen.width > screen.height){
+					$scope.winW = $window.innerWidth; //window width
+					$scope.liW = $scope.winW * 0.20; //max-width li
+					$scope.liP = $scope.winW * 0.025; //padding 
+					$scope.ulW = $scope.winW * ($scope.lastCaster + 1) / 4; //ul width
+					$scope.contW = 25 ;
+				}
+				/*else if($window.innerWidth >624){
+					$scope.winW = $window.innerWidth; //window width
+					$scope.liW = $scope.winW * 0.20; //max-width li
+					$scope.liP = $scope.winW * 0.025; //padding 
+					$scope.ulW = $scope.winW * ($scope.lastCaster + 1) / 4; //ul width
+					$scope.contW = $scope.liW + ($scope.liP * 2);
+				}*/
+				else{
+					$scope.winW = $window.innerWidth; //window width
+					$scope.liW = $scope.winW * 0.5; //max-width li
+					$scope.liP = $scope.winW * 0.25; //padding 
+					$scope.ulW = $scope.winW * ($scope.lastCaster + 1) / 1; 
+					$scope.contW = 100 ;
+				}
 			}
+			$scope.contStyle = function (){
+				var style ={"width" : $scope.contW+"%"};
 
+				return style;
+			}
 			$scope.ulStyle = function (){
 				var w = $scope.ulW;
 				var style = {"width" : w+"px","left":$scope.direction+"%"};
@@ -70,12 +112,14 @@
 			} 
 
 			$scope.showCoolSection = function(section){
+				$scope.hideMenu();
+
 				if(section === "Entrée"){
 					$scope.showHome();
 				}
 				else
 				{
-					//$location.path("/"+$filter('lowercase')(section));
+					$location.path("/"+$filter('lowercase')(section));
 					if(section === 'Programmation'){
 						$scope.program= true;
 						$scope.caster= false;

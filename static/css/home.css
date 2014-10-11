@@ -2019,8 +2019,11 @@ html {
 body {
   height: 100%;
   width: 100%;
-  position: fixed;
+  position: relative;
   overflow: auto;
+}
+body .body-view {
+  height: 100%;
 }
 a {
   text-decoration: none;
@@ -2040,11 +2043,6 @@ li {
 .coolBody figure {
   margin: 0px;
 }
-.coolBody section {
-  height: 100%;
-  position: fixed;
-  width: 100%;
-}
 .coolBody ul {
   padding: 0px;
 }
@@ -2053,36 +2051,11 @@ li {
 }
 .coolBody .coolHdr #logo {
   cursor: pointer;
-  margin: 0 0 0 5%;
-  position: fixed;
-  text-align: center;
-  width: 250px;
   z-index: 10;
 }
-.coolBody .coolHdr #logo #cool-logo-bg {
-  left: 0px;
-  position: absolute;
-  top: 0px;
-  width: 100%;
-}
-.coolBody .coolHdr #logo #cool-logo {
-  position: relative;
-  width: 75%;
-}
-.coolBody .coolHdr #botonHdr {
-  display: none;
-}
 .coolBody nav {
-  background-color: rgba(255,255,255,0.94);
-  -webkit-border-radius: 0px 0px 40px 40px;
-  border-radius: 0px 0px 40px 40px;
-  -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.7);
-  box-shadow: 0px 0px 15px rgba(0,0,0,0.7);
   position: fixed;
-  right: 2%;
   text-align: center;
-  top: 0px;
-  width: 640px;
   z-index: 9;
 }
 .coolBody nav ul {
@@ -2090,27 +2063,12 @@ li {
   text-align: center;
 }
 .coolBody nav ul li {
-  display: inline-block;
   color: #000;
   cursor: pointer;
   font-size: 1rem;
-  padding: 20px 4%;
 }
-.coolBody nav ul li:first-child {
-  padding-left: 0px;
-}
-.coolBody nav ul li:last-child {
-  padding-right: 0px;
-}
-.coolBody nav ul li:hover {
-  background-color: inherit;
-}
-.coolBody nav ul li:hover a {
-  color: inherit;
-}
-.coolBody nav ul li a {
-  padding: 20px 0px;
-  color: inherit;
+.coolBody nav .menuActive {
+  top: 0;
 }
 .coolBody .inline-pos {
   display: inline-block;
@@ -2139,18 +2097,11 @@ li {
 .coolBody a {
   font-weight: bold;
 }
-.coolBody a:active {
-  color: #ff0;
-}
 .coolBody .main-container {
-  float: left;
-  position: fixed;
+  position: relative;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
-  -webkit-transition: left 0.5s ease-out;
-  -moz-transition: left 0.5s ease-out;
-  -o-transition: left 0.5s ease-out;
-  -ms-transition: left 0.5s ease-out;
-  transition: left 0.5s ease-out;
 }
 .coolBody .intro {
   z-index: 1;
@@ -2171,15 +2122,9 @@ li {
 }
 .coolBody .intro .nous-sommes {
   background-color: #fff;
-  height: 36px;
-  position: absolute;
   text-align: right;
-  top: 40%;
-  width: 40%;
 }
 .coolBody .intro .nous-sommes:after {
-  border-right: 30px solid transparent;
-  border-top: 36px solid #fff;
   content: '';
   position: absolute;
   top: 0%;
@@ -2187,7 +2132,6 @@ li {
 .coolBody .intro .nous-sommes span {
   color: #e54c23;
   cursor: default;
-  font-size: 2.5rem;
   font-weight: bold;
   margin: 0px 6px 0px 0px;
 }
@@ -2205,7 +2149,6 @@ li {
   bottom: 19%;
   color: #fff;
   cursor: default;
-  font-size: 7rem;
   font-weight: bold;
   left: -1000px;
   margin: 0px 0px 0px 8%;
@@ -2232,66 +2175,14 @@ li {
   -ms-animation-name: musique;
   animation-name: musique;
 }
-.coolBody .intro #escuchanos {
-  display: none;
-}
 .coolBody .intro #play-img {
   z-index: 2;
-  position: absolute;
-  height: 60%;
-  left: 45%;
-  top: 15%;
-  width: 50%;
 /*#circle1
 				z-index 2
 			#circle2
 				z-index 3
 			#circle3
 				z-index 4*/
-}
-.coolBody .intro #play-img #listen {
-  -webkit-animation: escuchar 6s;
-  -moz-animation: escuchar 6s;
-  -o-animation: escuchar 6s;
-  -ms-animation: escuchar 6s;
-  animation: escuchar 6s;
-  -webkit-animation-delay: 4s;
-  -moz-animation-delay: 4s;
-  -o-animation-delay: 4s;
-  -ms-animation-delay: 4s;
-  animation-delay: 4s;
-  background-color: #fff;
-  bottom: -45px;
-  -webkit-box-shadow: 0px 0px 2px #000;
-  box-shadow: 0px 0px 2px #000;
-  font-size: 1.8rem;
-  font-weight: bold;
-  left: 38%;
-  padding-top: 5px;
-  position: absolute;
-  text-align: center;
-  -webkit-transform-origin: top;
-  -moz-transform-origin: top;
-  -o-transform-origin: top;
-  -ms-transform-origin: top;
-  transform-origin: top;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  transition: all 0.5s;
-  visibility: hidden;
-  width: 240px;
-}
-.coolBody .intro #play-img #listen:after {
-  border-bottom: 15px solid #fff;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  content: '';
-  height: 25px;
-  left: 110px;
-  position: absolute;
-  top: -40px;
 }
 .coolBody .intro #play-img img {
   position: absolute;
@@ -2303,10 +2194,6 @@ li {
   width: 100%;
 }
 .coolBody .intro #play-img #play-cont {
-  bottom: 0;
-  left: 33%;
-  position: absolute;
-  width: 45%;
   z-index: 5;
 }
 .coolBody .intro #play-img #play-cont #circle4 {
@@ -2353,18 +2240,8 @@ li {
   -moz-background-size: 100% 100%;
   background-size: 100% 100%;
 }
-.coolBody .intro #play-img #play {
-  bottom: -36%;
-  left: -12%;
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  width: 110%;
-  z-index: 4;
-}
 .coolBody .program {
   z-index: 2;
-  left: 100%;
 }
 .coolBody .program .gradient-a {
   background: -webkit-linear-gradient(#1a1d5e 0%, #1a1d5e 10%, #1d3ee0 100%);
@@ -2380,67 +2257,9 @@ li {
   background: -ms-linear-gradient(96deg, #1d3ee0 0%, #1d3ee0 45%, #1a1d5e 90%);
   background: linear-gradient(-6deg, #1d3ee0 0%, #1d3ee0 45%, #1a1d5e 90%);
 }
-.coolBody .program #deco-1 {
-  background: url("../img/DecoRED.png") no-repeat;
-  height: 10%;
-  top: 40%;
-  width: 50%;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  background-size: 100%;
-}
-.coolBody .program #deco-2 {
-  height: 8%;
-  width: 38%;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  background-size: 100%;
-  right: 0px;
-  top: 82%;
-  background: url("../img/DecoGreen.png") no-repeat;
-}
-.coolBody .program #playing-now {
-  background: -webkit-linear-gradient(75deg, #eee 0%, #fff 40%);
-  background: -moz-linear-gradient(75deg, #eee 0%, #fff 40%);
-  background: -o-linear-gradient(75deg, #eee 0%, #fff 40%);
-  background: -ms-linear-gradient(75deg, #eee 0%, #fff 40%);
-  background: linear-gradient(15deg, #eee 0%, #fff 40%);
-  height: 40%;
-  left: 4%;
-  margin: 0px;
-  position: absolute;
-  top: 25%;
-  width: 40%;
-}
-.coolBody .program #playing-now div:first-child {
-  background: url("../img/05.jpg") 0% 0% no-repeat;
-  -webkit-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  background-size: 100% 100%;
-  height: 96.5%;
-  margin: 1%;
-  width: 98%;
-}
-.coolBody .program #playing-now p {
-  color: #fff;
-  font-family: Montserrat, arial;
-  margin: 2% 0px 0px 0px;
-}
-.coolBody .program #playing-now p:first-child {
-  font-size: 40px;
-}
-.coolBody .program #playing-now img {
-  left: 118%;
-  position: absolute;
-  top: 36%;
-  width: 20%;
-}
 .coolBody .program #current-schedule {
   height: 60%;
-  position: absolute;
-  right: 10%;
   top: 18%;
-  width: 30%;
 }
 .coolBody .program #current-schedule .schedule {
   background-color: #fff;
@@ -2450,71 +2269,27 @@ li {
   height: 17.5%;
   margin: 2.5% 1%;
   width: 98%;
+  display: table;
+}
+.coolBody .program #current-schedule .schedule span {
+  display: table-cell;
+  vertical-align: middle;
+  font-weight: bold;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
 }
 .coolBody .program #current-schedule .schedule .hour {
   -webkit-box-shadow: 10px 0px 5px -7px #aaa;
   box-shadow: 10px 0px 5px -7px #aaa;
-  font-size: 1.2rem;
-  font-weight: bold;
-  height: 17%;
-  line-height: 100px;
-  overflow: hidden;
-  position: absolute;
-  text-align: center;
-  vertical-align: middle;
   width: 40%;
 }
 .coolBody .program #current-schedule .schedule .program-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  height: 17%;
-  line-height: 100px;
-  overflow: hidden;
-  position: absolute;
-  right: 1%;
-  text-align: center;
-  vertical-align: middle;
-  width: 58%;
-}
-.coolBody .program #share-section {
-  color: #fff;
-  height: 8%;
-  left: 4%;
-  position: absolute;
-  top: 85%;
-  width: 40%;
-}
-.coolBody .program #share-section .share-style {
-  height: 100%;
-  width: 45%;
-  cursor: pointer;
-}
-.coolBody .program #share-section .share-style span {
-  position: absolute;
-  top: 40%;
-}
-.coolBody .program #share-section #facebook-share {
-  background-color: #3f54ba;
-  -webkit-box-shadow: 0px 0px 1px #fff;
-  box-shadow: 0px 0px 1px #fff;
-  float: left;
-}
-.coolBody .program #share-section #twitter-share {
-  background-color: #00c8fa;
-  -webkit-box-shadow: 0px 0px 1px #fff;
-  box-shadow: 0px 0px 1px #fff;
-  float: right;
-}
-.coolBody .program #share-section #twitter-share img {
-  margin: 2% 0 0 3%;
-}
-.coolBody .program #share-section img {
-  height: 80%;
-  margin: 2% 0 0 2%;
+  width: 60%;
 }
 .coolBody .broadcasters {
   z-index: 3;
-  left: 200%;
+  display: table;
 }
 .coolBody .broadcasters .gradient-a {
   background: -webkit-linear-gradient(#0d3c06 0%, #0d3c06 10%, #1f8f0f 100%);
@@ -2532,17 +2307,10 @@ li {
 }
 .coolBody .broadcasters .scroll-item {
   z-index: 1;
-  line-height: 150px;
   text-align: center;
   color: rgba(255,255,255,0.8);
-  font-size: 4rem;
   position: absolute;
   cursor: pointer;
-  top: 40%;
-  width: 100px;
-  height: 150px;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
   background-color: transparent;
   -webkit-transition: background-color 0.2s;
   -moz-transition: background-color 0.2s;
@@ -2554,21 +2322,25 @@ li {
   background-color: rgba(0,0,0,0.8);
 }
 .coolBody .broadcasters .left-scroll {
-  left: 1%;
+  left: 0%;
+  -webkit-border-radius: 0% 50% 50% 0%;
+  border-radius: 0% 50% 50% 0%;
 }
 .coolBody .broadcasters .right-scroll {
-  right: 1%;
+  right: 0%;
+  -webkit-border-radius: 50% 0% 0% 50%;
+  border-radius: 50% 0% 0% 50%;
 }
 .coolBody .broadcasters #broadcaster-show {
-  position: absolute;
-  top: 20%;
-  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  max-width: 100px;
   font-size: 0;
 }
 .coolBody .broadcasters #broadcaster-show .container {
   position: relative;
-  width: 33.33333333333%;
-  margin: 0 auto;
+  width: 25%;
+  margin: 0px 0px 0px 0%;
 }
 .coolBody .broadcasters #broadcaster-show .container ul {
   position: relative;
@@ -2581,13 +2353,8 @@ li {
 }
 .coolBody .broadcasters #broadcaster-show .container ul li {
   position: relative;
-  width: 25%;
-  max-width: 420px;
-  padding: 20px 4.15%;
-width
 }
 .coolBody .broadcasters #broadcaster-show .container ul li .cover_narrator {
-  padding: 10px;
   background-color: #fff;
   -webkit-border-radius: 50%;
   border-radius: 50%;
@@ -2613,26 +2380,27 @@ width
 .coolBody .broadcasters #broadcaster-show .container ul li .casterActive {
   background-color: #ff0;
 }
-.coolBody .broadcasters #broadcaster-show span {
-  font-size: 1rem;
-  color: #fff;
-  padding: 10px;
-}
 .coolBody .broadcasters #broadcaster-info {
   color: #fff;
   left: 5%;
+  width: 90%;
+  height: 25%;
   position: absolute;
-  top: 65%;
+  bottom: 0px;
 }
 .coolBody .broadcasters #broadcaster-info span {
-  font-size: 1rem;
+  display: block;
 }
-.coolBody .broadcasters #broadcaster-info span:first-child {
-  font-size: 4rem;
+.coolBody .broadcasters #broadcaster-info .narrator-name {
+  position: absolute;
+  bottom: 100%;
+}
+.coolBody .broadcasters #broadcaster-info .narrator-info {
+  padding-top: 10px;
+  text-align: justify;
 }
 .coolBody .contact {
   z-index: 4;
-  left: 300%;
 }
 .coolBody .contact .gradient-a {
   background: -webkit-linear-gradient(#6c6c6c 0%, #6c6c6c 10%, #d7d7d7 100%);
@@ -2657,30 +2425,15 @@ width
   border: 2px solid #000;
   color: #000;
   font-size: 1.2rem;
-  height: 51%;
   left: 4%;
-  position: absolute;
   text-shadow: 0px 0px 10px #fff;
-  top: 25%;
-  width: 40%;
 }
 .coolBody .contact #map object {
   height: 97%;
   margin: 1%;
   width: 98%;
 }
-.coolBody .contact form {
-  left: 60%;
-  position: absolute;
-  top: 125px;
-  width: 25%;
-  height: 45%;
-}
 .coolBody .contact form p {
-  color: #000;
-  font-size: 3.5rem;
-  margin: 0;
-  margin-left: -20px;
   padding: 1%;
 }
 .coolBody .contact form input {
@@ -2720,24 +2473,6 @@ width
   padding: 1.5%;
   resize: none;
   width: 95%;
-}
-.coolBody .contact #deco-3 {
-  background: url("../img/DecoRED2.png") no-repeat;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  background-size: 100%;
-  height: 8%;
-  position: absolute;
-  right: 0;
-  top: 80%;
-  width: 40%;
-}
-.coolBody .contact #deco-3 span {
-  color: #fff;
-  font-size: 1.5rem;
-  left: 4%;
-  position: absolute;
-  top: 25%;
 }
 .coolBody #news {
   background-color: #000;
@@ -2781,7 +2516,6 @@ width
   position: relative;
   margin: auto;
   bottom: -30px;
-  font-size: 1.8rem;
   text-align: center;
 }
 .coolBody #news #botonNews #noticias {
@@ -2809,9 +2543,317 @@ width
   -ms-transition: height 0.5s;
   transition: height 0.5s;
 }
-@media only screen and (max-width: 1025px) {
-  .coolBody .coolHdr {
+@media only screen and (min-device-width: 800px) and (min-device-height: 600px) {
+  .coolBody .coolHdr #logo {
+    margin: 0 0 0 5%;
+    position: fixed;
+    text-align: center;
+    width: 250px;
+  }
+  .coolBody .coolHdr #logo #cool-logo-bg {
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .coolBody .coolHdr #logo #cool-logo {
     position: relative;
+    width: 75%;
+  }
+  .coolBody .coolHdr #botonHdr {
+    display: none;
+  }
+  .coolBody nav {
+    background-color: rgba(255,255,255,0.94);
+    -webkit-border-radius: 0px 0px 40px 40px;
+    border-radius: 0px 0px 40px 40px;
+    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.7);
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.7);
+    right: 2%;
+    top: 0px;
+    width: 640px;
+  }
+  .coolBody nav ul li {
+    display: inline-block;
+    padding: 20px 4%;
+  }
+  .coolBody nav ul li:first-child {
+    padding-left: 0px;
+  }
+  .coolBody nav ul li:last-child {
+    padding-right: 0px;
+  }
+  .coolBody nav ul li:hover {
+    background-color: transparent;
+  }
+  .coolBody nav ul li:hover a {
+    color: #f00;
+  }
+  .coolBody nav ul li a {
+    padding: 20px 0px;
+    color: #000;
+  }
+  .coolBody .intro .nous-sommes {
+    height: 36px;
+    position: absolute;
+    top: 40%;
+    width: 40%;
+  }
+  .coolBody .intro .nous-sommes:after {
+    border-right: 30px solid transparent;
+    border-top: 36px solid #fff;
+  }
+  .coolBody .intro .nous-sommes span {
+    font-size: 2.5rem;
+  }
+  .coolBody .intro .nous-anim {
+    font-size: 7rem;
+  }
+  .coolBody .intro #escuchanos {
+    display: none;
+  }
+  .coolBody .intro #play-img {
+    position: absolute;
+    height: 60%;
+    left: 45%;
+    top: 15%;
+    width: 50%;
+/*#circle1
+					z-index 2
+				#circle2
+					z-index 3
+				#circle3
+					z-index 4*/
+  }
+  .coolBody .intro #play-img #listen {
+    -webkit-animation: escuchar 6s;
+    -moz-animation: escuchar 6s;
+    -o-animation: escuchar 6s;
+    -ms-animation: escuchar 6s;
+    animation: escuchar 6s;
+    -webkit-animation-delay: 4s;
+    -moz-animation-delay: 4s;
+    -o-animation-delay: 4s;
+    -ms-animation-delay: 4s;
+    animation-delay: 4s;
+    background-color: #fff;
+    bottom: -45px;
+    -webkit-box-shadow: 0px 0px 2px #000;
+    box-shadow: 0px 0px 2px #000;
+    font-size: 1.8rem;
+    font-weight: bold;
+    left: 38%;
+    padding-top: 5px;
+    position: absolute;
+    text-align: center;
+    -webkit-transform-origin: top;
+    -moz-transform-origin: top;
+    -o-transform-origin: top;
+    -ms-transform-origin: top;
+    transform-origin: top;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+    visibility: hidden;
+    width: 240px;
+  }
+  .coolBody .intro #play-img #listen:after {
+    border-bottom: 15px solid #fff;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    content: '';
+    height: 25px;
+    left: 110px;
+    position: absolute;
+    top: -40px;
+  }
+  .coolBody .intro #play-img img {
+    position: absolute;
+    -webkit-transition: margin-left 1s ease-out;
+    -moz-transition: margin-left 1s ease-out;
+    -o-transition: margin-left 1s ease-out;
+    -ms-transition: margin-left 1s ease-out;
+    transition: margin-left 1s ease-out;
+    width: 100%;
+  }
+  .coolBody .intro #play-img #play-cont {
+    bottom: 0;
+    left: 33%;
+    position: absolute;
+    width: 45%;
+  }
+  .coolBody .program #deco-1 {
+    background: url("../img/DecoRED.png") no-repeat;
+    height: 10%;
+    top: 40%;
+    width: 50%;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    background-size: 100%;
+  }
+  .coolBody .program #deco-2 {
+    height: 8%;
+    width: 38%;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    background-size: 100%;
+    right: 0px;
+    top: 82%;
+    background: url("../img/DecoGreen.png") no-repeat;
+  }
+  .coolBody .program #playing-now {
+    background: -webkit-linear-gradient(75deg, #eee 0%, #fff 40%);
+    background: -moz-linear-gradient(75deg, #eee 0%, #fff 40%);
+    background: -o-linear-gradient(75deg, #eee 0%, #fff 40%);
+    background: -ms-linear-gradient(75deg, #eee 0%, #fff 40%);
+    background: linear-gradient(15deg, #eee 0%, #fff 40%);
+    height: 40%;
+    left: 4%;
+    margin: 0px;
+    position: absolute;
+    top: 25%;
+    width: 40%;
+  }
+  .coolBody .program #playing-now div:first-child {
+    background: url("../img/05.jpg") 0% 0% no-repeat;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
+    height: 96.5%;
+    margin: 1%;
+    width: 98%;
+  }
+  .coolBody .program #playing-now p {
+    color: #fff;
+    font-family: Montserrat, arial;
+    margin: 2% 0px 0px 0px;
+  }
+  .coolBody .program #playing-now p:first-child {
+    font-size: 40px;
+  }
+  .coolBody .program #playing-now img {
+    left: 118%;
+    position: absolute;
+    top: 36%;
+    width: 20%;
+  }
+  .coolBody .program #current-schedule {
+    position: absolute;
+    right: 10%;
+    width: 30%;
+  }
+  .coolBody .program #current-schedule .schedule span {
+    font-size: 1.2rem;
+  }
+  .coolBody .program #share-section {
+    color: #fff;
+    height: 8%;
+    left: 4%;
+    position: absolute;
+    top: 85%;
+    width: 40%;
+  }
+  .coolBody .program #share-section .share-style {
+    height: 100%;
+    width: 45%;
+    cursor: pointer;
+  }
+  .coolBody .program #share-section .share-style span {
+    position: absolute;
+    top: 40%;
+  }
+  .coolBody .program #share-section #facebook-share {
+    background-color: #3f54ba;
+    -webkit-box-shadow: 0px 0px 1px #fff;
+    box-shadow: 0px 0px 1px #fff;
+    float: left;
+  }
+  .coolBody .program #share-section #twitter-share {
+    background-color: #00c8fa;
+    -webkit-box-shadow: 0px 0px 1px #fff;
+    box-shadow: 0px 0px 1px #fff;
+    float: right;
+  }
+  .coolBody .program #share-section #twitter-share img {
+    margin: 2% 0 0 3%;
+  }
+  .coolBody .program #share-section img {
+    height: 80%;
+    margin: 2% 0 0 2%;
+  }
+  .coolBody .broadcasters .scroll-item {
+    line-height: 150px;
+    font-size: 2rem;
+    top: 40%;
+    width: 4%;
+    height: 150px;
+  }
+  .coolBody .broadcasters #broadcaster-show {
+    width: 100%;
+  }
+  .coolBody .broadcasters #broadcaster-show .container ul li {
+    width: 20%;
+    padding: 20px 2.5%;
+  }
+  .coolBody .broadcasters #broadcaster-show .container ul li .cover_narrator {
+    padding: 10px;
+  }
+  .coolBody .broadcasters #broadcaster-info span {
+    font-size: 1rem;
+  }
+  .coolBody .broadcasters #broadcaster-info .narrator-name {
+    line-height: 60%;
+    font-size: 4rem;
+  }
+  .coolBody .broadcasters #broadcaster-info .narrator-info {
+    width: 45%;
+  }
+  .coolBody .contact #map {
+    height: 51%;
+    position: absolute;
+    top: 25%;
+    width: 40%;
+  }
+  .coolBody .contact form {
+    left: 60%;
+    position: absolute;
+    top: 125px;
+    width: 25%;
+    height: 45%;
+  }
+  .coolBody .contact form p {
+    color: #000;
+    font-size: 3.5rem;
+    margin: 0;
+    margin-left: -20px;
+  }
+  .coolBody .contact #deco-3 {
+    background: url("../img/DecoRED2.png") no-repeat;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    background-size: 100%;
+    height: 8%;
+    position: absolute;
+    right: 0;
+    top: 80%;
+    width: 40%;
+  }
+  .coolBody .contact #deco-3 span {
+    color: #fff;
+    font-size: 1.5rem;
+    left: 4%;
+    position: absolute;
+    top: 25%;
+  }
+  .coolBody #news #botonNews p {
+    font-size: 1.8rem;
+  }
+}
+@media only screen and (max-device-width: 1024px) {
+  .coolBody .coolHdr {
+    position: absolute;
     width: 100%;
     right: 0;
     height: 70px;
@@ -2890,21 +2932,20 @@ width
   .coolBody nav ul li:last-child {
     border-bottom: 0;
   }
-  .coolBody nav ul li:hover,
-  .coolBody nav ul li background-color gray,
-  .coolBody nav ul li a {
-    color: #fff;
+  .coolBody nav ul li:hover {
+    background-color: #808080;
   }
   .coolBody nav ul li a {
+    font-weight: normal;
     padding: 10px 0;
   }
   .coolBody .intro #play-img {
     height: auto;
-    left: 40%;
+    left: 30%;
     margin-top: 90px;
     position: relative;
     top: 0;
-    width: 20%;
+    width: 40%;
   }
   .coolBody .intro #play-img img {
     display: none;
@@ -2935,7 +2976,7 @@ width
     margin: 0 auto;
     margin-top: 10px;
     text-align: center;
-    width: 35%;
+    width: 80%;
   }
   .coolBody .intro #escuchanos span {
     color: #fff;
@@ -2953,7 +2994,7 @@ width
     display: inline-block;
   }
   .coolBody .intro .nous-sommes {
-    margin-top: 5px;
+    margin-top: 25px;
     position: relative;
     width: 40%;
     top: initial;
@@ -2984,10 +3025,45 @@ width
     right: initial;
     margin: 0 auto;
   }
+  .coolBody .broadcasters .scroll-item {
+    line-height: 150px;
+    font-size: 2rem;
+    top: 40%;
+    width: 10%;
+    height: 150px;
+  }
+  .coolBody .broadcasters #broadcaster-show {
+    top: 20%;
+    width: 100%;
+  }
+  .coolBody .broadcasters #broadcaster-show .container {
+    width: 100%;
+  }
+  .coolBody .broadcasters #broadcaster-show .container ul li {
+    width: 50%;
+    padding: 20px 25%;
+  }
+  .coolBody .broadcasters #broadcaster-show .container ul li .cover_narrator {
+    padding: 10px;
+  }
+  .coolBody .broadcasters #broadcaster-info span {
+    font-size: 1rem;
+    display: block;
+  }
+  .coolBody .broadcasters #broadcaster-info .narrator-name {
+    line-height: 60%;
+    font-size: 2.5rem;
+  }
+  .coolBody .broadcasters #broadcaster-info .narrator-info {
+    width: 100%;
+  }
   .coolBody .contact form {
+    overflow: hidden;
     position: relative;
-    top: 90px;
+    top: initial;
+    margin-top: 80px;
     width: 90%;
+    height: auto;
     left: 5%;
   }
   .coolBody .contact form p {
@@ -2996,10 +3072,12 @@ width
     margin: 0;
   }
   .coolBody .contact #map {
-    top: initial;
+    position: relative;
+    width: 90%;
+    top: 0;
     bottom: 50px;
-    width: 30%;
     height: 20%;
+    margin: 0% 1%;
   }
   .coolBody .contact #map figcaption {
     display: none;
@@ -3008,7 +3086,126 @@ width
     display: none;
   }
 }
-@media only screen and (max-width: 624px) {
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  .coolBody .coolHdr {
+    height: 45px;
+  }
+  .coolBody .coolHdr #logo {
+    height: 45px;
+  }
+  .coolBody .coolHdr #botonHdr {
+    width: 40px;
+    height: 40px;
+    top: 2px;
+    background-position: 10.7px 11px;
+    -webkit-background-size: 20px;
+    -moz-background-size: 20px;
+    background-size: 20px;
+  }
+  .coolBody nav {
+    top: 45px;
+  }
+  .coolBody .main-container {
+    display: table;
+  }
+  .coolBody .intro #play-img {
+    margin-top: 65px;
+    width: 20%;
+    left: 40%;
+  }
+  .coolBody .intro #escuchanos {
+    width: 50%;
+  }
+  .coolBody .intro #escuchanos span {
+    font-size: 2rem;
+  }
+  .coolBody .intro .nous-sommes {
+    display: none;
+  }
+  .coolBody .intro .nous-anim {
+    display: none;
+  }
+  .coolBody .program #current-schedule {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    position: relative;
+    right: initial;
+    top: 0;
+  }
+  .coolBody .program #current-schedule .schedule {
+    height: 12.5%;
+    margin: 0.8% 1%;
+  }
+  .coolBody .program #current-schedule .schedule span {
+    font-size: 1rem;
+    padding: 2px 0px;
+  }
+  .coolBody .broadcasters .scroll-item {
+    line-height: 150px;
+    font-size: 2rem;
+    top: 40%;
+    width: 4%;
+    height: 150px;
+  }
+  .coolBody .broadcasters #broadcaster-show .container ul li .cover_narrator {
+    padding: 5px;
+  }
+  .coolBody .broadcasters #broadcaster-info span {
+    font-size: 1rem;
+  }
+  .coolBody .broadcasters #broadcaster-info .narrator-name {
+    font-size: 2rem;
+    line-height: 40%;
+  }
+  .coolBody .broadcasters #broadcaster-info .narrator-info {
+    width: 100%;
+  }
+  .coolBody .contact form {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    margin: initial;
+    top: initial;
+    left: 0;
+    padding: 5px;
+  }
+  .coolBody .contact form p {
+    font-size: 1.5rem;
+  }
+  .coolBody .contact form input {
+    font-size: 1.3rem;
+  }
+  .coolBody .contact form input[type=submit] {
+    padding: 10px 0px;
+  }
+  .coolBody .contact form input:not([type=submit]) {
+    display: inline-block;
+    width: 47%;
+    margin: 0px 1% 5px 1%;
+    padding: 1% 0;
+  }
+  .coolBody .contact form textarea {
+    font-size: 1.2rem;
+    margin-bottom: 0px;
+    min-height: initial;
+    height: 15%;
+    width: 98%;
+    padding: 0;
+    margin-left: 1%;
+  }
+  .coolBody .contact #map {
+    display: none;
+  }
+  .coolBody #news #botonNews {
+    bottom: 10px;
+  }
+  .coolBody #news #botonNews p {
+    font-size: 1rem;
+    bottom: -15px;
+  }
+}
+@media only screen and (max-device-width: 624px) {
   .coolBody .coolHdr {
     height: 45px;
   }
@@ -3051,8 +3248,62 @@ width
   .coolBody .intro .nous-anim {
     font-size: 2.5rem;
   }
+  .coolBody .broadcasters #broadcaster-show {
+    top: 20%;
+    width: 100%;
+  }
+  .coolBody .broadcasters #broadcaster-show .container {
+    width: 100%;
+  }
+  position relative,
+  .coolBody .broadcasters #broadcaster-show .container ul li width 50%,
+  .coolBody .broadcasters #broadcaster-show .container ul li padding 20px 25%*/,
+  .coolBody .broadcasters #broadcaster-show .container ul li .cover_narrator {
+    padding: 5px;
+  }
+  .coolBody .broadcasters #broadcaster-info span {
+    font-size: 1rem;
+  }
+  .coolBody .broadcasters #broadcaster-info .narrator-name {
+    font-size: 1.5rem;
+    line-height: 40%;
+  }
+  .coolBody .broadcasters #broadcaster-info .narrator-info {
+    width: 100%;
+  }
+  .coolBody .contact form {
+    margin-top: 50px;
+    top: 0;
+    height: auto;
+    overflow: hidden;
+  }
+  .coolBody .contact form p {
+    font-size: 1.5rem;
+  }
+  .coolBody .contact form input {
+    font-size: 1rem;
+  }
+  .coolBody .contact form input[type=submit] {
+    padding: 10px 0px;
+  }
+  .coolBody .contact form input:not([type=submit]) {
+    width: 97%;
+    margin: 5px 0px;
+    padding: 2px;
+  }
+  .coolBody .contact form textarea {
+    font-size: 1rem;
+    margin-bottom: 0px;
+    min-height: 50px;
+    height: 20%;
+  }
   .coolBody .contact #map {
-    bottom: 60px;
+    border: 0;
+    padding: 0;
+    position: relative;
+    top: 0;
+    bottom: initial;
+    width: 90%;
   }
   .coolBody #news #botonNews {
     bottom: 20px;
@@ -3060,6 +3311,85 @@ width
   .coolBody #news #botonNews p {
     font-size: 1.2rem;
     bottom: -20px;
+  }
+}
+@media only screen and (max-device-width: 624px) and (orientation: landscape) {
+  .coolBody nav ul li {
+    padding: 5px 0px;
+  }
+  .coolBody .intro #play-img {
+    display: none;
+  }
+  .coolBody .intro #escuchanos {
+    display: table-cell;
+    vertical-align: middle;
+    margin-top: 55px;
+    width: 100%;
+  }
+  .coolBody .intro #escuchanos div {
+    width: 50%;
+    margin: 0 auto;
+  }
+  .coolBody .intro .nous-sommes {
+    display: none;
+  }
+  .coolBody .intro .nous-anim {
+    display: none;
+  }
+  .coolBody .program #current-schedule .schedule {
+    height: auto;
+    margin: 0.8% 1%;
+  }
+  .coolBody .program #current-schedule .schedule span {
+    font-size: 1rem;
+    padding: 2px 0px;
+  }
+  .coolBody .broadcasters .scroll-item {
+    width: 4%;
+  }
+  .coolBody .broadcasters #broadcaster-info span {
+    font-size: 1rem;
+  }
+  .coolBody .broadcasters #broadcaster-info .narrator-name {
+    bottom: initial;
+  }
+  .coolBody .broadcasters #broadcaster-info .narrator-info {
+    display: none;
+  }
+  .coolBody .contact form {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    margin: initial;
+    top: initial;
+    left: 0;
+    padding: 5px;
+  }
+  .coolBody .contact form input[type=submit] {
+    padding: 5px 0px;
+  }
+  .coolBody .contact form input:not([type=submit]) {
+    display: inline-block;
+    width: 47%;
+    margin: 0px 1% 5px 1%;
+    padding: 0%;
+  }
+  .coolBody .contact form textarea {
+    min-height: initial;
+    height: 15%;
+    width: 98%;
+    padding: 0;
+    margin-left: 1%;
+  }
+  .coolBody .contact #map {
+    display: none;
+  }
+  .coolBody #news #botonNews {
+    bottom: 10px;
+  }
+  .coolBody #news #botonNews p {
+    font-size: 1rem;
+    bottom: -15px;
   }
 }
 .coolBody .left {

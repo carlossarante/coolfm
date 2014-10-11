@@ -1,0 +1,56 @@
+<div class="coolBody">
+    <header class="coolHdr">
+        <figure id='logo' ng-click="showHome()">
+            <img id='cool-logo-bg' src='/static/img/cool-web.png' alt='cool web'/>
+            <img id='cool-logo' class="inline-pos" src='/static/img/cool-logo-2.png' alt='cool 103.9 fm'/>
+        </figure>
+        <div id="botonHdr" ng-click="showMenu()"></div>
+    </header>
+    <nav>
+        <ul ng-class="{menuActive:menushow}">
+            <li ng-click="showCoolSection('Entrée')">
+                <a id="hogar" href='#' class='nav' data-page='a'>Entrée</a>
+            </li>
+            <li ng-click="showCoolSection('Programmation')">
+                <a href='#' class='nav' data-page='b'>Programmation</a>
+            </li>
+            <li ng-click="showCoolSection('Animateurs')">
+                <a href='#' class='nav' data-page='c'>Animateurs</a>
+            </li>
+            <li ng-click="showCoolSection('Contact')">
+                <a href='#' class='nav' data-page='d'>Contact</a>
+            </li>
+        </ul>
+    </nav>
+    <section class='broadcasters main-container' ng-class="{left:caster}">
+        <div class='gradient-a'></div>
+        <div class='gradient-b'></div>
+        <div id='left-scroll' class='left-scroll scroll-item icon-arrow-left' ng-click="previousCaster()"></div>
+        <div id='right-scroll' class='right-scroll scroll-item icon-arrow-right' ng-click="nextCaster()"></div> 
+        <div id="broadcaster-show">
+            <div class="container" ng-style="contStyle()">
+                <ul ng-style="ulStyle()">                   
+                    <li class="narrator-list inline-pos" ng-repeat="caster in casters track by $id(caster)" ng-init="getFinalCaster($index)" ng-style="liStyle()">
+                        <div class="cover_narrator" ng-class="{casterActive:$index===casterActive}">
+                            <figure class="narrator" style="background : url({{caster.img}}) no-repeat; background-size : 100%; background-color : white;">
+                                    <img src="{{caster.img}}" alt="{{caster.name}}"/>
+                            </figure>
+                        </div>                  
+                    </li>                
+                </ul>
+            </div>
+        </div>
+        <p id='broadcaster-info'>
+            <span class='narrator-name' class='block-pos'>
+                {{casters[casterActive].name}}
+            </span>
+            <span class='narrator-info' class='block-pos'>
+                {{casters[casterActive].description}}
+            </span>
+        </p>
+    </section>
+    
+    <section id="news">
+        <div id="botonNews" ng-click="showNouvelles(); hideMenu();"><p>Nouvelles</p></div>
+    </section>
+</div>

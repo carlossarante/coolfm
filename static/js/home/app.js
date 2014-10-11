@@ -41,7 +41,7 @@
         controller: 'SectionController'
       })
       .when('/:coolsection', {
-        templateUrl: '/static/views/home.html',
+        templateUrl: function(params){return '/static/views/'+params.coolsection+'.html'},
         //controller: 'CoolSectionController'
       })      
       .otherwise({

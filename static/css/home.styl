@@ -13,8 +13,10 @@ html
 body
 	height 100%
 	width 100%
-	position fixed
+	position relative //antes fixed
 	overflow auto
+	.body-view
+		height 100%
 a
 	text-decoration none
 li 
@@ -30,61 +32,26 @@ li
 	width 100%
 	figure
 		margin 0px
-	section
-		height 100%
-		position fixed
-		width 100%
 	ul
 		padding 0px
 	.coolHdr
 		z-index 10
 		#logo
 			cursor pointer
-			margin 0 0 0 5%
-			position fixed
-			text-align center
-			width 250px
 			z-index 10
-			#cool-logo-bg
-				left 0px
-				position absolute
-				top 0px
-				width 100%
-			#cool-logo
-				position relative
-				width 75%
-		#botonHdr
-			display none
 	nav
-		background-color rgba(255,255,255,0.94)
-		border-radius 0px 0px 40px 40px
-		box-shadow 0px 0px 15px rgba(0,0,0,0.7)
 		position fixed
-		right 2%
 		text-align center
-		top 0px
-		width 640px
 		z-index 9
 		ul
 			font-size 0px
 			text-align center
 			li
-				display inline-block
 				color black
 				cursor pointer
 				font-size 1rem
-				padding 20px 4%
-				&:first-child
-					padding-left 0px
-				&:last-child
-					padding-right 0px
-				&:hover 
-					background-color inherit
-					a
-						color inherit
-				a
-					padding 20px 0px
-					color inherit		
+		.menuActive
+			top 0
 	.inline-pos
 		display inline-block
 	.block-pos
@@ -105,13 +72,13 @@ li
 		width 100%
 	a
 		font-weight bold
-		&:active
-			color yellow
+
 	.main-container
-		float left
-		position fixed
+		position relative
+		height 100%
+		width 100%
 		overflow hidden
-		transition left 0.5s ease-out	
+
 	.intro
 		z-index 1
 		.gradient-a
@@ -120,22 +87,14 @@ li
 			background linear-gradient(9deg,#c00 0%, #c00 45%, #400 90%)
 		.nous-sommes
 			background-color white
-			height 36px
-			position absolute
 			text-align right
-			top 40%
-			width 40%
 			&:after
-				//height 25px
-				border-right 30px solid transparent
-				border-top 36px solid white
 				content ''
 				position absolute
 				top 0%
 			span
 				color #e54c23
 				cursor default
-				font-size 2.5rem
 				font-weight bold
 				margin 0px 6px 0px 0px
 		.nous-anim
@@ -144,7 +103,6 @@ li
 			bottom 19%
 			color white
 			cursor default
-			font-size 7rem
 			font-weight bold
 			left -1000px
 			margin 0px 0px 0px 8%
@@ -155,40 +113,8 @@ li
 			animation-name novelle
 		.musique
 			animation-name musique
-		#escuchanos
-				display none
 		#play-img
 			z-index 2
-			position absolute
-			height 60%
-			left 45%
-			top 15%
-			width 50%
-			#listen
-				animation escuchar 6s
-				animation-delay 4s
-				background-color white
-				bottom -45px
-				box-shadow 0px 0px 2px black
-				font-size 1.8rem
-				font-weight bold
-				left 38%
-				padding-top 5px
-				position absolute
-				text-align center
-				transform-origin top
-				transition all 0.5s
-				visibility hidden
-				width 240px
-				&:after
-					border-bottom 15px solid white
-					border-left 9px solid transparent
-					border-right 9px solid transparent
-					content ''
-					height 25px
-					left 110px
-					position absolute
-					top -40px
 			img
 				position absolute
 				transition margin-left 1s ease-out
@@ -200,10 +126,6 @@ li
 			#circle3
 				z-index 4*/
 			#play-cont
-				bottom 0
-				left 33%
-				position absolute
-				width 45%
 				z-index 5
 				#circle4
 					position relative
@@ -226,64 +148,15 @@ li
 					&:hover
 						background url(../img/Cool-web-play-Mamei3.png) no-repeat
 						background-size 100% 100%
-			#play
-				bottom -36%
-				left -12%
-				opacity 0 
-				width 110%
-				z-index 4
 	.program
 		z-index 2
-		left 100%
 		.gradient-a
 			background linear-gradient(#1a1d5e 0%, #1a1d5e 10%, #1d3ee0 100%)
 		.gradient-b
 			background linear-gradient(-6deg,#1d3ee0 0%, #1d3ee0 45%, #1a1d5e 90%)
-		#deco-1
-			background url("../img/DecoRED.png") no-repeat
-			height 10%
-			top 40%
-			width 50%
-			background-size: 100%
-		#deco-2
-			height 8%	
-			width 38%
-			background-size 100%
-			right 0px
-			top 82%
-			background url("../img/DecoGreen.png") no-repeat
-		#playing-now
-			background linear-gradient(15deg,#eee 0%,#fff 40%)
-			height 40%
-			left 4%
-			margin 0px
-			position absolute
-			top 25%
-			width 40%
-			div
-				&:first-child
-					background url(../img/05.jpg) 0% 0% no-repeat
-					background-size 100% 100%
-					height 96.5%
-					margin 1%
-					width 98%
-			p
-				color white
-				font-family Montserrat,arial
-				margin 2% 0px 0px 0px
-				&:first-child
-					font-size 40px
-			img
-				left 118%
-				position absolute
-				top 36%
-				width 20%
 		#current-schedule
 			height 60%
-			position absolute
-			right 10%
 			top 18%
-			width 30%
 			.schedule
 				background-color white
 				box-shadow 0px 0px 10px black
@@ -291,95 +164,53 @@ li
 				height 17.5%
 				margin 2.5% 1%
 				width 98%
-				.hour
-					box-shadow 10px 0px 5px -7px #aaa
-					font-size 1.2rem
-					font-weight bold
-					height 17%
-					line-height 100px
-					overflow hidden
-					position absolute
-					text-align center
+				display table
+				span
+					display table-cell					
 					vertical-align middle
+					font-weight bold
+					overflow hidden
+					position relative
+					text-align center
+				.hour
+					box-shadow 10px 0px 5px -7px #aaa					
 					width 40%
 				.program-name
-					font-size 1.2rem
-					font-weight bold
-					height 17%
-					line-height 100px
-					overflow hidden
-					position absolute
-					right 1%
-					text-align center
-					vertical-align middle
-					width 58%
-		#share-section
-			color white
-			height 8%
-			left 4%
-			position absolute
-			top 85%
-			width 40%
-			.share-style
-				height 100%
-				width 45%
-				cursor pointer				
-				span
-					position absolute
-					top 40%
-			#facebook-share
-				background-color rgb(63,84,186)
-				box-shadow 0px 0px 1px white
-				float left
-			#twitter-share
-				background-color rgb(0,200,250)
-				box-shadow 0px 0px 1px white
-				float right
-				img
-					margin 2% 0 0 3%
-			img
-				height 80%
-				margin 2% 0 0 2%
+					width 60%
+
 	.broadcasters
 		z-index 3
-		left 200%
+		display table
 		.gradient-a
 			background linear-gradient(#0d3c06 0%, #0d3c06 10%, #1f8f0f 100%)
 		.gradient-b
 			background linear-gradient(-6deg,#1f8f0f 0%, #1f8f0f 45%, #0d3c06 90%)
 		.scroll-item
 			z-index 1
-			line-height 150px
 			text-align center
 			color rgba(255,255,255,0.8)
-			font-size 4rem
 			position absolute
 			cursor pointer
-			top 40%
-			width 100px
-			height 150px
-			border-radius 50%
 			background-color transparent
 			transition background-color 0.2s
 			&:hover
 				background-color rgba(0,0,0,0.8)
 		.left-scroll
-			left 1%
+			left 0%
+			border-radius 0% 50% 50% 0%
 		.right-scroll
-			right 1%
+			right 0%
+			border-radius 50% 0% 0% 50%
 
 		#broadcaster-show
-			//height 50%
-			//overflow hidden
-			position absolute
-			top 20%
-			width 100%
+			display table-cell
+			vertical-align middle
+			max-width 100px
 			font-size 0
-			//text-align center
 			.container
 				position relative
-				width 33.33333333333%
-				margin 0 auto
+				width 25%
+				margin 0px 0px 0px 0%
 				ul
 					position relative
 					//text-align left
@@ -387,13 +218,7 @@ li
 					transition left 0.5s ease-out
 					li
 						position relative
-						//left 35%
-						width 25%
-						max-width 420px
-						padding 20px 4.15%
-						width 
 						.cover_narrator
-							padding 10px
 							background-color white
 							border-radius 50%
 							box-shadow 10px 10px 10px black
@@ -407,23 +232,24 @@ li
 									width 100%
 						.casterActive
 							background-color yellow
-			span
-				font-size 1rem
-				color white
-				padding 10px
 		#broadcaster-info
 			color white
 			left 5%
+			width 90%
+			height 25%
 			position absolute
-			top 65%
+			bottom 0px
 			span
-				font-size 1rem
-				&:first-child
-					font-size 4rem
+				display block
+			.narrator-name
+				position absolute
+				bottom 100%
+			.narrator-info
+				padding-top 10px
+				text-align justify
 
 	.contact
 		z-index 4
-		left 300%
 		.gradient-a
 			background linear-gradient(#6c6c6c 0%, #6c6c6c 10%, #d7d7d7 100%)
 		.gradient-b
@@ -433,27 +259,14 @@ li
 			border 2px solid black
 			color black
 			font-size 1.2rem
-			height 51%
 			left 4%
-			position absolute
 			text-shadow 0px 0px 10px white
-			top 25%
-			width 40%
 			object
 				height 97%
 				margin 1%
 				width 98%
 		form
-			left 60%
-			position absolute
-			top 125px
-			width 25%
-			height 45%
 			p
-				color black
-				font-size 3.5rem
-				margin 0
-				margin-left -20px
 				padding 1%
 			input
 				font-size inherit
@@ -486,20 +299,6 @@ li
 				padding 1.5%
 				resize none
 				width 95%
-		#deco-3
-			background url(../img/DecoRED2.png) no-repeat
-			background-size 100%
-			height 8%
-			position absolute
-			right 0
-			top 80%
-			width 40%
-			span
-				color white
-				font-size 1.5rem
-				left 4%
-				position absolute
-				top 25%
 	#news
 		background-color black
 		bottom 0px
@@ -525,7 +324,6 @@ li
 				position relative
 				margin auto
 				bottom -30px
-				font-size 1.8rem
 				text-align center
 			#noticias
 				position absolute
@@ -543,10 +341,248 @@ li
 			left 0
 			transition height 0.5s
 
-@media only screen and (max-width 1025px)
+@media only screen and (min-device-width 800px) and (min-device-height 600px)
+	.coolBody 
+		.coolHdr
+			#logo
+				margin 0 0 0 5%
+				position fixed
+				text-align center
+				width 250px
+				#cool-logo-bg
+					left 0px
+					position absolute
+					top 0px
+					width 100%
+				#cool-logo
+					position relative
+					width 75%
+			#botonHdr
+				display none
+		nav
+			background-color rgba(255,255,255,0.94)
+			border-radius 0px 0px 40px 40px
+			box-shadow 0px 0px 15px rgba(0,0,0,0.7)
+			right 2%
+			top 0px
+			width 640px
+			ul
+				li
+					display inline-block
+					padding 20px 4%
+					&:first-child
+						padding-left 0px
+					&:last-child
+						padding-right 0px
+					&:hover 
+						background-color transparent
+						a
+							color red
+					a
+						padding 20px 0px
+						color black	
+
+		.intro
+			.nous-sommes
+				height 36px
+				position absolute
+				top 40%
+				width 40%
+				&:after
+					border-right 30px solid transparent
+					border-top 36px solid white
+				span
+					font-size 2.5rem
+			.nous-anim
+				font-size 7rem
+			#escuchanos
+					display none
+			#play-img
+				position absolute
+				height 60%
+				left 45%
+				top 15%
+				width 50%
+				#listen
+					animation escuchar 6s
+					animation-delay 4s
+					background-color white
+					bottom -45px
+					box-shadow 0px 0px 2px black
+					font-size 1.8rem
+					font-weight bold
+					left 38%
+					padding-top 5px
+					position absolute
+					text-align center
+					transform-origin top
+					transition all 0.5s
+					visibility hidden
+					width 240px
+					&:after
+						border-bottom 15px solid white
+						border-left 9px solid transparent
+						border-right 9px solid transparent
+						content ''
+						height 25px
+						left 110px
+						position absolute
+						top -40px
+				img
+					position absolute
+					transition margin-left 1s ease-out
+					width 100%
+				/*#circle1
+					z-index 2
+				#circle2
+					z-index 3
+				#circle3
+					z-index 4*/
+				#play-cont
+					bottom 0
+					left 33%
+					position absolute
+					width 45%
+
+		.program
+			#deco-1
+				background url("../img/DecoRED.png") no-repeat
+				height 10%
+				top 40%
+				width 50%
+				background-size: 100%
+			#deco-2
+				height 8%	
+				width 38%
+				background-size 100%
+				right 0px
+				top 82%
+				background url("../img/DecoGreen.png") no-repeat
+			#playing-now
+				background linear-gradient(15deg,#eee 0%,#fff 40%)
+				height 40%
+				left 4%
+				margin 0px
+				position absolute
+				top 25%
+				width 40%
+				div
+					&:first-child
+						background url(../img/05.jpg) 0% 0% no-repeat
+						background-size 100% 100%
+						height 96.5%
+						margin 1%
+						width 98%
+				p
+					color white
+					font-family Montserrat,arial
+					margin 2% 0px 0px 0px
+					&:first-child
+						font-size 40px
+				img
+					left 118%
+					position absolute
+					top 36%
+					width 20%
+			#current-schedule
+				position absolute
+				right 10%
+				width 30%
+				.schedule
+					span
+						font-size 1.2rem
+			#share-section
+				color white
+				height 8%
+				left 4%
+				position absolute
+				top 85%
+				width 40%
+				.share-style
+					height 100%
+					width 45%
+					cursor pointer				
+					span
+						position absolute
+						top 40%
+				#facebook-share
+					background-color rgb(63,84,186)
+					box-shadow 0px 0px 1px white
+					float left
+				#twitter-share
+					background-color rgb(0,200,250)
+					box-shadow 0px 0px 1px white
+					float right
+					img
+						margin 2% 0 0 3%
+				img
+					height 80%
+					margin 2% 0 0 2%
+		.broadcasters
+			.scroll-item
+				line-height 150px
+				font-size 2rem
+				top 40%
+				width 4%
+				height 150px
+
+			#broadcaster-show
+				width 100%
+				.container
+					ul
+						li
+							width 20%
+							padding 20px 2.5%
+							.cover_narrator
+								padding 10px
+			#broadcaster-info
+				span
+					font-size 1rem
+				.narrator-name
+					line-height 60%
+					font-size 4rem
+				.narrator-info
+					width 45%
+
+		.contact
+			#map
+				height 51%
+				position absolute
+				top 25%
+				width 40%
+			form
+				left 60%
+				position absolute
+				top 125px
+				width 25%
+				height 45%
+				p
+					color black
+					font-size 3.5rem
+					margin 0
+					margin-left -20px
+			#deco-3
+				background url(../img/DecoRED2.png) no-repeat
+				background-size 100%
+				height 8%
+				position absolute
+				right 0
+				top 80%
+				width 40%
+				span
+					color white
+					font-size 1.5rem
+					left 4%
+					position absolute
+					top 25%
+		#news
+			#botonNews
+				p
+					font-size 1.8rem	
+@media only screen and (max-device-width 1024px)
 	.coolBody
 		.coolHdr
-			position relative
+			position absolute
 			width 100%
 			right 0
 			height 70px
@@ -602,21 +638,20 @@ li
 					border-bottom 2px solid rgba(0,0,0,0.3)
 					&:last-child
 						border-bottom 0
-					&:hover 
-					background-color gray
+					&:hover
+						background-color gray
 					a
-						color white
-					a
+						font-weight normal
 						padding 10px 0
 		
 		.intro
 			#play-img
 				height auto
-				left 40%
+				left 30%
 				margin-top 90px
 				position relative
 				top 0
-				width 20%
+				width 40%
 				img 
 					display none	
 				#play-cont
@@ -637,7 +672,7 @@ li
 				margin 0 auto
 				margin-top 10px	
 				text-align center
-				width 35%	
+				width 80%	
 				span
 					color white
 					font-size 1rem
@@ -652,7 +687,7 @@ li
 							padding 0px 4% 
 							display inline-block
 			.nous-sommes
-				margin-top 5px
+				margin-top 25px
 				position relative
 				width 40%
 				top initial
@@ -680,27 +715,164 @@ li
 				position relative
 				right initial
 				margin 0 auto
+		.broadcasters
+			.scroll-item
+				line-height 150px
+				font-size 2rem
+				top 40%
+				width 10%
+				height 150px
+
+			#broadcaster-show
+				top 20%
+				width 100%
+				.container
+					width 100%
+					ul
+						li
+							width 50%
+							padding 20px 25%
+							.cover_narrator
+								padding 10px
+			#broadcaster-info
+				span
+					font-size 1rem
+					display block
+				.narrator-name
+					line-height 60%
+					font-size 2.5rem
+				.narrator-info
+					width 100%
+
 		.contact
 			form
+				overflow hidden
 				position relative
-				top 90px
+				top initial
+				margin-top 80px
 				width 90%
+				height auto
 				left 5%
 				p
 					color white
 					font-size 2.5rem
 					margin 0
 			#map
-				top initial
+				position relative
+				width 90%
+				top 0
 				bottom 50px
-				width 30%
 				height 20%
+				margin 0% 1%
 				figcaption
 					display none
 			#deco-3
 				display none
+	@media only screen and (orientation : landscape)
+		.coolBody
+			.coolHdr
+				height 45px
+				#logo
+					height 45px
+				#botonHdr
+					width 40px
+					height 40px
+					top 2px
+					background-position 10.7px 11px
+					background-size 20px
+			nav
+				top 45px
+			.main-container
+				display table			
+			.intro
+				#play-img
+					margin-top 65px
+					width 20%
+					left 40%
+				#escuchanos
+					width 50%
+					span
+						font-size 2rem
+				.nous-sommes
+					display none
+						
+				.nous-anim
+					display none
+			.program				
+				#current-schedule
+					display table-cell
+					vertical-align middle
+					width 100%
+					position relative
+					right initial
+					top 0
+					.schedule
+						height 12.5%
+						margin 0.8% 1%
+						span
+							font-size 1rem
+							padding 2px 0px
 
-@media only screen and (max-width 624px)
+			.broadcasters
+				.scroll-item
+					line-height 150px
+					font-size 2rem
+					top 40%
+					width 4%
+					height 150px
+
+				#broadcaster-show
+					.container
+						ul
+							li
+								.cover_narrator
+									padding 5px
+				#broadcaster-info
+					span
+						font-size 1rem
+					.narrator-name
+							font-size 2rem
+							line-height 40%
+					.narrator-info
+						width 100%
+			.contact
+				form
+					display table-cell
+					vertical-align middle
+					width 100%
+					margin initial
+					top initial
+					left 0
+					padding 5px
+					p
+						font-size 1.5rem
+					input
+						font-size 1.3rem
+						&[type=submit]
+							padding 10px 0px
+						&:not([type=submit])
+							display inline-block
+							width 47%
+							margin 0px 1% 5px 1%
+							padding 1% 0
+					textarea
+						font-size 1.2rem
+						margin-bottom 0px
+						min-height initial
+						height 15%
+						width 98%
+						padding 0
+						margin-left 1%
+				#map
+					display none 
+			#news
+				#botonNews
+					bottom 10px
+					p
+						font-size 1rem
+						bottom -15px
+
+@media only screen and (max-device-width 624px)
 	.coolBody
 		.coolHdr
 			height 45px
@@ -733,16 +905,141 @@ li
 					
 			.nous-anim
 				font-size 2.5rem
-				
+		.broadcasters
+			/*.scroll-item
+				line-height 150px
+				font-size 2rem
+				top 40%
+				width 10%
+				height 150px*/
+			#broadcaster-show
+				top 20%
+				width 100%
+				.container
+					width 100%
+					ul
+						li
+							/*//position relative
+							//left 35%
+							width 50%
+							padding 20px 25%*/
+							.cover_narrator
+								padding 5px
+			#broadcaster-info
+				span
+					font-size 1rem
+				.narrator-name
+						font-size 1.5rem
+						line-height 40%
+				.narrator-info
+					width 100%
 		.contact
+			form
+				margin-top 50px
+				top 0
+				height auto
+				overflow hidden
+				p
+					font-size 1.5rem
+				input
+					font-size 1rem
+					&[type=submit]
+						padding 10px 0px
+					&:not([type=submit])
+						width 97%
+						margin 5px 0px
+						padding 2px
+				textarea
+					font-size 1rem
+					margin-bottom 0px
+					min-height 50px
+					height 20%
 			#map
-				bottom 60px 
+				border 0
+				padding 0
+				position relative
+				top 0
+				bottom initial
+				width 90% 
 		#news
 			#botonNews
 				bottom 20px
 				p
 					font-size 1.2rem
-					bottom -20px
+					bottom -20px		
+	@media only screen and (orientation : landscape)
+		.coolBody
+			nav
+				ul
+					li
+						padding 5px 0px
+			.intro
+				#play-img
+					display none
+				#escuchanos
+					display table-cell
+					vertical-align middle
+					margin-top 55px
+					width 100%
+					div
+						width 50%
+						margin 0 auto
+				.nous-sommes
+					display none
+						
+				.nous-anim
+					display none
+			.program				
+				#current-schedule
+					.schedule
+						height auto
+						margin 0.8% 1%
+						span
+							font-size 1rem
+							padding 2px 0px
+
+			.broadcasters
+				.scroll-item
+					width 4%
+				#broadcaster-info
+					span
+						font-size 1rem
+					.narrator-name
+							bottom initial
+					.narrator-info
+						display none
+			.contact
+				form
+					display table-cell
+					vertical-align middle
+					width 100%
+					margin initial
+					top initial
+					left 0
+					padding 5px
+					input
+						&[type=submit]
+							padding 5px 0px
+						&:not([type=submit])
+							display inline-block
+							width 47%
+							margin 0px 1% 5px 1%
+							padding 0%
+					textarea
+						min-height initial
+						height 15%
+						width 98%
+						padding 0
+						margin-left 1%
+				#map
+					display none 
+			#news
+				#botonNews
+					bottom 10px
+					p
+						font-size 1rem
+						bottom -15px
+					
 .coolBody
 	.left
 		left 0px

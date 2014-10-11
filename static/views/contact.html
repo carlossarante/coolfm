@@ -22,44 +22,36 @@
             </li>
         </ul>
     </nav>
-    <section class='intro main-container'>
+    
+    <section class='contact main-container' ng-class="{left:contact}">
         <div class='gradient-a'></div>
         <div class='gradient-b'></div>
-        
-        <figure id='play-img'>
-            <img id='circle1' src='/static/img/cool-circ-parall-1.png' alt='circle 1'/>
-            <img id='circle2' src='/static/img/cool-circ-parall-2.png' alt='circle 2'/>
-            <img id='circle3' src='/static/img/cool-circ-parall-3.png' alt='circle 3'/>
-            <div id="play-cont">
-                <img id='circle4' src='/static/img/cool-circ-parall-4.png' alt='circle 4'/>
-                <div id="play1"></div>
-            </div>
-            <div id="listen">Écouter la radio</div>
+        <form id='contact-form' method='POST'>
+            <p>
+                Contacter
+            </p>
+            <input name='name' class='block-pos' type='text' placeholder='nom' required>
+            <input name='mail' class='block-pos' type='text' placeholder='email' required>
+            <textarea name='message' class='block-pos' maxlength='500' placeholder='message' required></textarea>
+            <input type='submit' value='Envoyer'>
+        </form>
+        <figure id='map'>
+            <object data="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.472459135456!2d-72.63361199999997!3d18.50753999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDMwJzI3LjEiTiA3MsKwMzgnMDEuMCJX!5e0!3m2!1ses!2sdo!4v1394322862996" width="400" height="300" frameborder="0" style="border:0"></object>
+            <figcaption>
+                <p>
+                    135, Rue des Ramparts
+                    <br>Léogâne, Haiti
+                    <br>Téléphones:
+                    <span id='tel'>
+                        (509) 2813 9264 / (509) 3622 4954
+                    </span>
+                </p>
+            </figcaption>
         </figure>
-        
-        <div id="escuchanos">
-            <span>Ecoutez-nous!</span>
-            <div>
-                <a href="http://s3.voscast.com:7762/listen.pls"><img src="/static/img/apple.png" /></a>
-                <a href="http://radiocoolhaiti.com/static/listen.m3u"><img src="/static/img/andro.png" /></a>
-                <a href="http://s3.voscast.com:7762/;stream.mp3"><img src="/static/img/bb.png" /></a>
-            </div>
-        </div>
-        
-        <div class='nous-sommes'>
+        <div id='deco-3' class='deco-right-inverted'>
             <span>
-                Nous sommes
             </span>
         </div>
-        <p class='famille nous-anim'>
-            Famille
-        </p>
-        <p class='novelle nous-anim'>
-            Informations 
-        </p>
-        <p class='musique nous-anim'>
-            Musiques
-        </p>
     </section>
     <section id="news">
         <div id="botonNews" ng-click="showNouvelles(); hideMenu();"><p>Nouvelles</p></div>

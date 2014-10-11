@@ -1,0 +1,84 @@
+<div class="coolBody">
+    <header class="coolHdr">
+        <figure id='logo' ng-click="showHome()">
+            <img id='cool-logo-bg' src='/static/img/cool-web.png' alt='cool web'/>
+            <img id='cool-logo' class="inline-pos" src='/static/img/cool-logo-2.png' alt='cool 103.9 fm'/>
+        </figure>
+        <div id="botonHdr" ng-click="showMenu()"></div>
+    </header>
+    <nav>
+        <ul ng-class="{menuActive:menushow}">
+            <li ng-click="showCoolSection('Entrée')">
+                <a id="hogar" href='#' class='nav' data-page='a'>Entrée</a>
+            </li>
+            <li ng-click="showCoolSection('Programmation')">
+                <a href='#' class='nav' data-page='b'>Programmation</a>
+            </li>
+            <li ng-click="showCoolSection('Animateurs')">
+                <a href='#' class='nav' data-page='c'>Animateurs</a>
+            </li>
+            <li ng-click="showCoolSection('Contact')">
+                <a href='#' class='nav' data-page='d'>Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class='program main-container' ng-class="{left:program}">
+        <div class='gradient-a'></div>
+        <div class='gradient-b'></div>
+        <div id='deco-1' class='deco-right absolute'>
+            <div class='deco-right'>
+            </div>
+        </div>
+        <div id='deco-2' class='deco-left absolute'>
+            <div class='deco-left'>
+            </div>
+        </div>
+        <figure id='playing-now'>
+            <div id='is-playing-portrait'>
+            </div>
+            <figcaption>
+                <p id='is-playing'>
+                    Programme de sondage
+                </p>
+                <p id='is-playing-detail'>
+                    avec la musique que vous aimez, ici dans «cool», plus le meilleur, mais en français
+                </p>
+            </figcaption>
+            <img id='play' src='/static/img/cool-web-play.png' alt='play'>
+        </figure>
+        <aside id="current-schedule">
+            <div id="current-schedule-past" class="schedule">
+                <span class="hour">20:00:00</span>
+                <span class="program-name">Au Nom de l'Amour</span>
+            </div>
+            <div id="current-schedule-before" class="schedule">
+                <span class="hour">21:00:00</span>
+                <span class="program-name">Sport +</span>
+            </div>
+            <div id="current-schedule-now" class="schedule">
+                <span class="hour">22:00:00</span>
+                <span class="program-name">Good Night</span>
+            </div>
+            <div id="current-schedule-after-1" class="schedule">
+                <span class="hour">00:00:00</span>
+                <span class="program-name">C ma musique</span>
+            </div>
+            <div id="current-schedule-after-2" class="schedule">
+                <span class="hour">04:00:00</span>
+                <span class="program-name">Réveil Spirituel</span>
+            </div>
+        </aside>
+        <div id='share-section'>
+            <div id='facebook-share' class='inline-pos share-style'>
+                <img src='/static/img/vb-fb.png' alt='share on facebook'><span>Partager sur Facebook</span>
+            </div>
+            <div id='twitter-share' class='inline-pos share-style'>
+                <img src='/static/img/vb-twitter.png' alt='share on twitter'><span>Partager sur Twitter</span>
+            </div>
+        </div>
+    </section>
+    <section id="news">
+        <div id="botonNews" ng-click="showNouvelles(); hideMenu();"><p>Nouvelles</p></div>
+    </section>
+</div>
