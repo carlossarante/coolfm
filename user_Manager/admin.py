@@ -13,7 +13,7 @@ from django.contrib.sites.models import Site
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
-from user_Manager.models import User
+from user_Manager.models import User,Presenter
 
 
 
@@ -92,7 +92,7 @@ class userAdmin(UserAdmin):
 
 #admin.site.unregister(User)
 admin.site.register(User, userAdmin)
-#admin.site.unregister(Site)
+admin.site.register(Presenter)
 admin.site.unregister(FileUpload)
 
 
