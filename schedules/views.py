@@ -20,8 +20,7 @@ def get_schedule_exact(request):
     if not show:
         show = shows_list[len(shows_list)-1]
     else:
-        json_array = ShowSerializer(show,shows_list).data
-        #return HttpResponse(json_array)
+        json_array = ShowSerializer(get_schedules_array(show,shows_list),many=True).data
     return HttpResponse(json.dumps(json_array),mimetype='application/json')
 
         
