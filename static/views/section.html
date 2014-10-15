@@ -1,38 +1,116 @@
-<section class="noticias">
-    <article ng-repeat="noticia in nouvelles track by $id(noticia)" ng-if="!$first"> 
-        <h2 ng-click="showNews(noticia)">{{noticia.title}}</h2>
-        <figure ng-click="showNews(noticia)">
-            <img src="{{noticia.img[0]}}">
-        </figure>
-        <div class="content">
-            <p>{{noticia.content}}</p>                     
-        </div>
-        <a href="JavaScript:void(0);" ng-click="showSection(noticia)">{{noticia.section}}</a>
-        <div class="boton" ng-click="showNews(noticia)">Lire</div>
-    </article>  
-    <div class="navegacion">
-        <div class="anterior" href="{{next}}" ng-if="(next!='')">Antérieur</div>
-         
-        <div class="siguiente" href="{{prev}}}}" ng-if="(prev!='')" style="display: inline-block;">Suivant</div>
+<div class="newsBody" ng-class="{hidden : newshow}">    
+    <div class="header-cont">  
+        <header class="newsHdr">
+            <a><div class="menuCool" ng-click="showHome();hideMenu()"></div></a>
+            <div class="botonMenu" ng-click="showMenu()"></div> 
+            <a href="javascript:void(0);" ng-click="hideSection();">
+                <img src="/static/img/novelles.png"/><img src="/static/img/novelles2.png"/>
+            </a>            
+        </header> 
     </div>
-</section>
-<div class="aside-cont">
-    <aside class="apartado">
-        <div class="share-cool">
-            <span class="span-styl">Suivez-nous</span>
-            <a href="JavaScript:open('https://www.facebook.com/pages/radio-cool-fm-1039/124640610908149','','top=100,left=100,width=900,height=700');">
-                <div class="fb-boton"></div>
-            </a>
-            <a href="JavaScript:open('https://twitter.com/radiocool1039','','top=100,left=100,width=900,height=700');">
-                <div class="tw-boton"></div>
-            </a>                        
-        </div>
-        <span class="span-styl">Top nouvelles</span>
-        
-        <article ng-repeat="noticia in topnouvelles track by $id(noticia)" ng-click="showNews(noticia)">
-            <h3>{{noticia.title}}</h3>
-            <p>{{noticia.text}}</p>
-        </article>               
-    </aside>            
-    <div class="cuadro"></div>    
-</div>                  
+    <div class="menu" ng-class="{'menu-active' : menushow}">
+        <nav>
+            <ul>                                   
+                <li ng-repeat="tab in item track by $id(tab)" ng-click="showSection(tab);"><a href="JavaScript:void(0);">{{tab.section}}</a></li>
+
+                <li class="buscar" ng-click="searchToggle()">
+                    <div class="lupa"></div>
+                </li>               
+            </ul>
+        </nav>        
+    </div>
+    <div class="buscar-cont" ng-class="{buscarActive:search}">
+        <input class="buscarInfo" name="search" type="text" placeholder="Recherche">   
+    </div>    
+    <div class="principal" ng-click="hideMenu()">            
+        <section class="portada">             
+            <div class="recientes">          
+                <article class="recientes1" ng-repeat="noticia in portada track by $id(noticia)" ng-click="showNews(noticia)"> 
+                    <div>
+                        <img src="{{noticia.img[0]}}">
+                        <div class="text-cont">
+                            <h2 style="bottom: 0px;">{{noticia.title}}</h2>
+                            <p><strong>{{noticia.content}}</strong></p>
+                        </div>
+                    </div>
+                </article>                     
+                <img class="comodin" src="{{nouvelles[0].img[0]}}">
+                <div class="secciones sectionAnim" ng-repeat="noticia in sectionNew track by $id(noticia)"  ng-click="showNews(noticia)" ng-if="$first" ng-class="{ 'section-active' : sectionshow}">
+                    <div>
+                        <h1 ng-if="sectionshow">{{noticia.section}}</h1>
+                        <img ng-if="sectionshow" src="{{noticia.img[0]}}">
+                        <div ng-if="sectionshow" class="text-cont">
+                            <h2>{{noticia.title}}</h2>
+                            <p>{{noticia.content}}</p>
+                        </div>
+                    </div>
+                </div>              
+            </div>              
+        </section>              
+        <div class="banner"></div>                  
+        <section class="noticias">
+            <article class="nouvellesAnim" ng-repeat="noticia in nouvelles track by $id(noticia)"> 
+                <h2 ng-click="showNews(noticia)">{{noticia.title}}</h2>
+                <span class="date">{{noticia.time_posted}}</span>
+                <figure ng-click="showNews(noticia)">
+                    <img src="{{noticia.img[0]}}">
+                </figure>
+                <div class="content">
+                    <p>{{noticia.content}}</p>                     
+                </div>
+                <a href="JavaScript:void(0);" ng-click="showSection(noticia)">{{noticia.section}}</a>
+                <div class="boton" ng-click="showNews(noticia)">Lire</div>
+            </article>  
+            <div class="navegacion">
+                <div class="anterior nav-item" ng-class="{navActive:prev}" ng-click="showPage(prev)">Antérieur</div>
+                
+                <div class="siguiente nav-item" ng-class="{navActive:next}" ng-click="showPage(next)">Suivant</div>
+            </div>
+        </section>
+        <div class="aside-cont">
+            <aside class="apartado">
+                <div class="share-cool">
+                    <span class="span-styl">Suivez-nous</span>
+                    <a href="JavaScript:open('https://www.facebook.com/pages/radio-cool-fm-1039/124640610908149','','top=100,left=100,width=900,height=700');">
+                        <div class="fb-boton"></div>
+                    </a>
+                    <a href="JavaScript:open('https://twitter.com/radiocool1039','','top=100,left=100,width=900,height=700');">
+                        <div class="tw-boton"></div>
+                    </a>                        
+                </div>
+                <span class="span-styl">Top nouvelles</span>
+                
+                <article ng-repeat="noticia in topnouvelles track by $id(noticia)" ng-click="showNews(noticia)">
+                    <h3>{{noticia.title}}</h3>
+                    <p>{{noticia.text}}</p>
+                </article>               
+            </aside>            
+            <div class="cuadro"></div>    
+        </div>                  
+        <div class="news-overflow" ng-class="{ 'news-active' : newshow }">
+            <section class="news-page">
+                <div class="news">
+                    <h2>{{newsSingle.title}}</h2>
+                    <figure>
+                        <img src="{{newsSingle.img[0]}}">
+                    </figure>
+                    <p>{{newsSingle.content}}</p>             
+                    <div class="fb-comments" data-href="http://localhost:8000/nouvelles/mambo-number-5" data-numposts="5" data-colorscheme="light"></div>
+                </div>
+                <span class="boton" ng-click="hideNews()">Regresar</span>
+                <ul>
+                    <li><a href="JavaScript:open('https://www.facebook.com/sharer/sharer.php?app_id=113869198637480&sdk=joey&u='+document.URL+'%2F&display=popup','','top=300,left=300,width=800,height=400') ;"><img src="/static/img/fb.png"></a></li>
+                    <li><a href="JavaScript:open('https://twitter.com/intent/tweet?hashtags=RadioCoolHaiti%2C&original_referer=http%3A%2F%2Flocalhost%2FCOOL%2Ftemplates%2520-%2520done%2Findex.html&text='+document.URL+'&tw_p=tweetbutton','','top=300,left=300,width=800,height=400');"><img src="/static/img/tw.png"></a></li>
+                    <li><a href="JavaScript:open('mailto: &subject= &body='+document.URL+'');"><img src="/static/img/mail.png"></a></li>
+                    <li><a href="JavaScript: window.print();"><img src="/static/img/print.png"></a></li>
+                </ul>
+            </section>
+        </div>  
+    </div>
+    <div class="footer-cont">
+        <footer>
+            <span>(R)Droits Réservés Cool Fm</span>
+            <a href="https://www.conuco.do/" target="_blank"><img src="/static/img/conuco-banner.png"/></a>
+        </footer>
+    </div>
+</div>

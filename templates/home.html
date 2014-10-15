@@ -11,7 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
     <link href="/static/css/home.css" rel="stylesheet" type="text/css" />
+
+
     <script async="" src="//www.google-analytics.com/analytics.js"></script>
+
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -19,21 +22,33 @@
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
         ga('create', 'UA-49422453-1', 'radiocoolhaiti.com');
         ga('send', 'pageview');
-
     </script>
+
+    <script type="text/javascript" src="/static/js/lib/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/static/js/lib/angular.min.js"></script>
     <script type="text/javascript" src="/static/js/lib/angular-route.min.js"></script>
-    <script type="text/javascript" src="/static/js/lib/angular-animate.min.js"></script>
+    <script type="text/javascript" src="/static/js/lib/angular-animate.min.js"></script>    
 
 </head>
 
 <body ng-controller="MainController">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=282573491928136&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
     <div class="body-view" ng-view >
     </div>    
     
     <script type="text/javascript" src="/static/js/home/app.js"></script>
     <script type="text/javascript" src="/static/js/home/controllers.js"></script>
     <script type="text/javascript" src="/static/js/home/services.js"></script>
-
+    
 </body> 
 </html>
+

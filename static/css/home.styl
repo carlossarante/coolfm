@@ -14,11 +14,15 @@ body
 	height 100%
 	width 100%
 	position relative //antes fixed
-	overflow auto
+	overflow hidden
 	.body-view
 		height 100%
+		width 100%
+		position relative
+		overflow auto
 a
 	text-decoration none
+	color black
 li 
 	list-style none
 
@@ -165,6 +169,7 @@ li
 				margin 2.5% 1%
 				width 98%
 				display table
+				cursor pointer
 				span
 					display table-cell					
 					vertical-align middle
@@ -177,7 +182,9 @@ li
 					width 40%
 				.program-name
 					width 60%
-
+			.program-active
+				border 2px solid red
+				box-shadow 0px 0px 10px red
 	.broadcasters
 		z-index 3
 		display table
@@ -341,7 +348,7 @@ li
 			left 0
 			transition height 0.5s
 
-@media only screen and (min-device-width 800px) and (min-device-height 600px)
+@media only screen and (min-device-width 800px) and (min-device-height 768px)
 	.coolBody 
 		.coolHdr
 			#logo
@@ -579,7 +586,7 @@ li
 			#botonNews
 				p
 					font-size 1.8rem	
-@media only screen and (max-device-width 1024px)
+@media only screen and (max-device-width 1024px),only screen and (max-device-width 1366px) and (max-device-height 767px) 
 	.coolBody
 		.coolHdr
 			position absolute

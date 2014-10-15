@@ -1,0 +1,32 @@
+[
+	{
+		"name" : "Au Nom de L'Amour",
+		"hour"	:	"20:00:00",
+		"description" : "Este programa 1",
+		"img"	: "/media/post_images/140310152100_jan_koum_304x171_reuters1.jpg" 
+	},
+	{
+		"name" : "Sport+",
+		"hour"	:	"21:00:00",
+		"description" : "Este programa 2",
+		"img"	: "/media/post_images/kobe.jpg"
+	},
+	{
+		"name" : "Good Night",
+		"hour"	:	"22:00:00",
+		"description" : "Este programa 3",
+		"img"	: "/media/post_images/gadaf.jpg"
+	},
+	{
+		"name" : "C ma musique",
+		"hour"	:	"23:00:00",
+		"description" : "Este programa 4",
+		"img"	: "/media/post_images/1000.jpg"
+	},
+	{
+		"name" : "Reveil Spirituel",
+		"hour"	:	"24:00:00",
+		"description" : "Este programa 5",
+		"img"	: "/media/post_images/10003.jpg"
+	}
+]

@@ -28,15 +28,7 @@
         templateUrl: '/static/views/news.html',
         controller: 'NewsSingleController'
       })
-      .when('/nouvelles/page/:page', {
-        templateUrl: '/static/views/news.html',
-        controller: 'NouvellesController'
-      })
       .when('/nouvelles/section/:section', {
-        templateUrl: '/static/views/news.html',
-        controller: 'SectionController'
-      })
-      .when('/nouvelles/section/:section/page/:page', {
         templateUrl: '/static/views/news.html',
         controller: 'SectionController'
       })

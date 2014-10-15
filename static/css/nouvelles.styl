@@ -19,15 +19,27 @@ html
 	background-color black*/
 .nouvellesAnim.ng-enter
 .nouvellesAnim.ng-leave
-	transition all 1s ease-out
+	transition all 0.5s ease-out
 .nouvellesAnim.ng-enter
-	opacity 1
+	opacity 0
 .nouvellesAnim.ng-enter-active
 	opacity 1
 .nouvellesAnim.ng-leave
 	opacity 1
 .nouvellesAnim.ng-leave-active
+	opacity 0
+
+.Anim.ng-enter
+.Anim.ng-leave
+	transition all 0.5s ease-out
+.Anim.ng-enter
+	opacity 0
+.Anim.ng-enter-active
 	opacity 1
+.Anim.ng-leave
+	opacity 1
+.Anim.ng-leave-active
+	opacity 0
 
 .newsBody
 	font-size 16px
@@ -222,7 +234,7 @@ html
 					background-color black
 					top -100% 
 					right 0
-					transition all 0.5s ease-out
+					//transition all 0.5s ease-out
 					div
 						height 100%
 						img
@@ -252,16 +264,30 @@ html
 								font-size 1rem
 								padding 0px 10px
 				.sectionAnim.ng-enter
+					transition all 0.5s cubic-bezier(0,0,1,1)
 				.sectionAnim.ng-leave
-					transition all 1s
+					transition all 0.2s cubic-bezier(1,1,0,0)
 				.sectionAnim.ng-enter
 						top -100%
+						opacity: 0
+						transform-origin: 0 0
+						transform: perspective(800px) rotateY(180deg) translateZ(150px) translateX(-300%)
+						
 				.sectionAnim.ng-enter-active
 						top 0
+						opacity 1
+						transform-origin: 50% 0
+						transform: perspective(800px) rotateY(0deg) translateZ(0px)
 				.sectionAnim.ng-leave
-						top 0
+						top 0		
+						opacity 1				
+						transform-origin: 0 0
+						transform: perspective(800px) rotateY(0deg) translate3d(0px)
 				.sectionAnim.ng-leave-active
 						top -100%
+						opacity: 0
+						transform-origin: 50% 0
+						transform: perspective(800px) rotateY(-180deg) translateZ(150px) 
 				.section-active
 					top 0
 		.banner

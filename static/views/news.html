@@ -49,7 +49,7 @@
         </section>              
         <div class="banner"></div>                  
         <section class="noticias">
-            <article class="activo" ng-repeat="noticia in nouvelles track by $id(noticia)"> 
+            <article class="nouvellesAnim" ng-repeat="noticia in nouvelles track by $id(noticia)"> 
                 <h2 ng-click="showNews(noticia)">{{noticia.title}}</h2>
                 <span class="date">{{noticia.time_posted}}</span>
                 <figure ng-click="showNews(noticia)">
@@ -62,9 +62,9 @@
                 <div class="boton" ng-click="showNews(noticia)">Lire</div>
             </article>  
             <div class="navegacion">
-                <div class="anterior" ng-class="{navActive:previous}">Antérieur</div>
-                 
-                <div class="siguiente" ng-class="{navActive:next}" style="display: inline-block;">Suivant</div>
+                <div class="anterior nav-item" ng-class="{navActive:prev}" ng-click="showPage(prev)">Antérieur</div>
+                
+                <div class="siguiente nav-item" ng-class="{navActive:next}" ng-click="showPage(next)">Suivant</div>
             </div>
         </section>
         <div class="aside-cont">
@@ -95,7 +95,7 @@
                         <img src="{{newsSingle.img[0]}}">
                     </figure>
                     <p>{{newsSingle.content}}</p>             
-                    <div class="fbcomments"></div>
+                    <div class="fb-comments" data-href="http://localhost:8000/nouvelles/mambo-number-5" data-numposts="5" data-colorscheme="light"></div>
                 </div>
                 <span class="boton" ng-click="hideNews()">Regresar</span>
                 <ul>

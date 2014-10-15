@@ -4,10 +4,10 @@
 
     .factory('coolService', ['$http', '$q', '$filter', function ($http, $q, $filter) {
       
-      function getProgramation() {
+      function getProgrammation() {
         var deferred = $q.defer();
 
-        $http.get('/static/menu.json')
+        $http.get('/static/program.json')
           .success(function (data) {
             deferred.resolve(data);
           });
@@ -26,7 +26,7 @@
         return deferred.promise;
       };
       return {
-        getProgramation : getProgramation,
+        getProgrammation : getProgrammation,
         getCasters : getCasters,
       };
 
@@ -92,7 +92,7 @@
       function getTopNouvelles() {
         var deferred = $q.defer();
 
-        $http.get('/static/portada.json')
+        $http.get('/nouvelles/?format=json&query=top')
           .success(function (data) {
             deferred.resolve(data);
           });
