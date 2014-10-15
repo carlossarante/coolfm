@@ -181,6 +181,7 @@
 			}
 
 			$scope.alternouvelles = function(val,url) {
+				$scope.parser = new DOMParser();
 				$scope.nouvelles = val.nouvelles;
 				$scope.next = val.next;
 				$scope.prev = val.previous;

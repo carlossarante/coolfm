@@ -2,6 +2,7 @@
 
 	var app = angular.module('cool',[
 		'ngRoute',
+    'ngSanitize',
     'ngAnimate',
 		'cool.controllers',
 		'cool.services'
