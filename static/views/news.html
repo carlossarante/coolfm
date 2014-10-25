@@ -58,7 +58,7 @@
                 <div class="content">
                     <p ng-bind-html="noticia.content"></p>                     
                 </div>
-                <a href="JavaScript:void(0);" ng-click="showSection(noticia)">{{noticia.section}}</a>
+                <div class="section" ng-click="showSection(noticia)">{{noticia.section}}</div>
                 <div class="boton" ng-click="showNews(noticia)">Lire</div>
             </article>  
             <div class="navegacion">
@@ -95,7 +95,7 @@
                         <img src="{{newsSingle.img[0]}}">
                     </figure>
                     <p ng-bind-html="newsSingle.content"></p>             
-                    <div class="fb-comments" data-href="http://localhost:8000/nouvelles/mambo-number-5" data-numposts="5" data-colorscheme="light"></div>
+                    <div class="fb-comments" data-href="{{newsSingleURL}}" data-numposts="5" data-colorscheme="light"></div>
                 </div>
                 <span class="boton" ng-click="hideNews()">Regresar</span>
                 <ul>

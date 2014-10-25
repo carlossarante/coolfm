@@ -4,6 +4,7 @@
 		'ngRoute',
     'ngSanitize',
     'ngAnimate',
+    'ezfb',
 		'cool.controllers',
 		'cool.services'
 	]);
@@ -11,8 +12,7 @@
 	app.config(['$locationProvider', function ($locationProvider) {
 
     	$locationProvider.html5Mode(true).hashPrefix('!');
-
-  	}]);
+  }]);
 
 	app.config(['$routeProvider', function ($routeProvider) {
 
@@ -41,6 +41,14 @@
         redirectTo: '/'
       });
   	}]);
+
+    app.config(['ezfbProvider', function (ezfbProvider) {
+      ezfbProvider.setInitParams({
+        appId: '386469651480295'
+      });
+    }]);
+
+
 
     app.directive('resize', function ($window) {
         return function (scope, element) {

@@ -18,8 +18,71 @@ body
 	.body-view
 		height 100%
 		width 100%
-		position relative
+		position absolute
 		overflow auto
+		overflow-x hidden
+		z-index 1
+	.sectionLeftAnim.ng-enter
+	.sectionLeftAnim.ng-leave
+		transition all 0.5s cubic-bezier(1,1,0,0)
+	.sectionLeftAnim.ng-enter
+			left 100%
+			z-index 2			
+	.sectionLeftAnim.ng-enter-active
+			left 0%
+			z-index 2
+	.sectionLeftAnim.ng-leave
+			left 0%
+			z-index 1
+	.sectionLeftAnim.ng-leave-active
+			left 0%
+			z-index 1
+
+	.sectionRightAnim.ng-enter
+	.sectionRightAnim.ng-leave
+		transition all 0.5s cubic-bezier(1,1,0,0)
+	.sectionRightAnim.ng-enter
+			left 0%
+			z-index 1			
+	.sectionRightAnim.ng-enter-active
+			left 0%
+			z-index 1
+	.sectionRightAnim.ng-leave
+			left 0%
+			z-index 2
+	.sectionRightAnim.ng-leave-active
+			left 100%
+			z-index 2
+
+	.newsOutAnim.ng-enter
+	.newsOutAnim.ng-leave
+		transition all 0.5s cubic-bezier(1,1,0,0)
+	.newsOutAnim.ng-enter
+			z-index 1			
+	.newsOutAnim.ng-enter-active
+			z-index 1
+	.newsOutAnim.ng-leave
+			top 0%
+			z-index 2
+	.newsOutAnim.ng-leave-active
+			top 100%
+			z-index 2
+
+	.newsInAnim.ng-enter
+	.newsInAnim.ng-leave
+		transition all 0.5s cubic-bezier(1,1,0,0)
+	.newsInAnim.ng-enter
+			top 100%
+			z-index 2			
+	.newsInAnim.ng-enter-active
+			top 0%
+			z-index 2
+	.newsInAnim.ng-leave
+			top 0
+			z-index 1
+	.newsInAnim.ng-leave-active
+			top 0
+			z-index 1
 a
 	text-decoration none
 	color black
@@ -310,6 +373,7 @@ li
 	#news
 		background-color black
 		bottom 0px
+		left 0
 		box-shadow 0px 0px 10px black
 		height 30px
 		position fixed
@@ -353,6 +417,7 @@ li
 	.coolBody 
 		.coolHdr
 			#logo
+				left 0
 				margin 0 0 0 5%
 				position fixed
 				text-align center

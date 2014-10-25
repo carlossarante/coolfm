@@ -42,6 +42,8 @@ html
 	opacity 0
 
 .newsBody
+	z-index 10
+	position relative
 	font-size 16px
 	font-family 'Open Sans',sans-serif
 	background rgb(255,116,0)
@@ -70,17 +72,20 @@ html
 			img
 				height 100%
 				margin-left 70px
+				position absolute
+				top 0
 				&:last-child
 					display none
 			a
 				.menuCool
-					position absolute
+					position relative
+					margin 0 auto
 					height 75px
 					width 150px
 					background url(../img/flechas.png) 50% 25% no-repeat
 					background-size 50%
 					background-color rgba(255,255,255,0.8)
-					left 437px
+					//left 437px
 					top 0
 					cursor pointer
 					border-radius 0% 0% 75% 75%
@@ -96,6 +101,7 @@ html
 		position absolute
 		top 42px
 		z-index 4
+		opacity 0
 		nav
 			position relative
 			margin 0 auto
@@ -230,6 +236,8 @@ html
 									padding 0
 									margin 0
 									width 100%
+									a
+										color white
 				.secciones
 					cursor pointer
 					display block
@@ -252,6 +260,7 @@ html
 							right -20px
 							top 40px
 							padding 0px 10px
+							z-index 2
 						.text-cont
 							overflow hidden
 							position absolute
@@ -262,6 +271,7 @@ html
 							margin 0
 							background-color rgba(0,0,0,0.4)
 							color white
+							z-index 1
 							h2
 								font-size 2rem
 								padding 0px 10px
@@ -273,31 +283,32 @@ html
 									padding 0
 									margin 0
 									width 100%
+									a
+										color white
 				.sectionAnim.ng-enter
 					transition all 0.5s cubic-bezier(0,0,1,1)
 				.sectionAnim.ng-leave
-					transition all 0.2s cubic-bezier(1,1,0,0)
+					transition all 0.5s cubic-bezier(1,1,0,0)
 				.sectionAnim.ng-enter
 						top -100%
-						opacity: 0
-						transform-origin: 0 0
-						transform: perspective(800px) rotateY(180deg) translateZ(150px) translateX(-300%)
-						
+						opacity: 1
+						//transform-origin: 50% 0%
+						//transform: perspective(800px) rotateX(90deg)
 				.sectionAnim.ng-enter-active
-						top 0
+						top 0%
 						opacity 1
-						transform-origin: 50% 0
-						transform: perspective(800px) rotateY(0deg) translateZ(0px)
+						//transform-origin: 50% 0%
+						//transform: perspective(800px) rotateX(0deg) 
 				.sectionAnim.ng-leave
 						top 0		
 						opacity 1				
-						transform-origin: 0 0
-						transform: perspective(800px) rotateY(0deg) translate3d(0px)
+						transform-origin: 50% 100%
+						transform: perspective(800px) rotateX(0deg) translate3d(0px)
 				.sectionAnim.ng-leave-active
-						top -100%
+						top 0%
 						opacity: 0
-						transform-origin: 50% 0
-						transform: perspective(800px) rotateY(-180deg) translateZ(150px) 
+						transform-origin: 50% 100%
+						transform: perspective(800px) rotateX(90deg) translateZ(150px) 
 				.section-active
 					top 0
 		.banner
@@ -362,6 +373,8 @@ html
 							margin 0
 							padding 0
 							width 100%
+							a
+								color blue
 				.boton
 					cursor pointer
 					position absolute
@@ -375,7 +388,7 @@ html
 					transition background 0.3s
 					&:hover
 						background-color rgba(255,50,0,1)
-				a
+				.section
 					cursor pointer
 					bottom 15px
 					left 30%
@@ -498,6 +511,10 @@ html
 							margin 0
 							padding 0
 							width 100%
+							a
+								color blue
+					.fb-comments
+						margin-left 8%
 				ul
 					border-radius 5px 0px 0px 5px
 					box-shadow 0px 0px 10px black
@@ -606,7 +623,7 @@ html
 			position fixed
 			top -100%
 			background-color rgba(255,255,255,0.95)
-			transition height 2s
+			transition opacity 0.5s
 			transition top 0.5s ease-in
 			animation-duration 0.5s
 			box-shadow 0px 0px 10px black
@@ -643,6 +660,7 @@ html
 									background-size 80%
 									background-color white
 		.menu-active
+			opacity 1
 			animation-name menuDownT
 			top 140px
 		.buscar-cont
@@ -779,7 +797,7 @@ html
 						transition background 0.3s
 						&:hover
 							background-color rgba(255,50,0,1)
-					a
+					.section
 						cursor pointer
 						bottom 15px
 						left 20px
@@ -834,6 +852,8 @@ html
 								width 100%
 						p
 							width 94%
+						.fb-comments
+							margin 0px
 					ul
 						display none
 					.boton

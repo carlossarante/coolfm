@@ -1,10 +1,12 @@
 
 (function () {
 	angular.module('cool.controllers',[])
-		.controller('MainController',['$scope','$location','$filter','$window','$timeout','$routeParams','coolService','nouvelleService',function($scope,$location,$filter,$window,$timeout,$routeParams,coolService,nouvelleService){
-			//$scope.home = true;
-			//$scope.caster= false;
-			//$scope.contact = false;
+		.controller('MainController',['ezfb','$scope','$location','$filter','$window','$animate','$timeout','$routeParams','coolService','nouvelleService',function(ezfb,$scope,$location,$filter,$window,$animate,$timeout,$routeParams,coolService,nouvelleService){
+			$scope.view = '';
+			$scope.animateurs = false;
+			$scope.programmation = false;
+			$scope.contact = false;
+			
 			$scope.currentProg= 2;
 			$scope.program= {};
 			$scope.programs=[];
@@ -12,7 +14,8 @@
 			$scope.casterActive= 0;
 			$scope.direction= 0;
 			$scope.scrolltop = 0;
-
+			window.lugar = $location;
+			window.fb = ezfb;
 			angular.element($window).bind('resize',function(){
 				$scope.redimention();
 				$scope.$apply();
@@ -26,10 +29,116 @@
 				alert();
 				redimention();
 			}*/
+			$scope.coolLive = function (){
+				$window.open("/play/","COOL","Width=400, height=300, resizable=no, toolbar=no, menubar=no, status=yes,scrollbars=no");
+			}
+			$scope.animaciones = function () {
+				if($scope.view === "nouvelles"){
+					$animate.addClass(angular.element('.body-view')[0],'newsInAnim');
+					$animate.addClass(angular.element('.body-view')[1],'newsInAnim');	
+					$timeout(function(){
+						//$animate.removeClass(angular.element('.body-view')[0],'viewAnim');
+						//$animate.removeClass(angular.element('.body-view')[1],'viewAnim');
+						//$animate.addClass(angular.element('.body-view')[0],'homeAnim');
+						//$animate.addClass(angular.element('.body-view')[1],'homeAnim');	
+					}, 1000);
+				}
+				else if($scope.view === "nouvellesOut"){
+					$animate.removeClass(angular.element('.body-view')[0],'newsInAnim');
+					$animate.removeClass(angular.element('.body-view')[1],'newsInAnim');	
+					$animate.addClass(angular.element('.body-view')[0],'newsOutAnim');
+					$animate.addClass(angular.element('.body-view')[1],'newsOutAnim');	
+					$timeout(function(){
+						//$animate.removeClass(angular.element('.body-view')[0],'viewAnim');
+						//$animate.removeClass(angular.element('.body-view')[1],'viewAnim');
+						//$animate.addClass(angular.element('.body-view')[0],'homeAnim');
+						//$animate.addClass(angular.element('.body-view')[1],'homeAnim');	
+					}, 1000);
+				}
+				else if($scope.view === "programmation"){
+					if($scope.animateurs | $scope.contact){
+						$animate.addClass(angular.element('.body-view')[0],'sectionRightAnim');
+						$animate.addClass(angular.element('.body-view')[1],'sectionRightAnim');	
+						$animate.removeClass(angular.element('.body-view')[0],'sectionLeftAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'sectionLeftAnim');
+						$animate.removeClass(angular.element('.body-view')[0],'newsOutAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'newsOutAnim');
 
-			///PETICIONES INICIALES JSON
-			
+						$scope.contact = false;
+						$scope.animateurs = false;
+					}
+					else{
+						$animate.addClass(angular.element('.body-view')[0],'sectionLeftAnim');
+						$animate.addClass(angular.element('.body-view')[1],'sectionLeftAnim');
+						$animate.removeClass(angular.element('.body-view')[0],'sectionRightAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'sectionRightAnim');		
+						$animate.removeClass(angular.element('.body-view')[0],'newsOutAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'newsOutAnim');
+					}
+				}
+				else if($scope.view === "animateurs"){
+					if($scope.contact){
+						$animate.addClass(angular.element('.body-view')[0],'sectionRightAnim');
+						$animate.addClass(angular.element('.body-view')[1],'sectionRightAnim');	
+						$animate.removeClass(angular.element('.body-view')[0],'sectionLeftAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'sectionLeftAnim');
+						$animate.removeClass(angular.element('.body-view')[0],'newsOutAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'newsOutAnim');
 
+						$scope.contact = false;
+						$scope.programmation = false;
+					}
+					else{
+						$animate.addClass(angular.element('.body-view')[0],'sectionLeftAnim');
+						$animate.addClass(angular.element('.body-view')[1],'sectionLeftAnim');	
+						$animate.removeClass(angular.element('.body-view')[0],'sectionRightAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'sectionRightAnim');	
+						$animate.removeClass(angular.element('.body-view')[0],'newsOutAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'newsOutAnim');
+					}
+				}
+				else if($scope.view === "contact"){
+					$animate.addClass(angular.element('.body-view')[0],'sectionLeftAnim');
+					$animate.addClass(angular.element('.body-view')[1],'sectionLeftAnim');	
+					$animate.removeClass(angular.element('.body-view')[0],'sectionRightAnim');
+					$animate.removeClass(angular.element('.body-view')[1],'sectionRightAnim');		
+					$animate.removeClass(angular.element('.body-view')[0],'newsOutAnim');
+					$animate.removeClass(angular.element('.body-view')[1],'newsOutAnim');
+
+					$scope.programmation = false;
+					$scope.animateurs = false;
+				}
+				else if($scope.view === "entrée"){
+
+					if ($scope.programmation | $scope.animateurs | $scope.contact) {
+						$animate.addClass(angular.element('.body-view')[0],'sectionRightAnim');
+						$animate.addClass(angular.element('.body-view')[1],'sectionRightAnim');	
+						$animate.removeClass(angular.element('.body-view')[0],'sectionLeftAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'sectionLeftAnim');
+						$animate.removeClass(angular.element('.body-view')[0],'newsOutAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'newsOutAnim');
+
+						$scope.programmation= false;
+						$scope.animateurs= false;
+						$scope.contact = false;
+					}
+					else
+					{
+						$animate.addClass(angular.element('.body-view')[0],'sectionLeftAnim');
+						$animate.addClass(angular.element('.body-view')[1],'sectionLeftAnim');
+						$animate.removeClass(angular.element('.body-view')[0],'sectionRightAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'sectionRightAnim');	
+						$animate.removeClass(angular.element('.body-view')[0],'newsOutAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'newsOutAnim');
+					}
+				}
+				else
+				{
+					$animate.removeClass(angular.element('.body-view')[0],'newsInAnim');
+					$animate.removeClass(angular.element('.body-view')[1],'newsInAnim');
+				}
+				//$animate.addClass(document.getElementsByClassName('.body-view'),'homeAnim');
+			}
 			//LOGIA DE ANIMADORES
 			$scope.getFinalCaster = function (last) {
 
@@ -104,47 +213,57 @@
 
 			//MOSTRAR Y OCULTAR SECCIONES DEL HOME DE COOL
 			$scope.showHome = function(){
+				$scope.view = 'nouvellesOut';
+
 				$scope.hideSearch();
 				$scope.hideMenu();
 
 				$location.path("/");
 				$location.search("page",null);
-
-				$scope.program= false;
-				$scope.caster= false;
-				$scope.contact = false;
 			} 
 
 			$scope.showCoolSection = function(section){
 				$scope.hideMenu();
+				$scope.currentProg= 2;
 
-				if(section === "Entrée"){
+				section = $filter('lowercase')(section);
+				$scope.view = section;
+
+				if(section === "entrée"){
 					$scope.showHome();
+					
+					/*$scope.programmation= false;
+					$scope.animateurs= false;
+					$scope.contact = false;
+*/
+					$scope.view = 'entrée';
 				}
 				else
 				{
-					$location.path("/"+$filter('lowercase')(section));
-					if(section === 'Programmation'){
-						$scope.program= true;
-						$scope.caster= false;
-						$scope.contact = false;	
+					$location.path("/"+section);
+					if(section === 'programmation'){
+
+						$scope.programmation= true;
+						//$scope.animateurs= false;
+						//$scope.contact = false;
+
 						coolService.getProgrammation().then(function (data) {
 			          		$scope.programs = data;
 			          		$scope.program = data[2];
 			        	});	
-
 					}
-					else if(section === 'Animateurs'){
-						$scope.program= true;
-						$scope.caster= true;
-						$scope.contact = false;	
+					else if(section === 'animateurs'){
+						//$scope.programmation= false;
+						$scope.animateurs= true;
+						//$scope.contact = false;
+
 						coolService.getCasters().then(function (data) {
 							$scope.casters = data;
 						});
 					}
-					else if(section === 'Contact'){
-						$scope.program= true;
-						$scope.caster= true;
+					else if(section === 'contact'){
+						//$scope.programmation= false;
+						//$scope.animateurs= false;
 						$scope.contact = true;	
 					}
 					
@@ -157,12 +276,12 @@
 			}
 
 			$scope.showNouvelles = function(){
-				$scope.home = false;
+				$scope.view = 'nouvelles';
 				$location.path("/nouvelles");
 			} 
 
 			//////////////////////////////////////////////////////////////////////
-
+			$scope.inter = false; //para determinar si se accedio a una url desde la app o desde afuera
 			$scope.search = false;
 			$scope.menushow = false;
 			$scope.prevUrl = "/nouvelles";
@@ -199,6 +318,11 @@
 			
 			$scope.alternewsingle = function(val) {
 				$scope.newsSingle = val;
+				$scope.newsSingle.url = $location.$$absUrl;
+				console.log($scope.newsSingle.url)
+			}
+			$scope.alternewsingleURL = function() {
+				$scope.newsSingleURL = $location.$$absUrl;
 			}
 
 			$scope.altersectionnew = function (val) {
@@ -216,10 +340,6 @@
 			
 			nouvelleService.getMenu().then(function (data) {
           		$scope.item = data;
-        	});
-
-        	nouvelleService.getPrincipals().then(function (data) {
-          		$scope.portada = data;
         	});
 
         	nouvelleService.getTopNouvelles().then(function (data) {
@@ -247,18 +367,21 @@
 			}
 			//Muestra la noticia
 			$scope.showNews = function (noticia) {	
+				$scope.view = '';
+				$scope.inter=true;
+				$scope.hideMenu();
 				$scope.hideSearch();
 				$scope.newshow = true;	
 				$scope.prevUrl = $location.path();
 				$scope.prevParam = $location.search();
-				console.log($scope.prevParam);
 				$scope.newsSingle = noticia;
 				$location.path("/nouvelles/"+$filter('lowercase')(noticia.slug))
 				$location.search('page',null);			
 			};
 			//Ocult la noticia 
 			$scope.hideNews = function () {
-				console.log($scope.prevParam);
+				$scope.hideMenu();
+
 				$scope.newshow = false;
 				$location.search("page",$scope.prevParam.page);				
 				$location.path($scope.prevUrl);
@@ -266,8 +389,9 @@
 			};
 			//Muestra la seccion clickeada
 			$scope.showSection = function(tab) {	
+				$scope.inter = true;
+				$scope.view = '';
 				$scope.sectionshow = true;			
-				console.log($scope.prevParam);
 				$scope.hideSearch();
 				$scope.hideNews();
 				$scope.hideMenu();
@@ -279,6 +403,7 @@
 			};
 			//Oculta la seccion clickeada
 			$scope.hideSection = function() {
+				$scope.view = '';
 				$scope.sectionshow = false;
 				//$scope.sectionNew = $scope.nouvelles[0];
 				
@@ -303,13 +428,13 @@
 		}])	
 
 
-		.controller('CoolSectionController',['$scope','$location','$filter','$window','$routeParams','coolService',function($scope,$location,$filter,$window,$routeParams,coolService){
+		.controller('CoolSectionController',['$scope','$location','$routeParams','coolService',function($scope,$location,$routeParams,coolService){
 			$scope.showCoolSection($routeParams.coolsection);
 		}])
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
-		.controller('NouvellesController',['$scope','$location','$filter','$window','$routeParams','nouvelleService',function($scope,$location,$filter,$window,$routeParams,nouvelleService){
-			
+		.controller('NouvellesController',['$scope','$location','$animate','$routeParams','nouvelleService',function($scope,$location,$animate,$routeParams,nouvelleService){
+	
 			nouvelleService.getPrincipals().then(function (data) {
           		$scope.alterportada(data);
         	});
@@ -330,8 +455,9 @@
 		}])
 
 
-		.controller('SectionController',['$scope','$location','$filter','$window','$routeParams','nouvelleService',function($scope,$location,$filter,$window,$routeParams,nouvelleService){
+		.controller('SectionController',['$scope','$location','$animate','$routeParams','nouvelleService',function($scope,$location,$animate,$routeParams,nouvelleService){
 			$scope.altersectionshow();
+			$animate.cancel;
 			$scope.alternewshow(false);
 
 			nouvelleService.getSection($routeParams.section).then(function (data){
@@ -349,11 +475,17 @@
 	          		$scope.alternouvelles(data,$location.path());
 	        	});				
 			}
-			
+			if(!$scope.inter)
+			{
+				nouvelleService.getPrincipals().then(function (data) {
+	          		$scope.portada = data;
+	        	});
+			}			
         }])
 
 
-		.controller('NewsSingleController',['$scope','$location','$filter','$window','$routeParams','nouvelleService',function($scope,$location,$filter,$window,$routeParams,nouvelleService){
+		.controller('NewsSingleController',['$scope','$location','$routeParams','nouvelleService',function($scope,$location,$routeParams,nouvelleService){
+			$scope.alternewsingleURL();
 			if(!$scope.newshow){
 				nouvelleService.getNewsSingle($routeParams.singleNew).then(function (data) {
 						$scope.alternewshow(true);
@@ -365,6 +497,12 @@
 		          		$scope.alternouvelles(data,$location.path());
 		        	});
 				}
+			}	
+			if(!$scope.inter)
+			{
+				nouvelleService.getPrincipals().then(function (data) {
+	          		$scope.portada = data;
+	        	});
 			}		
 		}])	
 })();
