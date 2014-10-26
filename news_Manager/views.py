@@ -82,6 +82,6 @@ def search(request):
     news = Post.objects.filter((Q(title__icontains=txt_to_find) | Q(content__icontains=txt_to_find)),Q(is_published=True))
     serialized_news = PostSerializer(news,many=True).data
   else:
-    return formatted_render(request,{'keyword':('Error en la busqueda: Llego %s, con clave %s ' % txt_to_find)})
+    return formatted_render(request,{'keyword':('Error en la busqueda: Llego %s' % txt_to_find)})
   return formatted_render(request,serialized_news)
 
