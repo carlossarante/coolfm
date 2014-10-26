@@ -77,11 +77,11 @@ def count(request,post_slug):
       return HttpResponse("404 NOT FOUND")
 
 def search(request):
-  txt_to_find = request.POST.get(u'keyword',None)
+  txt_to_find = request.POST.get('keyword',None)
   if txt_to_find is not None:
     news = Post.objects.filter((Q(title__icontains=txt_to_find) | Q(content__icontains=txt_to_find)),Q(is_published=True))
     serialized_news = PostSerializer(news,many=True).data
   else:
-    return formatted_render(request,{'keyword':('Error en la busqueda: Llego %s, con clave %s ' % txt_to_find)})
+    return formatted_render(request,{'keyword':('Error en la busqueda: Llego %s' % txt_to_find)})
   return formatted_render(request,serialized_news)
 
