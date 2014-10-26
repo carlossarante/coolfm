@@ -1,7 +1,7 @@
 
 (function () {
 	angular.module('cool.controllers',[])
-		.controller('MainController',['ezfb','$scope','$location','$filter','$window','$animate','$timeout','$routeParams','coolService','nouvelleService',function(ezfb,$scope,$location,$filter,$window,$animate,$timeout,$routeParams,coolService,nouvelleService){
+		.controller('MainController',['$http','ezfb','$scope','$location','$filter','$window','$animate','$timeout','$routeParams','coolService','nouvelleService',function($http,ezfb,$scope,$location,$filter,$window,$animate,$timeout,$routeParams,coolService,nouvelleService){
 			$scope.view = '';
 			$scope.animateurs = false;
 			$scope.programmation = false;
@@ -15,7 +15,7 @@
 			$scope.direction= 0;
 			$scope.scrolltop = 0;
 			window.lugar = $location;
-			window.fb = ezfb;
+			window.http = $http;
 			angular.element($window).bind('resize',function(){
 				$scope.redimention();
 				$scope.$apply();
@@ -133,9 +133,16 @@
 					}
 				}
 				else
-				{
-					$animate.removeClass(angular.element('.body-view')[0],'newsInAnim');
-					$animate.removeClass(angular.element('.body-view')[1],'newsInAnim');
+				{	
+					if(typeof(angular.element('.body-view')[1]) === "undefined")
+					{
+						$animate.removeClass(angular.element('.body-view')[0],'newsInAnim');
+					}
+					else
+					{
+						$animate.removeClass(angular.element('.body-view')[0],'newsInAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'newsInAnim');
+					}
 				}
 				//$animate.addClass(document.getElementsByClassName('.body-view'),'homeAnim');
 			}
@@ -312,6 +319,8 @@
 			};
 
 			$scope.showPage = function (page){
+				$scope.view = '';
+
 				$timeout(function(){$location.search("page",page)}, 500);
 				angular.element('.body-view').animate({scrollTop: 0}, 500,'easeOutCirc');				
 			}
@@ -425,6 +434,46 @@
 			$scope.hideMenu = function(){
 				$scope.menushow = false;
 			};
+
+			$scope.searchInfo = function ($event){
+				var sval = angular.element('.buscarInfo').val();
+
+				if($event.charCode === 13)
+				{
+					var token = $scope.getCookie("csrftoken");
+
+					angular.element('.buscarInfo').val("");
+					$scope.hideSearch();
+
+					$http.defaults.headers.common =  {"X-CSRFToken" : token};
+					$http.post('/nouvelles/search/?format=json', {"keyword" : sval})
+					.success(function (data, status){
+						console.log("Se realizo la busqueda");
+					})
+					.error(function (data,status){
+						console.log("Error en la busqueda");
+					})	
+				}				
+			}
+
+			$scope.getCookie =function (a)
+			{
+				var e = null;
+				if (document.cookie && document.cookie != "")
+				{
+					var d = document.cookie.split(";");
+					for (var c = 0; c < d.length; c++)
+					{
+						var b = jQuery.trim(d[c]);
+						if (b.substring(0, a.length + 1) == (a + "="))
+						{
+							e = decodeURIComponent(b.substring(a.length + 1));
+							break
+						}
+					}
+				}
+				return e
+			}
 		}])	
 
 
@@ -457,7 +506,7 @@
 
 		.controller('SectionController',['$scope','$location','$animate','$routeParams','nouvelleService',function($scope,$location,$animate,$routeParams,nouvelleService){
 			$scope.altersectionshow();
-			$animate.cancel;
+			//$animate.cancel;
 			$scope.alternewshow(false);
 
 			nouvelleService.getSection($routeParams.section).then(function (data){

@@ -20,7 +20,7 @@
         </nav>        
     </div>
     <div class="buscar-cont" ng-class="{buscarActive:search}">
-        <input class="buscarInfo" name="search" type="text" placeholder="Recherche">   
+        <input class="buscarInfo" name="search" type="text" placeholder="Recherche" ng-keypress="searchInfo($event)">   
     </div>    
     <div class="principal" ng-click="hideMenu()">            
         <section class="portada">             
