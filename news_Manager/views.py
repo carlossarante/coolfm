@@ -79,9 +79,9 @@ def count(request,post_slug):
 def search(request):
   txt_to_find = request.POST.get('keyword',None)
   if txt_to_find is not None:
-    news = Post.objects.filter((Q(title__icontains=txt_to_find) | Q(content__icontains=txt_to_find)),Q(is_published=True)).order_by('-date_posted')[:10]
+    news = Post.objects.filter((Q(title__icontains=txt_to_find) | Q(content__icontains=txt_to_find)),Q(is_published=True))
     serialized_news = PostSerializer(news,many=True).data
   else:
-    return newsLoader(request)
+    return formatted_render(request,{'keyword':('Error en la busqueda: Llego %s' % txt_to_find)})
   return formatted_render(request,serialized_news)
 
