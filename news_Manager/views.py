@@ -77,9 +77,11 @@ def count(request,post_slug):
       return HttpResponse("404 NOT FOUND")
 
 def search(request):
-  txt_to_find = request.POST["keyword"]
-  results = Post.objects.filter((Q(title__icontains=txt_to_find) | Q(content__icontains=txt_to_find)),Q(is_published=True)).order_by('-date_posted')[:10]
-  #return HttpResponse(page)
+  txt_to_find = request.POST.get('keyword',None)
+  if txt_to_find is not None:
+    results = Post.objects.filter((Q(title__icontains=txt_to_find) | Q(content__icontains=txt_to_find)),Q(is_published=True)).order_by('-date_posted')[:10]
+  else:
+    return newsLoader(request)
   data = []
   for post in results:
     cat = Categories.objects.get(suptag=post.category)
