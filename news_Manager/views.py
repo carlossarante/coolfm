@@ -79,16 +79,9 @@ def count(request,post_slug):
 def search(request):
   txt_to_find = request.POST.get('keyword',None)
   if txt_to_find is not None:
-    results = Post.objects.filter((Q(title__icontains=txt_to_find) | Q(content__icontains=txt_to_find)),Q(is_published=True)).order_by('-date_posted')[:10]
+    news = Post.objects.filter((Q(title__icontains=txt_to_find) | Q(content__icontains=txt_to_find)),Q(is_published=True)).order_by('-date_posted')[:10]
+    serialized_news = PostSerializer(news,many=True).data
   else:
     return newsLoader(request)
-  data = []
-  for post in results:
-    cat = Categories.objects.get(suptag=post.category)
-    data.append(serialize_post(post,cat))
-  if not data:
-    return HttpResponse("{}")
-  else:
-    return HttpResponse(json.dumps(data),mimetype='application/json')
-
+  return formatted_render(request,serialized_news)
 
