@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.http import Http404
 from django.http import HttpResponseRedirect,HttpResponse
 from django.core.paginator import Paginator,EmptyPage
-
+from django.db.models import Q
 from news_Manager.serializers import PostSerializer
 from news_Manager.models import Post,Categories
 from news_Manager.functions import formatted_render,paginationSerializer
