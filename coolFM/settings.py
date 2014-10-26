@@ -24,11 +24,11 @@ CKEDITOR_UPLOAD_PATH = os.path.abspath("static/post_images")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'c0coolFM',                      # Or path to database file if using sqlite3.
+        'NAME': 'coolfm',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
-        'PASSWORD': 'c0nuc0d@t@b@s3',
-        'HOST': '127.0.0.1',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PASSWORD': 'vendeme',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '3306',                      # Set to empty string for default.
     }
 }
@@ -111,7 +111,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    
+    'news_Manager.middleware.JSONMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -147,21 +147,26 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     #'google_analytics',
+=======
+>>>>>>> eda2d9958ac83ef84f93dc70020a9102ecc5e73e
     'suit', 
     'django.contrib.admin',   
     'suit_ckeditor',
     'south',
     'sorl.thumbnail',
     'adminfiles',
-    #'CMS',
-    #'django_admin_bootstrapped',
     'news_Manager',
     'schedules',
     'user_Manager',
     'mailer',
+<<<<<<< HEAD
     'rest_framework'
     
+=======
+    'rest_framework',
+>>>>>>> eda2d9958ac83ef84f93dc70020a9102ecc5e73e
     # Uncomment the next line to enable the admin:
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
