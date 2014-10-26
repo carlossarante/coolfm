@@ -1,6 +1,6 @@
 # Django settings for coolFM project.
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 import os
 ADMINS = (
@@ -147,7 +147,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'google_analytics',
+    #'google_analytics',
     'suit', 
     'django.contrib.admin',   
     'suit_ckeditor',
@@ -160,6 +160,7 @@ INSTALLED_APPS = (
     'schedules',
     'user_Manager',
     'mailer',
+    'rest_framework'
     
     # Uncomment the next line to enable the admin:
     # Uncomment the next line to enable admin documentation:
