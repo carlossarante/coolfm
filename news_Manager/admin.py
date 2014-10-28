@@ -11,8 +11,12 @@ from news_Manager.models import Post,Categories,Images
 from suit_ckeditor.widgets import CKEditorWidget
 
 
+
+
+
 class AddImageFields(admin.StackedInline):
     model = Images
+    exclude = ('post_thumbnail',)
     list_display=('img_thumbnail',)
 
 
@@ -32,6 +36,7 @@ class PostAdmin(admin.ModelAdmin):
         ('Status', {'fields': ('is_published',)}),
     ]
     inlines=[AddImageFields,]
+    
     def save_model(self, request, obj, form, change):
         obj.slug = slughifi(obj.title)
         obj.save()
@@ -39,22 +44,6 @@ class PostAdmin(admin.ModelAdmin):
         js = js = ('js/jquery.js','/static/ckeditor/ckeditor.js',
                    'js/jquery.adminpreview.js',)
 
-
-
-
-
-
 admin.site.register(Post,PostAdmin)
 admin.site.register(Categories)
-
-'''
-class ShowCreationForm(forms.ModelForm):
-    
-    show_name = forms.CharField(label='Nom:')
-    show_pict = forms.ImageField(label='Photo du coverture')
-    starts_hour = forms.TimeField(label='Heure Initial')
-    ends_hour = forms.TimeField(label='Heure Finale')
-    class Meta:
-        model = Shows
-'''
-
+admin.site.register(Images)
