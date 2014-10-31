@@ -20,6 +20,13 @@
     <script type="text/javascript">
       confirmExitIfModified('{{ opts.module_name }}_form', '{% trans 'You have unsaved changes' %}.');
     </script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ng-img-crop.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">
+    <script type="text/javascript" src="{% static 'js/lib/angular.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/lib/ng-img-crop.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/admin/app.js' %}"></script>
   {% endif %}
 
   {% if adminform.model_admin.suit_form_tabs %}
@@ -80,7 +87,7 @@
 {% endif %}
 
 {% block content %}
-  <div id="content-main" class="inner-two-columns">
+  <div id="content-main" class="inner-two-columns" ng-app="app">
 
     <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post"
           id="{{ opts.module_name }}_form" class="form-horizontal">
