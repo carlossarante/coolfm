@@ -1,12 +1,6 @@
 from django.views.decorators.cache import never_cache
 from django.utils import simplejson as json
-from django.utils.safestring import mark_safe
-from django.template import Library
-from django.template.loader import  render_to_string
-from django.template.defaultfilters import removetags
-from django.shortcuts import render
-from django.http import Http404
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponse
 from django.core.paginator import Paginator,EmptyPage
 from django.db.models import Q
 from news_Manager.serializers import PostSerializer
@@ -65,7 +59,7 @@ def getCategories(request):
 
 def count(request,post_slug):
   try:
-      if(not request.session['read']):
+      if not request.session['read']:
         request.session['read'] = True
         post = Post.objects.get(slug=post_slug)
         post.reads +=1
@@ -77,10 +71,11 @@ def count(request,post_slug):
       return HttpResponse("404 NOT FOUND")
 
 def search(request):
-  txt_to_find = request.POST['keyword']
+  page = request.POST.get('page',1)
+  txt_to_find = request.POST.get('keyword')
   if txt_to_find is not None:
     news = Post.objects.filter((Q(title__icontains=txt_to_find) | Q(content__icontains=txt_to_find)),Q(is_published=True))
-    serialized_news = PostSerializer(news,many=True).data
+    serialized_news = paginationSerializer(request,news,page).data
   else:
     return formatted_render(request,{'keyword':('Error en la busqueda: Llego %s y valores %s' % (txt_to_find,request.POST))})
 

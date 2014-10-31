@@ -8,13 +8,19 @@ from django.db import models
 from slughifi import slughifi
 from news_Manager.widgets import WYMEditor
 from news_Manager.models import Post,Categories,Images
+from news_Manager.forms import ImageInlineForm
 from suit_ckeditor.widgets import CKEditorWidget
+
+
+
 
 
 class AddImageFields(admin.StackedInline):
     model = Images
+    fields = ('img',)
+    exclude = ('post_thumbnail',)
     list_display=('img_thumbnail',)
-
+    form = ImageInlineForm
 
 class NewsForm(forms.ModelForm):
    # content = forms.CharField()
@@ -32,6 +38,7 @@ class PostAdmin(admin.ModelAdmin):
         ('Status', {'fields': ('is_published',)}),
     ]
     inlines=[AddImageFields,]
+    
     def save_model(self, request, obj, form, change):
         obj.slug = slughifi(obj.title)
         obj.save()
@@ -41,20 +48,6 @@ class PostAdmin(admin.ModelAdmin):
 
 
 
-
-
-
 admin.site.register(Post,PostAdmin)
 admin.site.register(Categories)
-
-'''
-class ShowCreationForm(forms.ModelForm):
-    
-    show_name = forms.CharField(label='Nom:')
-    show_pict = forms.ImageField(label='Photo du coverture')
-    starts_hour = forms.TimeField(label='Heure Initial')
-    ends_hour = forms.TimeField(label='Heure Finale')
-    class Meta:
-        model = Shows
-'''
-
+admin.site.register(Images)
