@@ -8,6 +8,7 @@ from django.db import models
 from slughifi import slughifi
 from news_Manager.widgets import WYMEditor
 from news_Manager.models import Post,Categories,Images
+from news_Manager.forms import ImageInlineForm
 from suit_ckeditor.widgets import CKEditorWidget
 
 
@@ -16,9 +17,10 @@ from suit_ckeditor.widgets import CKEditorWidget
 
 class AddImageFields(admin.StackedInline):
     model = Images
+    fields = ('img',)
     exclude = ('post_thumbnail',)
     list_display=('img_thumbnail',)
-
+    form = ImageInlineForm
 
 class NewsForm(forms.ModelForm):
    # content = forms.CharField()
@@ -43,6 +45,8 @@ class PostAdmin(admin.ModelAdmin):
     class Media:
         js = js = ('js/jquery.js','/static/ckeditor/ckeditor.js',
                    'js/jquery.adminpreview.js',)
+
+
 
 admin.site.register(Post,PostAdmin)
 admin.site.register(Categories)

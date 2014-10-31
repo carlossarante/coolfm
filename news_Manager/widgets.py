@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import widgets
 from django.conf import settings
 from django.utils.safestring import mark_safe
 
@@ -26,3 +27,10 @@ class WYMEditor(forms.Textarea):
                 lang: '%s',
             });
             </script>''' % (name, self.language))
+
+#Based on Angular JS's library for cropping.
+class ImageCropper(widgets.TextInput):
+    def render(self,name,value,attrs=None):
+        return mark_safe('''
+                            <img-crop image="myImage" result-image="myCroppedImage" area-type="square"></img-crop>
+                        ''')
