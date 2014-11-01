@@ -462,8 +462,8 @@ crop.factory('cropArea', ['cropCanvas', function(CropCanvas) {
   CropArea.prototype._dontDragOutside=function() {
     var h=this._ctx.canvas.height,
         w=this._ctx.canvas.width;
-    if(this._size * this._asRatioX>w) { this._size=w; }
-    if(this._size * this._asRatioY>h) { this._size=h; }
+    if(this._size * this._asRatioX>w) { this._size=w/this._asRatioX; }
+    if(this._size * this._asRatioY>h) { this._size=h/this._asRatioY; }
     if(this._x<this._size * this._asRatioX/2) { this._x=this._size * this._asRatioX /2; }
     if(this._x>w-this._size * this._asRatioX/2) { this._x=w-this._size * this._asRatioX /2; }
     if(this._y<this._size * this._asRatioY /2) { this._y=this._size * this._asRatioY /2; }
