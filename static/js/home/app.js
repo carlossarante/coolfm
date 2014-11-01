@@ -4,7 +4,6 @@
 		'ngRoute',
     'ngSanitize',
     'ngAnimate',
-    'ngResource',
     'ezfb',
 		'cool.controllers',
 		'cool.services'
@@ -48,12 +47,6 @@
         appId: '386469651480295'
       });
     }]);
-
-    app.config(['$resourceProvider', function ($resourceProvider) {
-      // Don't strip trailing slashes from calculated URLs
-      $resourceProvider.defaults.stripTrailingSlashes = false;
-    }]);
-
 
     app.directive('resize', function ($window) {
         return function (scope, element) {

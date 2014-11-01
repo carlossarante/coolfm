@@ -85,14 +85,6 @@ def getShow(shows_list):
     
 #    return queryset_to_array(shows_list).pop() #By default is there's no result from comparation, then return the last object.
 
-def serialize_show(obj):
-    data={
-          'show_name':('%s') % obj.show_name,
-          'hour_range':('%s') % obj.get_hours(),
-          'show-details':('%s') % obj.about,
-          'show_pict':('%s') % obj.show_pict.name,
-          }
-    return data
 
 def getDayByIndex(dayname):
     return Days.objects.get(day=dayname)
@@ -140,39 +132,27 @@ def get_schedules_array(show,shows_list):
         shows_list_2 = querysetToArray(getShowsList(-1))
     for i in xrange(-2,3):
         if (i==0):
-            array_list.append(serialize_show(shows_list[index]))
+            array_list.append(shows_list[index])
             if index == len(shows_list)-1:
-                array_list.append(serialize_show(shows_list_2[0]))
-                array_list.append(serialize_show(shows_list_2[1]))
+                array_list.append(shows_list_2[0])
+                array_list.append(shows_list_2[1])
                 #array_list.reverse()
                 break
             
             elif index==0:
-                array_list.append(serialize_show(shows_list_2[1]))
-                array_list.append(serialize_show(shows_list_2[2]))
+                array_list.append(shows_list_2[1])
+                array_list.append(shows_list_2[2])
                 break         
             continue
         elif(index+i>=len(shows_list)):
             index=0
-            array_list.append(serialize_show(shows_list[index+i]))
+            array_list.append(shows_list[index+i])
         else:
             if index==1 and i==-2:
-                array_list.append(serialize_show(shows_list_2[-1]))
+                array_list.append(shows_list_2[-1])
                 continue
             if index==len(shows_list)-2 and i == 2:
-                array_list.append(serialize_show(shows_list_2[0]))
+                array_list.append(shows_list_2[0])
                 continue
-            array_list.append(serialize_show(shows_list[index+i]))
+            array_list.append(shows_list[index+i])
     return array_list
-
-    #raise Exception(array_list)   
-    #return array_list
-    
-    
-'''
-def fill_dayTable():
-    days = ("Saturday","Sunday","Monday",'Tuesday','Wednesday','Thursday','Friday')
-    for d in DAYS_OF_WEEK_FR:
-        Days.objects.create(day=d)y
-
-'''

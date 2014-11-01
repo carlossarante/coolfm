@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin,BaseUserManager,Group
-
+from django.utils import timezone
+from cStringIO import StringIO
+from django.core.files.uploadedfile import SimpleUploadedFile
+from PIL import Image
+import os
 class User_Manager(BaseUserManager):
         def create_user(self, username, first_name,last_name, birthday, password=None):
        
@@ -57,18 +61,36 @@ class User(AbstractBaseUser,PermissionsMixin):
         return ('%s %s') % (self.first_name,self.last_name)   
     def __unicode__(self):
         return self.username
-    
 
-        
+
 class Contacts(models.Model):
     user = models.ForeignKey(User)
     email = models.EmailField(null=True)
     phone = models.BigIntegerField(null=True)
     fax = models.BigIntegerField(null=True)
-    
-    
+
 class Presenter(models.Model):
     img = models.ImageField(upload_to='presenters_pic')
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     bio = models.TextField()
+
+    def __unicode__(self):
+        return ('%s %s'%(self.first_name,self.last_name))
+
+    class Meta:
+        verbose_name_plural='Presenters'
+
+    def save(self,*args,**kwargs):
+        thumb_io = StringIO()
+        image = Image.open(StringIO(self.img.read()))
+        thumbnail = image.resize((472,500),Image.ANTIALIAS)
+        thumbnail.save(thumb_io,'jpeg')
+        thumb_io.seek(0)
+        #convert to SimpleUploadedFile, so it can be saved con ImageFields.
+        suf = SimpleUploadedFile(('%s-%s' % (self.id,timezone.now)),thumb_io.read(), content_type='image/jpeg')
+        self.img.save(
+            ('%s.%s')%(os.path.splitext(suf.name)[0],'jpeg'),
+            suf,
+            save=False)
+        super(Presenter,self).save(*args,**kwargs)

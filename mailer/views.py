@@ -1,7 +1,7 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.core.mail import EmailMessage
-from mailer.models import Mails
+from mailer.models import Requests
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from coolFM.views import index

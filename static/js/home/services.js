@@ -18,7 +18,7 @@
       function getCasters() {
         var deferred = $q.defer();
 
-        $http.get('/static/narrator.json')
+        $http.get('/users/staff')
           .success(function (data) {
             deferred.resolve(data);
           });

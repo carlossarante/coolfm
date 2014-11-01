@@ -36,24 +36,16 @@
 				if($scope.view === "nouvelles"){
 					$animate.addClass(angular.element('.body-view')[0],'newsInAnim');
 					$animate.addClass(angular.element('.body-view')[1],'newsInAnim');	
-					$timeout(function(){
-						//$animate.removeClass(angular.element('.body-view')[0],'viewAnim');
-						//$animate.removeClass(angular.element('.body-view')[1],'viewAnim');
-						//$animate.addClass(angular.element('.body-view')[0],'homeAnim');
-						//$animate.addClass(angular.element('.body-view')[1],'homeAnim');	
-					}, 1000);
+					$animate.removeClass(angular.element('.body-view')[0],'sectionLeftAnim');
+					$animate.removeClass(angular.element('.body-view')[1],'sectionLeftAnim');
+					$animate.removeClass(angular.element('.body-view')[0],'sectionRightAnim');
+					$animate.removeClass(angular.element('.body-view')[1],'sectionRightAnim');	
 				}
 				else if($scope.view === "nouvellesOut"){
 					$animate.removeClass(angular.element('.body-view')[0],'newsInAnim');
 					$animate.removeClass(angular.element('.body-view')[1],'newsInAnim');	
 					$animate.addClass(angular.element('.body-view')[0],'newsOutAnim');
 					$animate.addClass(angular.element('.body-view')[1],'newsOutAnim');	
-					$timeout(function(){
-						//$animate.removeClass(angular.element('.body-view')[0],'viewAnim');
-						//$animate.removeClass(angular.element('.body-view')[1],'viewAnim');
-						//$animate.addClass(angular.element('.body-view')[0],'homeAnim');
-						//$animate.addClass(angular.element('.body-view')[1],'homeAnim');	
-					}, 1000);
 				}
 				else if($scope.view === "programmation"){
 					if($scope.animateurs | $scope.contact){
@@ -137,15 +129,21 @@
 					if(typeof(angular.element('.body-view')[1]) === "undefined")
 					{
 						$animate.removeClass(angular.element('.body-view')[0],'newsInAnim');
+						$animate.removeClass(angular.element('.body-view')[0],'sectionLeftAnim');
+						$animate.removeClass(angular.element('.body-view')[0],'sectionRightAnim');
 					}
 					else
 					{
 						$animate.removeClass(angular.element('.body-view')[0],'newsInAnim');
 						$animate.removeClass(angular.element('.body-view')[1],'newsInAnim');
+						$animate.removeClass(angular.element('.body-view')[0],'sectionLeftAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'sectionLeftAnim');
+						$animate.removeClass(angular.element('.body-view')[0],'sectionRightAnim');
+						$animate.removeClass(angular.element('.body-view')[1],'sectionRightAnim');	
 					}
 				}
-				//$animate.addClass(document.getElementsByClassName('.body-view'),'homeAnim');
 			}
+			
 			//LOGIA DE ANIMADORES
 			$scope.getFinalCaster = function (last) {
 
@@ -304,9 +302,11 @@
 
 			$scope.alterportada = function(val) {
 				$scope.portada = val;
+				$scope.sectionshow = false;
+			
 			}
 
-			$scope.alternouvelles = function(val,url) {
+			$scope.alternouvelles = function(val) {
 				$scope.parser = new DOMParser();
 				$scope.nouvelles = val.nouvelles;
 				$scope.next = val.next;
@@ -400,7 +400,7 @@
 			$scope.showSection = function(tab) {	
 				$scope.inter = true;
 				$scope.view = '';
-				$scope.sectionshow = true;			
+				//$scope.sectionshow = true;			
 				$scope.hideSearch();
 				$scope.hideNews();
 				$scope.hideMenu();
@@ -441,12 +441,12 @@
 
 				if($event.charCode === 13)
 				{
-					var token = $scope.getCookie("csrftoken");
+					//var token = $scope.getCookie("csrftoken");
 
 					angular.element('.buscarInfo').val("");
 					$scope.hideSearch();
 
-					$http.defaults.headers.common =  {"X-CSRFToken" : token};
+					//$http.defaults.headers.common =  {"X-CSRFToken" : token};
 					//$http.post('/nouvelles/search/?format=json', {"keyword" : sval})
 
 					$.ajaxSetup({
@@ -474,13 +474,18 @@
 					        }
 					    }
 					});
-					
 
-					
+
 					$.post('/nouvelles/search/?format=json', {keyword: sval} , function(data, textStatus, xhr) {
-						/*optional stuff to do after success */
+						console.log(data)
+						$scope.sectionNew = [data[0]];
+						data.splice(0,1);
+						$scope.nouvelles = data;
+						$scope.sectionshow = true;
+						$location.path("nouvelles/search")
+						$scope.$apply();						
 					});
-					$http({ 
+					/*$http({ 
 					    method: 'POST', 
 					    url: '/nouvelles/search/?format=json', 
 					    data: $.param({keyword: sval})
@@ -490,7 +495,7 @@
 					})
 					.error(function (data,status){
 						console.log("Error en la busqueda");
-					})
+					})*/
 				}				
 			}
 
@@ -521,7 +526,7 @@
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
 		.controller('NouvellesController',['$scope','$location','$animate','$routeParams','nouvelleService',function($scope,$location,$animate,$routeParams,nouvelleService){
-	
+			
 			nouvelleService.getPrincipals().then(function (data) {
           		$scope.alterportada(data);
         	});
@@ -529,13 +534,13 @@
 			if($routeParams.page)
 			{
 				nouvelleService.getNews('/nouvelles/?format=json&query=nouvelles&page='+$routeParams.page).then(function (data) {
-          			$scope.alternouvelles(data,$location.path());
+          			$scope.alternouvelles(data);
         		});				
 			}
 			else
 			{
 				nouvelleService.getNews('/nouvelles/?format=json&query=nouvelles').then(function (data) {
-					$scope.alternouvelles(data,$location.path());
+					$scope.alternouvelles(data);
         		});
 			}
 
@@ -553,13 +558,13 @@
 
 			if($routeParams.page){
 				nouvelleService.getNews('/nouvelles/section/'+$routeParams.section+'/?format=json&query=nouvelles&page='+$routeParams.page).then(function (data){
-					$scope.alternouvelles(data,$location.path());
+					$scope.alternouvelles(data);
 				});
 			}
 			else
 			{
 				nouvelleService.getNews('/nouvelles/section/'+$routeParams.section+'/?format=json&query=nouvelles').then(function (data) {
-	          		$scope.alternouvelles(data,$location.path());
+	          		$scope.alternouvelles(data);
 	        	});				
 			}
 			if(!$scope.inter)
@@ -581,7 +586,7 @@
 				if(!$scope.sectionshow)
 				{
 					nouvelleService.getNews('/nouvelles/?format=json&query=nouvelles').then(function (data) {
-		          		$scope.alternouvelles(data,$location.path());
+		          		$scope.alternouvelles(data);
 		        	});
 				}
 			}	

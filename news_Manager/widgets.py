@@ -32,5 +32,12 @@ class WYMEditor(forms.Textarea):
 class ImageCropper(widgets.TextInput):
     def render(self,name,value,attrs=None):
         return mark_safe('''
-                            <img-crop image="myImage" result-image="myCroppedImage" area-type="square"></img-crop>
+                            <div  ng-controller="Ctrl">
+                                <input type="file" onchange="angular.element(this).scope().handleFileSelect(event)" />
+                                <div class="cropArea">
+                                    <img-crop image="myImage" result-image="myCroppedImage" area-type="square"></img-crop>
+                                </div>
+                                <div>Cropped Image:</div>
+                                <div><img ng-src="{{myCroppedImage}}" /></div>
+                            </div>
                         ''')

@@ -1,8 +1,12 @@
+from PIL import Image
+from cStringIO import StringIO
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from django.utils import timezone
 from user_Manager.models import User
-
-# Create your models here
+from django.db.models import Q
+#from picturesHandler import createThumbnail
+import os
 class Categories(models.Model):
     suptag = models.CharField(max_length=140)
     class Meta:
@@ -58,14 +62,33 @@ class Post(models.Model):
 
     def getTopNews(self):
         posts = Post.objects.filter(is_published=True).order_by('-reads')[:3]
+    
 
 class Images(models.Model):
     post = models.ForeignKey(Post)
     img = models.ImageField(upload_to='post_images')
+    post_thumbnail = models.ImageField(upload_to='post_thumbnails',null=True)
+
     def __unicode__(self):
-        return '/media/%s' % self.img.name
-    def img_thumbnail(self):
-        if self.image:
-            return u'<img src="%s" />' % self.image.url_125x125
-        else:
-            return 'No Image'
+        return self.img.path   
+
+    class Meta:
+        verbose_name_plural='Images'
+
+    def createThumbnail(self,size):
+        thumb_io = StringIO()
+        image = Image.open(StringIO(self.img.read()))
+        thumbnail = image.resize(size,Image.ANTIALIAS)
+        thumbnail.save(thumb_io,'jpeg')
+        thumb_io.seek(0)
+        #convert to SimpleUploadedFile, so it can be saved on ImageFields.
+        suf = SimpleUploadedFile(os.path.split(self.img.name)[-1],thumb_io.read(), content_type='image/jpeg')
+        self.post_thumbnail.save(
+            ('%s.%s')%(os.path.splitext(suf.name)[0],'jpeg'),
+            suf,
+            save=False)
+    def save(self,*args,**kwargs):
+        self.createThumbnail((150,150))
+        super(Images,self).save(*args,**kwargs)
+
+        

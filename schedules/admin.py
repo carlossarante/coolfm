@@ -23,6 +23,10 @@ class ShowAdminForm(forms.ModelForm):
 
 class ShowsAdmin(admin.ModelAdmin):
     form = ShowAdminForm
+    list_display=('show_name','get_range',)
+    def get_range(self,obj):	
+    	return ('%s-%s') % (obj.starts.strftime('%H:%m'),obj.ends.strftime('%H:%m'))
+    get_range.short_description = 'Schedule'
     
 admin.site.register(Shows,ShowsAdmin)
 #admin.site.unregister(Site)

@@ -10,6 +10,7 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     url(r'^$', 'news_Manager.views.newsLoader'), 
+	url(r'^top/$','news_Manager.views.getLastestNewsByCategory'),    
     url(r'^sections/$','news_Manager.views.getCategories'),
     url(r'^search/(?P<cat>\w+)/$','news_Manager.views.search'),
   	url(r'^search/$','news_Manager.views.search'),

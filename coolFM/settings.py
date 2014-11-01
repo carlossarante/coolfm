@@ -147,10 +147,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     #'google_analytics',
-=======
->>>>>>> eda2d9958ac83ef84f93dc70020a9102ecc5e73e
     'suit', 
     'django.contrib.admin',   
     'suit_ckeditor',
@@ -161,12 +158,7 @@ INSTALLED_APPS = (
     'schedules',
     'user_Manager',
     'mailer',
-<<<<<<< HEAD
-    'rest_framework'
-    
-=======
     'rest_framework',
->>>>>>> eda2d9958ac83ef84f93dc70020a9102ecc5e73e
     # Uncomment the next line to enable the admin:
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
