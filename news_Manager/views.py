@@ -32,7 +32,6 @@ def getLastestNewsByCategory(request):
   return formatted_render(request,data)
 
 
-
 def newsLoader(request):
   query = request.GET.get('query','principals')
   page = request.GET.get('page',1)
@@ -77,10 +76,5 @@ def search(request):
     news = Post.objects.filter((Q(title__icontains=txt_to_find) | Q(content__icontains=txt_to_find)),Q(is_published=True))
     serialized_news = paginationSerializer(request,news,page).data
   else:
-<<<<<<< HEAD
     return formatted_render(request,{'keyword':('Error en la busqueda: Llego %s y valores %s' % (txt_to_find,request.POST))})
-=======
-    return formatted_render(request,{'keyword':('Error en la busqueda: Llego %s y valores %s' % txt_to_find,request.POST)})
->>>>>>> eda2d9958ac83ef84f93dc70020a9102ecc5e73e
-  return formatted_render(request,serialized_news)
 
