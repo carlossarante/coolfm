@@ -36,7 +36,7 @@ class ImageCropper(widgets.TextInput):
                                 <input type="file" onchange="angular.element(this).scope().handleFileSelect(event)" ng-hide="croped || selected"/>
                                 <button type="button" ng-click="cropImg()" ng-hide="croped || !selected">CROP!</button>
                                 <div class="cropArea" ng-hide="croped || !selected">
-                                    <img-crop image="myImage" area-min-size="50" result-image-url="myCroppedImage" area-type="square" as-ratio-x="1.77" as-ratio-y="1"></img-crop>
+                                    <img-crop image="myImage" area-min-size="50" result-image="myCroppedImage" area-type="square" as-ratio-x="1.77" as-ratio-y="1"></img-crop>
                                 </div>
                                 <div ng-show="croped" style="width:200px;"><img src="{{myCroppedImage}}" /></div>
                             </div>
