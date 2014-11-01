@@ -74,7 +74,7 @@ class Images(models.Model):
 
     class Meta:
         verbose_name_plural='Images'
-
+'''
     def createThumbnail(self,size):
         thumb_io = StringIO()
         image = Image.open(StringIO(self.img.read()))
@@ -90,5 +90,5 @@ class Images(models.Model):
     def save(self,*args,**kwargs):
         self.createThumbnail((150,150))
         super(Images,self).save(*args,**kwargs)
-
+'''
         

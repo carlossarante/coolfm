@@ -13,17 +13,18 @@ from suit_ckeditor.widgets import CKEditorWidget
 
 
 
-
-
+    
 class AddImageFields(admin.StackedInline):
     model = Images
     fields = ('img',)
     exclude = ('post_thumbnail',)
     list_display=('img_thumbnail',)
     form = ImageInlineForm
+    
+
 
 class NewsForm(forms.ModelForm):
-   # content = forms.CharField()
+   #content = forms.CharField()
     category = forms.ModelChoiceField(queryset=Categories.objects.all())
     class Meta:
         model = Post
