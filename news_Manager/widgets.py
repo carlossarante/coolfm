@@ -35,9 +35,10 @@ class ImageCropper(widgets.TextInput):
                             <div  ng-controller="Ctrl">
                                 <input type="file" onchange="angular.element(this).scope().handleFileSelect(event)" />
                                 <div class="cropArea">
-                                    <img-crop image="myImage" result-image="myCroppedImage" area-type="square"></img-crop>
+                                    <img-crop image="myImage" result-image="myCroppedImage" area-type="square" as-ratio-x="1.77" as-ratio-y="1"></img-crop>
                                 </div>
                                 <div>Cropped Image:</div>
-                                <div><img ng-src="{{myCroppedImage}}" /></div>
+                                <div><img src="{{myCroppedImage}}" /></div>
+                                <input type="url" value="{{myCroppedImage}}">
                             </div>
                         ''')

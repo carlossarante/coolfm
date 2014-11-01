@@ -198,20 +198,20 @@ crop.factory('cropAreaSquare', ['cropArea', function(CropArea) {
   CropAreaSquare.prototype._calcSquareCorners=function() {
     var hSize=this._size/2;
     return [
-      [this._x-hSize, this._y-hSize],
-      [this._x+hSize, this._y-hSize],
-      [this._x-hSize, this._y+hSize],
-      [this._x+hSize, this._y+hSize]
+      [this._x-(hSize*this._asRatioX), this._y-(hSize*this._asRatioY)],
+      [this._x+(hSize*this._asRatioX), this._y-(hSize*this._asRatioY)],
+      [this._x-(hSize*this._asRatioX), this._y+(hSize*this._asRatioY)],
+      [this._x+(hSize*this._asRatioX), this._y+(hSize*this._asRatioY)]
     ];
   };
 
   CropAreaSquare.prototype._calcSquareDimensions=function() {
     var hSize=this._size/2;
     return {
-      left: this._x-hSize,
-      top: this._y-hSize,
-      right: this._x+hSize,
-      bottom: this._y+hSize
+      left: this._x-(hSize*this._asRatioX),
+      top: this._y-(hSize*this._asRatioY),
+      right: this._x+(hSize*this._asRatioX),
+      bottom: this._y+(hSize*this._asRatioY)
     };
   };
 
@@ -233,10 +233,10 @@ crop.factory('cropAreaSquare', ['cropArea', function(CropArea) {
     }
     return res;
   };
-////revisar
-  CropAreaSquare.prototype._drawArea=function(ctx,centerCoords,size){
+////importante dibuja el recuadro blanco exterior de la imagen que se visualiza al desplazar
+  CropAreaSquare.prototype._drawArea=function(ctx,centerCoords,size,asRatioX,asRatioY){
     var hSize=size/2;
-    ctx.rect(centerCoords[0]-hSize,centerCoords[1]-hSize,size,size);
+    ctx.rect(centerCoords[0]-(hSize*asRatioX),centerCoords[1]-(hSize*asRatioY),size*asRatioX,size*asRatioY);
   };
 
   CropAreaSquare.prototype.draw=function() {
@@ -389,7 +389,10 @@ crop.factory('cropArea', ['cropCanvas', function(CropCanvas) {
     this._ctx=ctx;
     this._events=events;
 
-    this._minSize=80;
+    this._minSize=200;
+
+    this._asRatioX = 1.77;
+    this._asRatioY = 1;
 
     this._cropCanvas=new CropCanvas(ctx);
 
@@ -440,24 +443,38 @@ crop.factory('cropArea', ['cropCanvas', function(CropCanvas) {
     this._size = Math.max(this._minSize, this._size);
     this._dontDragOutside();
   };
-
+  CropArea.prototype.getAsRatioX = function (asRatioX) {
+    return this._asRatioX;
+  };
+  CropArea.prototype.getAsRatioY = function (asRatioY) {
+    return this._asRatioY;
+  };
+  CropArea.prototype.setAsRatioX = function (asRatioX) {
+    this._asRatioX = asRatioX;
+    this._dontDragOutside();
+  };
+  CropArea.prototype.setAsRatioY = function (asRatioY) {
+    this._asRatioY = asRatioY;
+    this._dontDragOutside();
+  };
+///importante evita que el recuadro se salga de la imagen, pon los limites de corte 
   /* FUNCTIONS */
   CropArea.prototype._dontDragOutside=function() {
     var h=this._ctx.canvas.height,
         w=this._ctx.canvas.width;
-    if(this._size>w) { this._size=w; }
-    if(this._size>h) { this._size=h; }
-    if(this._x<this._size/2) { this._x=this._size/2; }
-    if(this._x>w-this._size/2) { this._x=w-this._size/2; }
-    if(this._y<this._size/2) { this._y=this._size/2; }
-    if(this._y>h-this._size/2) { this._y=h-this._size/2; }
+    if(this._size * this._asRatioX>w) { this._size=w; }
+    if(this._size * this._asRatioY>h) { this._size=h; }
+    if(this._x<this._size * this._asRatioX/2) { this._x=this._size * this._asRatioX /2; }
+    if(this._x>w-this._size * this._asRatioX/2) { this._x=w-this._size * this._asRatioX /2; }
+    if(this._y<this._size * this._asRatioY /2) { this._y=this._size * this._asRatioY /2; }
+    if(this._y>h-this._size * this._asRatioY /2) { this._y=h-this._size * this._asRatioY /2; }
   };
 
   CropArea.prototype._drawArea=function() {};
 
   CropArea.prototype.draw=function() {
     // draw crop area
-    this._cropCanvas.drawCropArea(this._image,[this._x,this._y],this._size,this._drawArea);
+    this._cropCanvas.drawCropArea(this._image,[this._x,this._y],this._size,this._asRatioX,this._asRatioY,this._drawArea);
   };
 
   CropArea.prototype.processMouseMove=function() {};
@@ -569,28 +586,28 @@ crop.factory('cropCanvas', [function() {
     };
 
     /* Crop Area */
-
-    this.drawCropArea=function(image, centerCoords, size, fnDrawClipPath) {
+//importante dibuja la imagen que se visualiza al mover el cuadro 
+    this.drawCropArea=function(image, centerCoords, size, asRatioX, asRatioY, fnDrawClipPath) {
       var xRatio=image.width/ctx.canvas.width,
           yRatio=image.height/ctx.canvas.height,
-          xLeft=centerCoords[0]-size/2,
-          yTop=centerCoords[1]-size/2;
+          xLeft=centerCoords[0]-(size * asRatioX)/2,
+          yTop=centerCoords[1]-(size * asRatioY)/2;
 
       ctx.save();
       ctx.strokeStyle = colors.areaOutline;
       ctx.lineWidth = 2;
       ctx.beginPath();
-      fnDrawClipPath(ctx, centerCoords, size);
+      fnDrawClipPath(ctx, centerCoords, size, asRatioX, asRatioY);
       ctx.stroke();
       ctx.clip();
 
       // draw part of original image
       if (size > 0) {
-          ctx.drawImage(image, xLeft*xRatio, yTop*yRatio, size*xRatio, size*yRatio, xLeft, yTop, size, size);
+          ctx.drawImage(image, xLeft*xRatio, yTop*yRatio, size*xRatio*asRatioX, size*yRatio*asRatioY, xLeft, yTop, size*asRatioX, size*asRatioY);
       }
 
       ctx.beginPath();
-      fnDrawClipPath(ctx, centerCoords, size);
+      fnDrawClipPath(ctx, centerCoords, size, asRatioX, asRatioY);
       ctx.stroke();
       ctx.clip();
 
@@ -748,14 +765,14 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', funct
     };
 
 /////REVISAR
-    this.getResultImageDataURI=function() {
+    this.getResultImageDataURI=function(asRatioX,asRatioY) {
       var temp_ctx, temp_canvas;
       temp_canvas = angular.element('<canvas></canvas>')[0];
       temp_ctx = temp_canvas.getContext('2d');
-      temp_canvas.width = resImgSize;
-      temp_canvas.height = resImgSize;
+      temp_canvas.width = resImgSize * asRatioX;
+      temp_canvas.height = resImgSize * asRatioY;
       if(image!==null){
-        temp_ctx.drawImage(image, (theArea.getX()-theArea.getSize()/2)*(image.width/ctx.canvas.width), (theArea.getY()-theArea.getSize()/2)*(image.height/ctx.canvas.height), theArea.getSize()*(image.width/ctx.canvas.width), theArea.getSize()*(image.height/ctx.canvas.height), 0, 0, resImgSize, resImgSize);
+        temp_ctx.drawImage(image, (theArea.getX()-theArea.getSize()*asRatioX/2)*(image.width/ctx.canvas.width), (theArea.getY()-theArea.getSize()*asRatioY/2)*(image.height/ctx.canvas.height), theArea.getSize()*asRatioX*(image.width/ctx.canvas.width), theArea.getSize()*asRatioY*(image.height/ctx.canvas.height), 0, 0, resImgSize*asRatioX, resImgSize*asRatioY);
       }
       return temp_canvas.toDataURL();
     };
@@ -850,6 +867,8 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', funct
       theArea = new AreaClass(ctx, events);
       theArea.setMinSize(curMinSize);
       theArea.setSize(curSize);
+      //theArea.setAsRatioX(theArea.getAsRatioX);
+      //theArea.setAsRatioX(theArea.getAsRatioY);
       theArea.setX(curX);
       theArea.setY(curY);
 
@@ -859,6 +878,21 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', funct
       }
 
       drawScene();
+    };
+    this.setAsRatioX=function(asRatioX) {
+      asRatioX=parseFloat(asRatioX);
+      if(!isNaN(asRatioX)) {
+        theArea.setAsRatioX(asRatioX);
+        drawScene();
+      }       
+    };
+
+    this.setAsRatioY=function(asRatioY) {
+      asRatioY=parseFloat(asRatioY);
+      if(!isNaN(asRatioY)) {
+        theArea.setAsRatioY(asRatioY);
+        drawScene();
+      }       
     };
 
     /* Life Cycle begins */
@@ -895,6 +929,7 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', funct
 
 }]);
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 'use strict';
 
@@ -927,6 +962,8 @@ crop.directive('imgCrop', ['$timeout', 'cropHost', 'cropPubSub', function($timeo
     scope: {
       image: '=',
       resultImage: '=',
+      asRatioX : '=',
+      asRatioY : '=',
 
       changeOnFly: '=',
       areaType: '@',
@@ -953,7 +990,7 @@ crop.directive('imgCrop', ['$timeout', 'cropHost', 'cropPubSub', function($timeo
       var storedResultImage;
 
       var updateResultImage=function(scope) {
-        var resultImage=cropHost.getResultImageDataURI();
+        var resultImage=cropHost.getResultImageDataURI(scope.asRatioX,scope.asRatioY);
         if(storedResultImage!==resultImage) {
           storedResultImage=resultImage;
           if(angular.isDefined(scope.resultImage)) {
@@ -1000,6 +1037,14 @@ crop.directive('imgCrop', ['$timeout', 'cropHost', 'cropPubSub', function($timeo
       });
       scope.$watch('areaType',function(){
         cropHost.setAreaType(scope.areaType);
+        updateResultImage(scope);
+      });
+      scope.$watch('asRatioX',function(){
+        cropHost.setAsRatioX(scope.asRatioX);
+        updateResultImage(scope);
+      });
+      scope.$watch('asRatioY',function(){
+        cropHost.setAsRatioY(scope.asRatioY);
         updateResultImage(scope);
       });
       scope.$watch('areaMinSize',function(){
