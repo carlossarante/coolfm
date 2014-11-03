@@ -24,6 +24,9 @@ class Post(models.Model):
     reads = models.BigIntegerField(default=0)   
     user = models.ForeignKey(User,default=1)
 
+    #class Meta:
+     #   app_label = 'News'
+
     def __unicode__(self):
         return self.title
 
@@ -70,7 +73,7 @@ class Images(models.Model):
     post_thumbnail = models.ImageField(upload_to='post_thumbnails',null=True)
 
     def __unicode__(self):
-        return self.img.path   
+        return ('/media/%s' % self.img.name) 
 
     class Meta:
         verbose_name_plural='Images'
