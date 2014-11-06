@@ -69,7 +69,7 @@ class Post(models.Model):
 
 class Images(models.Model):
     post = models.ForeignKey(Post)
-    img = models.ImageField(upload_to='post_images')
+    img = models.ImageField('Images',upload_to='post_images')
     post_thumbnail = models.ImageField(upload_to='post_thumbnails',null=True)
 
     def __unicode__(self):

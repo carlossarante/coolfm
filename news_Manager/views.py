@@ -43,7 +43,7 @@ def newsLoader(request):
     news = Post().getTopNews()
     serialized_news = PostSerializer(news,many=True).data
   return formatted_render(request,serialized_news)
-
+  
 
 def getCategories(request):
   cat = []
