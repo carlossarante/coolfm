@@ -32,12 +32,13 @@ class WYMEditor(forms.Textarea):
 class ImageCropper(widgets.TextInput):
     def render(self,name,value,attrs=None):
         return mark_safe('''
-                            <div  ng-controller="ImgCtrl">
-                                <input type="file" name='%s' onchange="angular.element(this).scope().handleFileSelect(event)" ng-hide="croped || selected"/>
-                                <button type="button" ng-click="cropImg()" ng-hide="croped || !selected">CROP!</button>
-                                <div class="cropArea" ng-hide="croped || !selected">
-                                    <img-crop image="myImage" area-min-size="50" result-image="myCroppedImage" area-type="square" as-ratio-x="1.77" as-ratio-y="1"></img-crop>
-                                </div>
-                                <div ng-show="croped" style="width:200px;"><img src="{{myCroppedImage}}" /></div>
-                            </div>
-                        '''%name)
+            <div  ng-controller="ImgCtrl">
+                <input type="file" onchange="angular.element(this).scope().handleFileSelect(event)" ng-class="{hidden:(croped || selected)}"/>
+                <button type="button" ng-click="cropImg()" ng-class="{hidden:(croped || !selected)}">CROP!</button>
+                <div class="cropArea" ng-class="{hidden:(croped || !selected)}">
+                    <img-crop image="myImage" area-min-size="50" result-image="myCroppedImage" area-type="square" as-ratio-x="1.77" as-ratio-y="1"></img-crop>
+                </div>
+                <div>Cropped Image:</div>
+                <div><img ng-src="{{myCroppedImage}}" /></div>
+            </div>
+        ''')

@@ -766,7 +766,7 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', funct
 
 /////REVISAR
     this.getResultImageDataURI=function(asRatioX,asRatioY) {
-      var temp_ctx, temp_canvas;
+      var temp_ctx, temp_canvas, temp_img;
       temp_canvas = angular.element('<canvas></canvas>')[0];
       temp_ctx = temp_canvas.getContext('2d');
       temp_canvas.width = resImgSize * asRatioX;
@@ -775,6 +775,7 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', funct
         temp_ctx.drawImage(image, (theArea.getX()-theArea.getSize()*asRatioX/2)*(image.width/ctx.canvas.width), (theArea.getY()-theArea.getSize()*asRatioY/2)*(image.height/ctx.canvas.height), theArea.getSize()*asRatioX*(image.width/ctx.canvas.width), theArea.getSize()*asRatioY*(image.height/ctx.canvas.height), 0, 0, resImgSize*asRatioX, resImgSize*asRatioY);
       }
       return temp_canvas.toDataURL();
+      //return temp_ctx.getImageData(0, 0, resImgSize*asRatioX, resImgSize*asRatioY);
     };
 
     this.setNewImageSource=function(imageSource) {
