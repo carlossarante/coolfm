@@ -152,7 +152,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',   
     'suit_ckeditor',
     'south',
-    'sorl.thumbnail',
     'adminfiles',
     'news_Manager',
     'schedules',
