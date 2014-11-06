@@ -16,10 +16,18 @@ from suit_ckeditor.widgets import CKEditorWidget
     
 class AddImageFields(admin.StackedInline):
     model = Images
-    fields = ('img','post_thumbnail')
+    fields = ('img',)
     #exclude = ('post_thumbnail',)
     list_display=('img_thumbnail',)
     form = ImageInlineForm
+    def save_formset(self, request, form, formset, change):
+        instances = formset.save(commit=False)
+        for instance in instances:
+            instance.post_thumbnail = request.POST['thumbnail']
+            instance.save()
+        formset.save_m2m()
+
+
     
 
 
