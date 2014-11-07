@@ -1,12 +1,12 @@
 angular.module('app', ['ngImgCrop'])
   .controller('FormCtrl',['$scope',function($scope){
-      $scope.formData = new FormData();
-      $scope.appendImg = function (scope, file){
-        $scope.formData.append("img"+scope.$id,file);
+      $scope.formData = new FormData(document.forms[0]);
+      $scope.appendImg = function (scope, file,thumbnail){
+        $scope.formData.append(thumbnail,file);
       }
       $scope.sendForm = function () {
         var request = new XMLHttpRequest();
-        request.open("POST", "/static/");
+        request.open("POST", "/admin/news_Manager/post/add/");
         request.send($scope.formData);
       };
 
@@ -33,12 +33,15 @@ angular.module('app', ['ngImgCrop'])
         });
       };
       reader.readAsDataURL(file);
+      
       $scope.img=$scope.dataURItoBlob($scope.myCroppedImage);
+      $scope.thumbnail = "thumbnail-"+evt.target.name;
+      
       console.log($scope.img);
     };
     $scope.cropImg = function (){
       $scope.croped = true;
-      $scope.appendImg($scope,$scope.img);
+      $scope.appendImg($scope,$scope.img,$scope.thumbnail);
     };
     //angular.element(document.querySelector('#fileInput')).on('change',$scope.handleFileSelect);
 
