@@ -20,15 +20,8 @@ class AddImageFields(admin.StackedInline):
     #exclude = ('post_thumbnail',)
     list_display=('img_thumbnail',)
     form = ImageInlineForm
-    def save_formset(self, request, form, formset, change):
-        instances = formset.save(commit=False)
-        for instance in instances:
-            instance.post_thumbnail = request.POST['thumbnail']
-            instance.save()
-        formset.save_m2m()
 
 
-    
 
 
 class NewsForm(forms.ModelForm):
@@ -51,6 +44,17 @@ class PostAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.slug = slughifi(obj.title)
         obj.save()
+
+    def save_formset(self, request, form, formset, change):
+                    instance = formset.save(commit=False)
+                    for form in formset:
+                        if form._meta.model == Image: 
+                            for name,picture in request.FILES.iteritems():
+                                if name == ('thumbnail-%s' % form.img.name):
+                                    instance.post_thumbnail = picture
+                    formset.save_m2m()
+
+
     class Media:
         js = js = ('js/jquery.js','/static/ckeditor/ckeditor.js',
                    'js/jquery.adminpreview.js',)
