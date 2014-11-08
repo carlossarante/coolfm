@@ -3,10 +3,9 @@ angular.module('app', ['ngImgCrop'])
       $scope.formData = new FormData(document.forms[0]);
       $scope.appendImg = function (scope, file,thumbnail){
         $scope.formData.append(thumbnail,file);
-        alert("adjuntando");
+        console.log($scope.formData)
       }
       $scope.sendForm = function () {
-        alert("envio");
         var request = new XMLHttpRequest();
         request.open("POST", "/admin/news_Manager/post/add/");
         request.send($scope.formData);
@@ -42,7 +41,6 @@ angular.module('app', ['ngImgCrop'])
       console.log($scope.img);
     };
     $scope.cropImg = function (){
-      alert("cortando");
       $scope.croped = true;
       $scope.appendImg($scope,$scope.img,$scope.thumbnail);
     };
