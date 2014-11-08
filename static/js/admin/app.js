@@ -1,8 +1,12 @@
 angular.module('app', ['ngImgCrop'])
   .controller('FormCtrl',['$scope',function($scope){
       $scope.formData = new FormData(document.forms[0]);
-      
+      $scope.appendImg = function (scope, file,thumbnail){
+        $scope.formData.append(thumbnail,file);
+        alert("adjuntando");
+      }
       $scope.sendForm = function () {
+        alert("envio");
         var request = new XMLHttpRequest();
         request.open("POST", "/admin/news_Manager/post/add/");
         request.send($scope.formData);
@@ -38,13 +42,11 @@ angular.module('app', ['ngImgCrop'])
       console.log($scope.img);
     };
     $scope.cropImg = function (){
+      alert("cortando");
       $scope.croped = true;
       $scope.appendImg($scope,$scope.img,$scope.thumbnail);
     };
     //angular.element(document.querySelector('#fileInput')).on('change',$scope.handleFileSelect);
-    $scope.appendImg = function (scope, file,thumbnail){
-      $scope.formData.append(thumbnail,file);
-    }
 
     $scope.dataURItoBlob = function(dataURI) {
       // convert base64 to raw binary data held in a string
