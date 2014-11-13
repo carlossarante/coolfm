@@ -77,21 +77,3 @@ class Images(models.Model):
 
     class Meta:
         verbose_name_plural='Images'
-'''
-    def createThumbnail(self,size):
-        thumb_io = StringIO()
-        image = Image.open(StringIO(self.img.read()))
-        thumbnail = image.resize(size,Image.ANTIALIAS)
-        thumbnail.save(thumb_io,'jpeg')
-        thumb_io.seek(0)
-        #convert to SimpleUploadedFile, so it can be saved on ImageFields.
-        suf = SimpleUploadedFile(os.path.split(self.img.name)[-1],thumb_io.read(), content_type='image/jpeg')
-        self.post_thumbnail.save(
-            ('%s.%s')%(os.path.splitext(suf.name)[0],'jpeg'),
-            suf,
-            save=False)
-    def save(self,*args,**kwargs):
-        self.createThumbnail((150,150))
-        super(Images,self).save(*args,**kwargs)
-'''
-        

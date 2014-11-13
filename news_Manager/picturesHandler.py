@@ -1,9 +1,15 @@
 from PIL import Image
 from cStringIO import StringIO
 from django.core.files.uploadedfile import SimpleUploadedFile
+from news_Manager.models import Images
+import os, uuid,datetime,hashlib
+
+def generateFileName():
+	h = hashlib.sha1(datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S'))
+	return h
 
 
-import os
+
 def createThumbnail(self,size):
     thumb_io = StringIO()
     image = Image.open(StringIO(self.img.read()))
@@ -28,11 +34,8 @@ def cropper(path,type,y_cord=-70):
 	cropped_picture = picture.crop(coords)
 	return cropped_picture
 
-def createThumbnail(original_img,size):
-	thumb_io = StringIO()
-	image = Image.open(StringIO(original_img.read()))
-	image.thumbnail(size,Image.ANTIALIAS)
-	image.save(thumb_io,'PNG')
-	#convert to SimpleUploadedFile because it can be saved on ImageFields
-	suf = SimpleUploadedFile(os.path.split(original_img.name)[-1],thumb_io.read(), content_type='image/png')
-	return suf
+def setThumbnail(request,post):
+	number_of_images = request.POST.get('size_of_image_form',1)
+	for i in xrange(0,number_of_images):
+		post.images_set.add(image=request.FILES['id_images-set-%s-img',i],post_thumbnail=request.FILES['thumbnail-image-set-i'])
+	return post

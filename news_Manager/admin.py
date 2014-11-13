@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-import HTMLParser
 from django.conf.urls import patterns, include, url
 from django import forms
 from django.contrib import admin
 from django.shortcuts import render_to_response,RequestContext
+from django.http import HttpResponse
 from django.db import models
 from slughifi import slughifi
 from news_Manager.widgets import WYMEditor
@@ -17,9 +17,6 @@ from suit_ckeditor.widgets import CKEditorWidget
 class AddImageFields(admin.StackedInline):
     model = Images
     fields = ('img',)
-    #exclude = ('post_thumbnail',)
-    list_display=('img_thumbnail',)
-    form = ImageInlineForm
 
 
 
@@ -30,29 +27,29 @@ class NewsForm(forms.ModelForm):
     class Meta:
         model = Post
         exclude = ['date_posted','slug']
+    
 
 class PostAdmin(admin.ModelAdmin):
+    #import ipdb;ipdb.set_trace()
     form = NewsForm
-    formfield_overrides = { models.TextField: {'widget': forms.Textarea(attrs={'class':'ckeditor'})}, }
-    fieldsets = [
-        ('Information', {'fields': ('title','category')}),
-        ('Body', {'fields': ('content',)}),
-        ('Status', {'fields': ('is_published',)}),
-    ]
-    inlines=[AddImageFields,]
-    
-    def save_model(self, request, obj, form, change):
-        obj.slug = slughifi(obj.title)
-        obj.save()
+    inlines=[AddImageFields]
 
-    def save_formset(self, request, form, formset, change):
-                    instance = formset.save(commit=False)
-                    for form in formset:
-                        if form._meta.model == Image: 
-                            for name,picture in request.FILES.iteritems():
-                                if name == ('thumbnail-%s' % form.img.name):
-                                    instance.post_thumbnail = picture
-                    formset.save_m2m()
+    def save_model(self, request, obj, form, change):
+        try:
+            slug = slughifi(obj.title)
+            Post.objects.get(slug=slug)
+            if not change:
+                return HttpResponse('Post slug and title already exists')
+            else: 
+                return obj
+        except:
+            obj.slug = slug
+            obj.save()
+            return obj
+    def response_add(self,request, obj, post_url_continue='../%s/'):
+        import json
+        p = Post.objects.get(title=obj.title)
+        return HttpResponse(p.id)
 
 
     class Media:
@@ -63,4 +60,4 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Post,PostAdmin)
 admin.site.register(Categories)
-admin.site.register(Images)
+#admin.site.register(Images)
