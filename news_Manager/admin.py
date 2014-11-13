@@ -17,7 +17,7 @@ from suit_ckeditor.widgets import CKEditorWidget
 class AddImageFields(admin.StackedInline):
     model = Images
     fields = ('img',)
-
+    form = ImageInlineForm
 
 
 
