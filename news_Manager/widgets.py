@@ -40,7 +40,17 @@ class ImageCropper(widgets.TextInput):
                 </div>
                 <div>Cropped Image:</div>
                 <div><img ng-src="{{myCroppedImage}}" /></div>
+<<<<<<< HEAD
                 
 
+=======
+>>>>>>> 9305babf586d1d8080466f9855c7e227dbeda0f0
             </div>
+        ''' % name)
+
+class ImageCropped(widgets.TextInput):
+    def render(self,name,value,attrs=None):
+        return mark_safe('''
+            <div><img ng-src="{{myCroppedImage}}" /></div>
+            <input name="thumbnail-%s" type="hidden"  value="" />
         ''' % name)

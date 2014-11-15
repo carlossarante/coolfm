@@ -16,7 +16,7 @@ from suit_ckeditor.widgets import CKEditorWidget
     
 class AddImageFields(admin.StackedInline):
     model = Images
-    fields = ('img',)
+    fields = ('img','post_thumbnail')
     form = ImageInlineForm
 
 
@@ -32,6 +32,7 @@ class NewsForm(forms.ModelForm):
 class PostAdmin(admin.ModelAdmin):
     #import ipdb;ipdb.set_trace()
     form = NewsForm
+    fields = ('title','content','is_published')
     inlines=[AddImageFields]
 
     def save_model(self, request, obj, form, change):
@@ -41,13 +42,12 @@ class PostAdmin(admin.ModelAdmin):
             if not change:
                 return HttpResponse('Post slug and title already exists')
             else: 
-                return obj
+                return HttpResponse(obj.id)
         except:
             obj.slug = slug
             obj.save()
             return obj
     def response_add(self,request, obj, post_url_continue='../%s/'):
-        import json
         p = Post.objects.get(title=obj.title)
         return HttpResponse(p.id)
 
@@ -60,4 +60,3 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Post,PostAdmin)
 admin.site.register(Categories)
-#admin.site.register(Images)

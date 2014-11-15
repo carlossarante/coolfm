@@ -1,9 +1,12 @@
 angular.module('app', ['ngImgCrop'])
   .controller('FormCtrl',['$scope',function($scope){
-      
-      $scope.formData = new FormData(document.forms[0]);
+      $scope.formulario = document.forms[0];
+      $scope.formData = new FormData($scope.formulario);
       $scope.imgFormData = new FormData();
       $scope.imgcont = 0;
+
+      $scope.form_url = window.location.href;
+      
 
       $scope.appendImg = function (scope, file,thumbnail){
         $scope.imgFormData.append(thumbnail,file);
@@ -83,6 +86,7 @@ angular.module('app', ['ngImgCrop'])
     $scope.cropImg = function (){
       $scope.croped = true;
       $scope.appendImg($scope,$scope.img,$scope.thumbnail);
+      document.getElementsByName("")
     };
     //angular.element(document.querySelector('#fileInput')).on('change',$scope.handleFileSelect);
 
