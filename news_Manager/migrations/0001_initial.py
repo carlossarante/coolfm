@@ -34,6 +34,7 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('post', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['news_Manager.Post'])),
             ('img', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
+            ('post_thumbnail', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True)),
         ))
         db.send_create_signal(u'news_Manager', ['Images'])
 
@@ -79,7 +80,8 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Images'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'img': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
-            'post': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['news_Manager.Post']"})
+            'post': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['news_Manager.Post']"}),
+            'post_thumbnail': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True'})
         },
         u'news_Manager.post': {
             'Meta': {'object_name': 'Post'},
@@ -98,7 +100,7 @@ class Migration(SchemaMigration):
             'bio': ('django.db.models.fields.TextField', [], {}),
             'birthday': ('django.db.models.fields.DateField', [], {}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['auth.Group']", 'symmetrical': 'False', 'blank': 'True'}),
+            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Group']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'is_admin': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
@@ -107,7 +109,7 @@ class Migration(SchemaMigration):
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
             'picture': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
-            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'}),
+            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Permission']"}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'})
         }
     }

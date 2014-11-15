@@ -80,13 +80,19 @@ angular.module('app', ['ngImgCrop'])
       
       $scope.img=$scope.dataURItoBlob($scope.myCroppedImage);
       $scope.thumbnail = "thumbnail-"+evt.target.name;
+      $scope.thumbnail = $scope.thumbnail.split('img');
+      $scope.thumbnail =$scope.thumbnail[0] + "post_thumbnail";
+      console.log(evt)
       
       console.log($scope.img);
     };
     $scope.cropImg = function (){
       $scope.croped = true;
       $scope.appendImg($scope,$scope.img,$scope.thumbnail);
-      document.getElementsByName("")
+      document.getElementsByName($scope.thumbnail)[0].value = $scope.myCroppedImage;
+      document.getElementById($scope.thumbnail).src = $scope.myCroppedImage;
+      console.log($scope.thumbnail)
+      console.log(document.getElementsByName($scope.thumbnail))
     };
     //angular.element(document.querySelector('#fileInput')).on('change',$scope.handleFileSelect);
 
