@@ -1,15 +1,55 @@
 angular.module('app', ['ngImgCrop'])
   .controller('FormCtrl',['$scope',function($scope){
+      
       $scope.formData = new FormData(document.forms[0]);
+      $scope.imgFormData = new FormData();
+      $scope.imgcont = 0;
+
       $scope.appendImg = function (scope, file,thumbnail){
-        $scope.formData.append(thumbnail,file);
-        console.log($scope.formData)
+        $scope.imgFormData.append(thumbnail,file);
+        $scope.imgcont +=1;
+        console.log($scope.imgFormData)
       }
-      $scope.sendForm = function () {
+      $scope.sendForm = function (action) {
+        $scope.formData.append(action,action);
         var request = new XMLHttpRequest();
         request.open("POST", "/admin/news_Manager/post/add/");
+        request.onerror = function () {
+          alert("error");
+        }
+        request.onload = function () {
+        }
+        request.onloadend = function () { 
+          if (request.status === 200) {
+            var token = $scope.getCookie("csrftoken");
+            $scope.imgFormData.append('csrfmiddlewaretoken',token);
+            $scope.imgFormData.append('quant_image-form', $scope.imgcont);
+            var imgRequest = new XMLHttpRequest();
+            imgRequest.open("POST", "/nouvelles/images/");
+            imgRequest.send($scope.imgFormData); 
+          }
+        }
         request.send($scope.formData);
       };
+
+      $scope.getCookie =function (a)
+      {
+        var e = null;
+        if (document.cookie && document.cookie != "")
+        {
+          var d = document.cookie.split(";");
+          for (var c = 0; c < d.length; c++)
+          {
+            var b = jQuery.trim(d[c]);
+            if (b.substring(0, a.length + 1) == (a + "="))
+            {
+              e = decodeURIComponent(b.substring(a.length + 1));
+              break
+            }
+          }
+        }
+        return e
+      }
 
     }]) 
   .controller('ImgCtrl', ['$scope',function($scope) {
