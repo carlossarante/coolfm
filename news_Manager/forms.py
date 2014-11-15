@@ -4,7 +4,7 @@ from news_Manager.widgets import ImageCropper
 
 
 class ImageInlineForm(forms.ModelForm):
-	#img = forms.ImageField(widget=ImageCropper())
+	img = forms.ImageField(widget=ImageCropper())
 	class Meta:
 		model = Images
 		fields = ['img','post_thumbnail']

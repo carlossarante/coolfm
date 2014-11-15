@@ -89,7 +89,7 @@
 {% block content %}
   <div id="content-main" class="inner-two-columns" ng-app="app">
 
-    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post"
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{% verbatim %}{{ form_url }}{% endverbatim %}" method="post"
           id="{{ opts.module_name }}_form" class="form-horizontal" ng-controller="FormCtrl">
 
       <div class="inner-right-column">
