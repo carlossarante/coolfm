@@ -24,10 +24,10 @@ CKEDITOR_UPLOAD_PATH = os.path.abspath("static/post_images")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'c0coolFM',                      # Or path to database file if using sqlite3.
+        'NAME': 'coolfm',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
-        'PASSWORD': 'c0nuc0d@t@b@s3',
+        'PASSWORD': 'vendeme',
         'HOST': '127.0.0.1',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '3306',                      # Set to empty string for default.
     }
