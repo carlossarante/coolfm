@@ -38,7 +38,13 @@ class ImageCropper(widgets.TextInput):
                 <div class="cropArea" ng-class="{hidden:(croped || !selected)}">
                     <img-crop image="myImage" area-min-size="50" result-image="myCroppedImage" area-type="square" as-ratio-x="1.77" as-ratio-y="1"></img-crop>
                 </div>
-                <div>Cropped Image:</div>
                 <div><img ng-src="{{myCroppedImage}}" /></div>
             </div>
+        ''' % name)
+
+class ImageCropped(widgets.TextInput):
+    def render(self,name,value,attrs=None):
+        return mark_safe('''
+            <div><img ng-src="{{myCroppedImage}}" /></div>
+            <input name="thumbnail-%s" type="hidden"  value="" />
         ''' % name)
