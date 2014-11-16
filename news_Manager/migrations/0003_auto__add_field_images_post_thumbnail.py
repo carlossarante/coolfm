@@ -8,45 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Categories'
-        db.create_table(u'news_Manager_categories', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('suptag', self.gf('django.db.models.fields.CharField')(max_length=140)),
-        ))
-        db.send_create_signal(u'news_Manager', ['Categories'])
-
-        # Adding model 'Post'
-        db.create_table(u'news_Manager_post', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=250)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=50)),
-            ('date_posted', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('content', self.gf('django.db.models.fields.TextField')()),
-            ('is_published', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('category', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['news_Manager.Categories'], null=True)),
-            ('reads', self.gf('django.db.models.fields.BigIntegerField')(default=0)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(default=1, to=orm['user_Manager.User'])),
-        ))
-        db.send_create_signal(u'news_Manager', ['Post'])
-
-        # Adding model 'Images'
-        db.create_table(u'news_Manager_images', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('post', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['news_Manager.Post'])),
-            ('img', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
-        ))
-        db.send_create_signal(u'news_Manager', ['Images'])
+        # Adding field 'Images.post_thumbnail'
+        db.add_column(u'news_Manager_images', 'post_thumbnail',
+                      self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True),
+                      keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting model 'Categories'
-        db.delete_table(u'news_Manager_categories')
-
-        # Deleting model 'Post'
-        db.delete_table(u'news_Manager_post')
-
-        # Deleting model 'Images'
-        db.delete_table(u'news_Manager_images')
+        # Deleting field 'Images.post_thumbnail'
+        db.delete_column(u'news_Manager_images', 'post_thumbnail')
 
 
     models = {
@@ -79,7 +49,8 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Images'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'img': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
-            'post': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['news_Manager.Post']"})
+            'post': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['news_Manager.Post']"}),
+            'post_thumbnail': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True'})
         },
         u'news_Manager.post': {
             'Meta': {'object_name': 'Post'},

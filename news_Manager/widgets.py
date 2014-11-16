@@ -39,7 +39,6 @@ class ImageCropper(widgets.TextInput):
                     <img-crop image="myImage" area-min-size="50" result-image="myCroppedImage" area-type="square" as-ratio-x="1.77" as-ratio-y="1"></img-crop>
                 </div>
                 <div>Cropped Image:</div>
-                <input type="url" value="{{myCroppedImage}}">
                 <div><img ng-src="{{myCroppedImage}}" /></div>
             </div>
         ''' % name)
@@ -47,6 +46,6 @@ class ImageCropper(widgets.TextInput):
 class ImageCropped(widgets.TextInput):
     def render(self,name,value,attrs=None):
         return mark_safe('''
-            <div><img ng-src="{{myCroppedImage}}"  /></div>
+            <div><img id="thumbnail-%s"/></div>
             <input name="thumbnail-%s" type="hidden"  value="" />
-        ''' % name)
+        ''' % (name,name))
