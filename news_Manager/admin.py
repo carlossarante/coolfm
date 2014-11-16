@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import patterns, include, url
-from django import forms
 from django.contrib import admin
 from django.shortcuts import render_to_response,RequestContext
 from django.http import HttpResponse
 from django.db import models
+from django import forms
 from slughifi import slughifi
 from news_Manager.widgets import WYMEditor
 from news_Manager.models import Post,Categories,Images
@@ -12,6 +12,9 @@ from news_Manager.forms import ImageInlineForm
 from suit_ckeditor.widgets import CKEditorWidget
 
 
+
+#class ImageInlineFormset(forms.models.BaseInlineFormset):
+ #  pass    
 
     
 class AddImageFields(admin.StackedInline):
