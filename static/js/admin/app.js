@@ -1,6 +1,6 @@
 angular.module('app', ['ngImgCrop'])
   .controller('FormCtrl',['$scope',function($scope){
-      $scope.formulario = document.forms[0];
+     /* $scope.formulario = document.forms[0];
       $scope.formData = new FormData($scope.formulario);
       $scope.imgFormData = new FormData();
       $scope.imgcont = 0;
@@ -11,7 +11,6 @@ angular.module('app', ['ngImgCrop'])
       $scope.appendImg = function (scope, file,thumbnail){
         $scope.imgFormData.append(thumbnail,file);
         $scope.imgcont +=1;
-        console.log($scope.imgFormData)
       }
       $scope.sendForm = function (action) {
         $scope.formData.append(action,action);
@@ -52,18 +51,16 @@ angular.module('app', ['ngImgCrop'])
           }
         }
         return e
-      }
+      }*/
 
     }]) 
+
   .controller('ImgCtrl', ['$scope',function($scope) {
     $scope.myImage='';
     $scope.myCroppedImage='';
     $scope.file ={};
     $scope.selected=false;
     $scope.croped = false;
-
-    console.log($scope.$id)
-    console.log($scope)
 
     $scope.handleFileSelect = function (evt) {
       var file=evt.currentTarget.files[0];
@@ -79,20 +76,20 @@ angular.module('app', ['ngImgCrop'])
       reader.readAsDataURL(file);
       
       $scope.img=$scope.dataURItoBlob($scope.myCroppedImage);
+     
       $scope.thumbnail = "thumbnail-"+evt.target.name;
       $scope.thumbnail = $scope.thumbnail.split('img');
       $scope.thumbnail =$scope.thumbnail[0] + "post_thumbnail";
-      console.log(evt)
-      
-      console.log($scope.img);
+
+      /*document.getElementsByName($scope.thumbnail)[0].value = "";
+      document.getElementById($scope.thumbnail).src = "";*/
     };
     $scope.cropImg = function (){
-      $scope.croped = true;
-      $scope.appendImg($scope,$scope.img,$scope.thumbnail);
+      //$scope.croped = true;
+      //$scope.appendImg($scope,$scope.img,$scope.thumbnail);
+      console.log($scope.thumbnail);
       document.getElementsByName($scope.thumbnail)[0].value = $scope.myCroppedImage;
       document.getElementById($scope.thumbnail).src = $scope.myCroppedImage;
-      console.log($scope.thumbnail)
-      console.log(document.getElementsByName($scope.thumbnail))
     };
     //angular.element(document.querySelector('#fileInput')).on('change',$scope.handleFileSelect);
 
