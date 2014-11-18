@@ -46,6 +46,6 @@ class ImageCropper(widgets.TextInput):
 class ImageCropped(widgets.TextInput):
     def render(self,name,value,attrs=None):
         return mark_safe('''
-            <div><img id="thumbnail-%s" style="width:200px;"/></div>
-            <input name="thumbnail-%s" type="hidden"  value="" />
+            <div><img id="%s" style="width:200px;"/></div>
+            <input name="%s" type="hidden"  value="" />
         ''' % (name,name))
