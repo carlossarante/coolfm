@@ -77,7 +77,7 @@ angular.module('app', ['ngImgCrop'])
       
       $scope.img=$scope.dataURItoBlob($scope.myCroppedImage);
      
-      $scope.thumbnail = "thumbnail-"+evt.target.name;
+      $scope.thumbnail = evt.target.name;
       $scope.thumbnail = $scope.thumbnail.split('img');
       $scope.thumbnail =$scope.thumbnail[0] + "post_thumbnail";
 
