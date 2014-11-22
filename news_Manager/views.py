@@ -6,17 +6,6 @@ from django.db.models import Q
 from news_Manager.serializers import PostSerializer
 from news_Manager.models import Post,Categories
 from news_Manager.functions import formatted_render,paginationSerializer
-from news_Manager.picturesHandler import setThumbnail
-
-def setImages(request):
-  id_post = request.POST.get('id_post',None)
-  p = Post.objects.get(id=id_post)
-  post = setThumbnails(request,p)
-  post.save()
-  return HttpResponse(status=200)
-
-    
-
 
 def newsByCategory(request,category):
   query = request.GET.get('query','')
