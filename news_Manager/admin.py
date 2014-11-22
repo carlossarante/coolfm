@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.shortcuts import render_to_response,RequestContext
 from django.http import HttpResponse
 from django.db import models
+from django.forms.models import BaseInlineFormSet
 from django import forms
 from slughifi import slughifi
 from news_Manager.widgets import WYMEditor
@@ -11,18 +12,11 @@ from news_Manager.models import Post,Categories,Images
 from news_Manager.forms import ImageInlineForm
 from suit_ckeditor.widgets import CKEditorWidget
 
-
-
-#class ImageInlineFormset(forms.models.BaseInlineFormset):
- #  pass    
-
-    
 class AddImageFields(admin.StackedInline):
     model = Images
     fields = ('img','post_thumbnail')
     form = ImageInlineForm
-
-
+    extra =1
 
 class NewsForm(forms.ModelForm):
    #content = forms.CharField()
@@ -50,15 +44,15 @@ class PostAdmin(admin.ModelAdmin):
             obj.slug = slug
             obj.save()
             return obj
+
+
     def response_add(self,request, obj, post_url_continue='../%s/'):
         p = Post.objects.get(title=obj.title)
         return HttpResponse(p.id)
 
 
     class Media:
-        js = js = ('js/jquery.js','/static/ckeditor/ckeditor.js',
-                   'js/jquery.adminpreview.js',)
-
+        js = js = ('js/jquery.js','/static/ckeditor/ckeditor.js',)
 
 
 admin.site.register(Post,PostAdmin)
