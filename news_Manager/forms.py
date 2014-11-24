@@ -8,7 +8,7 @@ from news_Manager.picturesHandler import imageFromDataURL,convertToDjangoFile,co
 
 class DataURLField(forms.ImageField):
 	def to_python(self,value):
-		import ipdb; ipdb.set_trace()
+		#import ipdb; ipdb.set_trace()
 		if not value:
 			return []
 		img = convertToPilFile(value)

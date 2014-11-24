@@ -33,7 +33,8 @@ class ImageCropper(widgets.TextInput):
     def render(self,name,value,attrs=None):
         return mark_safe('''
             <div  ng-controller="ImgCtrl">
-                <input type="file" name = '%s' onchange="angular.element(this).scope().handleFileSelect(event)" />
+                <input type="file" name = '%s' onchange="angular.element(this).scope().handleFileSelect(event)" ng-model="form" ng-disabled="sended"/>
+                <input name="%s" type="hidden"  value="{{myImage}}" />
                 <div class="cropArea">
                     <img-crop image="myImage" area-min-size="50" result-image="myCroppedImage" area-type="square" as-ratio-x="1.77" as-ratio-y="1"></img-crop>
                 </div>
@@ -41,7 +42,7 @@ class ImageCropper(widgets.TextInput):
                     <img ng-src="{{myCroppedImage}}" style="width:200px;" ng-class="{hidden:true}" onload="angular.element(this).scope().cropImg()" />
                 </div>
             </div>
-        ''' % name)
+        ''' % (name,name))
 
 class ImageCropped(widgets.TextInput):
     def render(self,name,value,attrs=None):
