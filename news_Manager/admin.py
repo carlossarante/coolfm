@@ -52,8 +52,9 @@ class PostAdmin(admin.ModelAdmin):
 
 
     class Media:
-        js = js = ('js/jquery.js','/static/ckeditor/ckeditor.js',)
+        js = js = ('js/jquery.js',)
 
 
 admin.site.register(Post,PostAdmin)
 admin.site.register(Categories)
+    

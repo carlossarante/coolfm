@@ -1,5 +1,8 @@
 angular.module('app', ['ngImgCrop'])
   .controller('FormCtrl',['$scope',function($scope){
+     $scope.sendForm = function () {
+        $scope.sended = true;
+     }
      /* $scope.formulario = document.forms[0];
       $scope.formData = new FormData($scope.formulario);
       $scope.imgFormData = new FormData();
@@ -55,7 +58,7 @@ angular.module('app', ['ngImgCrop'])
 
     }]) 
 
-  .controller('ImgCtrl', ['$scope',function($scope) {
+  .controller('ImgCtrl', ['$scope','$window',function($scope,$window) {
     $scope.myImage='';
     $scope.myCroppedImage='';
     $scope.file ={};
@@ -74,8 +77,8 @@ angular.module('app', ['ngImgCrop'])
         });
       };
       reader.readAsDataURL(file);
-      
-      $scope.img=$scope.dataURItoBlob($scope.myCroppedImage);
+
+      //$scope.img=$scope.dataURItoBlob($scope.myCroppedImage);
      
       $scope.thumbnail = evt.target.name;
       $scope.thumbnail = $scope.thumbnail.split('img');
@@ -87,7 +90,7 @@ angular.module('app', ['ngImgCrop'])
     $scope.cropImg = function (){
       //$scope.croped = true;
       //$scope.appendImg($scope,$scope.img,$scope.thumbnail);
-      console.log($scope.thumbnail);
+     // console.log($scope.thumbnail);
       document.getElementsByName($scope.thumbnail)[0].value = $scope.myCroppedImage;
       document.getElementById($scope.thumbnail).src = $scope.myCroppedImage;
     };
