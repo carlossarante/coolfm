@@ -73,7 +73,7 @@ class Images(models.Model):
     post_thumbnail = models.ImageField(upload_to='post_thumbnails',null=True,blank=True)
 
     def __unicode__(self):
-        return ('/media/%s' % self.img.name) 
+        return [('/media/%s' % self.img.name),('/media/%s' % self.post_thumbnail.name)]
 
     class Meta:
         verbose_name_plural='Images'

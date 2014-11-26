@@ -30,6 +30,7 @@ class PostSerializer(serializers.ModelSerializer):
 	def getImages(self,obj):
 		pic = obj.images_set.all()
 		return pic
+
 	
 	def getContent(self,obj):
 		#First, we have to remove the preview tag.

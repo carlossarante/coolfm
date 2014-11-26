@@ -29,7 +29,7 @@ class NewsForm(forms.ModelForm):
 class PostAdmin(admin.ModelAdmin):
     #import ipdb;ipdb.set_trace()
     form = NewsForm
-    fields = ('title','content','is_published')
+    fields = ('title','content','is_published','category')
     inlines=[AddImageFields]
 
     def save_model(self, request, obj, form, change):
@@ -44,11 +44,6 @@ class PostAdmin(admin.ModelAdmin):
             obj.slug = slug
             obj.save()
             return obj
-
-
-    def response_add(self,request, obj, post_url_continue='../%s/'):
-        p = Post.objects.get(title=obj.title)
-        return HttpResponse(p.id)
 
 
     class Media:
