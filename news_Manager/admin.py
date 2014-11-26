@@ -19,7 +19,6 @@ class AddImageFields(admin.StackedInline):
     extra =1
 
 class NewsForm(forms.ModelForm):
-   #content = forms.CharField()
     category = forms.ModelChoiceField(queryset=Categories.objects.all())
     class Meta:
         model = Post
@@ -27,10 +26,14 @@ class NewsForm(forms.ModelForm):
     
 
 class PostAdmin(admin.ModelAdmin):
-    #import ipdb;ipdb.set_trace()
     form = NewsForm
-    fields = ('title','content','is_published','category')
     inlines=[AddImageFields]
+    formfield_overrides = { models.TextField: {'widget': forms.Textarea(attrs={'class':'ckeditor'})}, }
+    fieldsets = [
+        ('Information', {'fields': ('title','category')}),
+        ('Body', {'fields': ('content',)}),
+        ('Status', {'fields': ('is_published',)}),
+    ]
 
     def save_model(self, request, obj, form, change):
         try:
@@ -47,7 +50,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
     class Media:
-        js = js = ('js/jquery.js',)
+        js = js = ('js/jquery.js','ckeditor/ckeditor.js')
 
 
 admin.site.register(Post,PostAdmin)
