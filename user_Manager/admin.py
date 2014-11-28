@@ -61,6 +61,9 @@ class UserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
+class Preseters(admin.ModelAdmin):
+    form = 
+
 
 class userAdmin(UserAdmin):
     # The forms to add and change user instances
