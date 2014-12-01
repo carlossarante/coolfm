@@ -8,6 +8,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'coolFM.views.index'),
+    url(r'^contact/','coolFM.views.index'),
+    url(r'^programmation/','coolFM.views.index'),
+    url(r'^animateurs/','coolFM.views.index'),
     #url(r'^admin/news_Manager/post/(?P<id>\d+)/preview/$', 'news_Manager.views.getPreviewPage'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^users/', include('user_Manager.urls')),
