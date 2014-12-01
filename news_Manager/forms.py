@@ -16,8 +16,8 @@ class DataURLField(forms.ImageField):
 		super(DataURLField,self).validate(value)
 
 class ImageInlineForm(forms.ModelForm):	
-	img = DataURLField(widget=ImageCropper,required=False)
-	post_thumbnail = DataURLField(widget=ImageCropped,required=False)
+	img = DataURLField(widget=ImageCropper(as_ratio_x=1.77,as_ratio_y=1),required=False)
+	post_thumbnail = DataURLField(widget=ImageCropped)
 
 	class Meta:
 		model = Images

@@ -29,20 +29,25 @@ class WYMEditor(forms.Textarea):
             </script>''' % (name, self.language))
 
 #Based on Angular JS's library for cropping.
-class ImageCropper(widgets.TextInput):
+class ImageCropper(widgets.FileInput):
+    def __init__(self,*args,**kwargs):
+        self.as_ratio_x = kwargs.pop('as_ratio_x')
+        self.as_ratio_y = kwargs.pop('as_ratio_y')        
+        super(ImageCropper,self).__init__(*args,**kwargs)
+        
     def render(self,name,value,attrs=None):
         return mark_safe('''
             <div  ng-controller="ImgCtrl">
                 <input type="file" name = '%s' onchange="angular.element(this).scope().handleFileSelect(event)" ng-model="form" ng-disabled="sended"/>
                 <input name="%s" type="hidden"  value="{{myImage}}" />
                 <div class="cropArea">
-                    <img-crop image="myImage" area-min-size="50" result-image="myCroppedImage" area-type="square" as-ratio-x="1.77" as-ratio-y="1"></img-crop>
+                    <img-crop image="myImage" area-min-size="50" result-image="myCroppedImage" area-type="square" as-ratio-x="%s" as-ratio-y="%s"></img-crop>
                 </div>
                 <div>
                     <img ng-src="{{myCroppedImage}}" style="width:200px;" ng-class="{hidden:true}" onload="angular.element(this).scope().cropImg()" />
                 </div>
             </div>
-        ''' % (name,name))
+        ''' % (name,name,self.as_ratio_x,self.as_ratio_y))
 
 class ImageCropped(widgets.TextInput):
     def render(self,name,value,attrs=None):
