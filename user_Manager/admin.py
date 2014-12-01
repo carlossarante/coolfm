@@ -8,11 +8,13 @@ from adminfiles.models import FileUpload
 from django import forms
 from django.contrib.auth.models import Group 
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.sites.models import Site
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
+
+from user_Manager.forms import PresenterForm
 from user_Manager.models import User,Presenter
 
 
@@ -61,8 +63,11 @@ class UserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
-class Preseters(admin.ModelAdmin):
-    form = 
+class Presenters(admin.ModelAdmin):
+    form = PresenterForm
+    class Meta:
+        model = Presenter
+
 
 
 class userAdmin(UserAdmin):
@@ -95,7 +100,7 @@ class userAdmin(UserAdmin):
 
 #admin.site.unregister(User)
 admin.site.register(User, userAdmin)
-admin.site.register(Presenter)
+admin.site.register(Presenter,Presenters)
 admin.site.unregister(FileUpload)
 
 
