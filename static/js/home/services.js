@@ -7,7 +7,7 @@
       function getProgrammation() {
         var deferred = $q.defer();
 
-        $http.get('/static/program.json')
+        $http.get('/schedules/')
           .success(function (data) {
             deferred.resolve(data);
           });
@@ -37,7 +37,7 @@
       function getMenu() {
         var deferred = $q.defer();
 
-        $http.get('/static/menu.json')
+        $http.get('/nouvelles/sections/?format=json')
           .success(function (data) {
             deferred.resolve(data);
           });

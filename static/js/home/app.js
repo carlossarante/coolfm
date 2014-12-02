@@ -6,7 +6,7 @@
     'ngAnimate',
     'ezfb',
 		'cool.controllers',
-		'cool.services'
+		'cool.services' 
 	]);
 
 	app.config(['$locationProvider', function ($locationProvider) {
@@ -25,6 +25,10 @@
         templateUrl: '/static/views/news.html',
         controller: 'NouvellesController'
       })
+      .when('/nouvelles/search', {
+        templateUrl: '/static/views/news.html',
+        //controller: 'NewsSingleController'
+      })
       .when('/nouvelles/:singleNew', {
         templateUrl: '/static/views/news.html',
         controller: 'NewsSingleController'
@@ -35,7 +39,7 @@
       })
       .when('/:coolsection', {
         templateUrl: function(params){return '/static/views/'+params.coolsection+'.html'},
-        //controller: 'CoolSectionController'
+        controller: 'CoolSectionController'
       })      
       .otherwise({
         redirectTo: '/'

@@ -32,8 +32,8 @@
                 <ul ng-style="ulStyle()">                   
                     <li class="narrator-list inline-pos" ng-repeat="caster in casters track by $id(caster)" ng-init="getFinalCaster($index)" ng-style="liStyle()">
                         <div class="cover_narrator" ng-class="{casterActive:$index===casterActive}">
-                            <figure class="narrator" style="background : url({{caster.img}}) no-repeat; background-size : 100%; background-color : white;">
-                                    <img src="{{caster.img}}" alt="{{caster.firts_name}} {{caster.last_name}}"/>
+                            <figure class="narrator" style="background : url({{caster.picture}}) no-repeat; background-size : 100%; background-color : white;">
+                                    <img src="{{caster.picture}}" alt="{{caster.firts_name}} {{caster.last_name}}"/>
                             </figure>
                         </div>                  
                     </li>                

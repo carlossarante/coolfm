@@ -35,22 +35,22 @@
             </div>
         </div>
         <figure id='playing-now'>
-            <div id='is-playing-portrait' style="background:url('{{program.img}}'); background-size:100%;">
+            <div id='is-playing-portrait' style="background:url('media/{{program.show_pict}}') center center no-repeat; background-size:cover;">
             </div>
             <figcaption>
                 <p id='is-playing'>
-                    {{program.name}}
+                    {{program.show_name}}
                 </p>
                 <p id='is-playing-detail'>
-                    {{program.description}}
+                    {{program.about}}
                 </p>
             </figcaption>
             <img id='play' src='/static/img/cool-web-play.png' alt='play'>
         </figure>
         <aside id="current-schedule">
             <div class="schedule" ng-repeat="program in programs track by $id(program)" ng-click="showProgram(program,$index)" ng-class="{'program-active':$index===currentProg}">
-                <span class="hour">{{program.hour}}</span>
-                <span class="program-name">{{program.name}}</span>
+                <span class="hour">{{program.start_time}}</span>
+                <span class="program-name">{{program.show_name}}</span>
             </div>
         </aside>
         <div id='share-section'>
