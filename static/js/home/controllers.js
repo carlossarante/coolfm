@@ -14,8 +14,6 @@
 			$scope.casterActive= 0;
 			$scope.direction= 0;
 			$scope.scrolltop = 0;
-			window.lugar = $location;
-			window.http = $http;
 			angular.element($window).bind('resize',function(){
 				$scope.redimention();
 				$scope.$apply();
@@ -328,7 +326,6 @@
 			$scope.alternewsingle = function(val) {
 				$scope.newsSingle = val;
 				$scope.newsSingle.url = $location.$$absUrl;
-				console.log($scope.newsSingle.url)
 			}
 			$scope.alternewsingleURL = function() {
 				$scope.newsSingleURL = $location.$$absUrl;
@@ -348,7 +345,7 @@
 
 			
 			nouvelleService.getMenu().then(function (data) {
-          		$scope.item = data;
+          		$scope.item = data.categories;
         	});
 
         	nouvelleService.getTopNouvelles().then(function (data) {
@@ -407,7 +404,7 @@
 				//$scope.sectionNew = "";
 				//$scope.nouvelles = "";
 
-				$location.path("/nouvelles/section/"+$filter('lowercase')(tab.section));
+				$location.path("/nouvelles/section/"+$filter('lowercase')(tab));
 				$location.search("page","1");
 			};
 			//Oculta la seccion clickeada
@@ -437,7 +434,7 @@
 
 			$scope.searchInfo = function ($event){
 				var sval = angular.element('.buscarInfo').val();
-				window.dato = $http.defaults.headers;
+				//window.dato = $http.defaults.headers;
 
 				if($event.charCode === 13)
 				{
@@ -477,10 +474,11 @@
 
 
 					$.post('/nouvelles/search/?format=json', {keyword: sval} , function(data, textStatus, xhr) {
-						console.log(data)
-						$scope.sectionNew = [data[0]];
-						data.splice(0,1);
-						$scope.nouvelles = data;
+						$scope.sectionNew = [data.nouvelles[0]];
+						data.nouvelles.splice(0,1);
+						$scope.next = data.next;
+						$scope.previous = data.previous;						
+						$scope.nouvelles = data.nouvelles;
 						$scope.sectionshow = true;
 						$location.path("nouvelles/search")
 						$scope.$apply();						

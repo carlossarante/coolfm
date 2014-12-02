@@ -81,9 +81,16 @@ angular.module('app', ['ngImgCrop'])
       //$scope.img=$scope.dataURItoBlob($scope.myCroppedImage);
      
       $scope.thumbnail = evt.target.name;
-      $scope.thumbnail = $scope.thumbnail.split('img');
-      $scope.thumbnail =$scope.thumbnail[0] + "post_thumbnail";
-
+      if($scope.thumbnail.match("images_set"))
+      {
+        $scope.thumbnail = $scope.thumbnail.split('img');
+        $scope.thumbnail = $scope.thumbnail[0] + "post_thumbnail";
+      }
+      else if ($scope.thumbnail.match("preview"))
+      {
+        //$scope.thumbnail = $scope.thumbnail.split('img');
+        $scope.thumbnail = "img";
+      }  
       /*document.getElementsByName($scope.thumbnail)[0].value = "";
       document.getElementById($scope.thumbnail).src = "";*/
     };
