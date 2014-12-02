@@ -19,7 +19,9 @@ def newsByCategory(request,category):
   return formatted_render(request,data)
 
 def getNewsBySlug(request,slug):
+  #import ipdb; ipdb.set_trace()
   news = Post().getBySlug(slug)
+  count(request,news[0])
   data = PostSerializer(news,many=True).data
   return formatted_render(request,data)
 
@@ -39,7 +41,7 @@ def newsLoader(request):
     news = Post().getIndexPageNews()
     serialized_news = paginationSerializer(request,news,page)
   elif query == 'top':
-    news = Post().getTopNews()
+    news = Post().getLastestByCategory()
     serialized_news = PostSerializer(news,many=True).data
   return formatted_render(request,serialized_news)
   
@@ -53,19 +55,15 @@ def getCategories(request):
   data['categories'] = cat
   return formatted_render(request,data)
 
-def count(request,post_slug):
+def count(request,post):
   try:
-      if not request.session['read']:
-        request.session['read'] = True
-        post = Post.objects.get(slug=post_slug)
-        post.reads +=1
-        post.save()
-      else:
-        return HttpResponse("Already read")
-      return HttpResponse("OK")
-  except:
-      return HttpResponse("404 NOT FOUND")
-
+    if request.session['is_read_%s' % post.id]:
+      return 
+  except KeyError:
+    request.session['is_read_%s' % post.id] = True
+    post.reads +=1
+    post.save()
+    
 def search(request):
   page = request.POST.get('page',1)
   txt_to_find = request.POST.get('keyword')
