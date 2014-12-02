@@ -6,8 +6,8 @@ from news_Manager.picturesHandler import datauriToUploadedFile
 
 
 class PresenterForm(forms.ModelForm):	
-	img = DataURLField(widget=ImageCropper(as_ratio_x=1,as_ratio_y=1),required=False)
-	preview = DataURLField(ImageCropped)
+	img = DataURLField(widget=ImageCropped)	
+	preview = DataURLField(widget=ImageCropper(result_image_size=400,as_ratio_x=1,as_ratio_y=1),required=False)
 	class Meta:
 		model = Presenter
 		fields = ['first_name','last_name','img','preview','bio']

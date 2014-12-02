@@ -10,7 +10,7 @@ from news_Manager.functions import formatted_render,paginationSerializer
 def newsByCategory(request,category):
   query = request.GET.get('query','')
   if query == 'principals':
-      news = Post().getNewsByCategory(str.capitalize(category))[0]
+      news = Post().getNewsByCategory(str(category))[0]
       data = PostSerializer(news,many=False).data
   else:
       news = Post().getNewsByCategory(category)
