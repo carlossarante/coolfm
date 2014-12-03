@@ -68,12 +68,12 @@ class Post(models.Model):
     
 
 class Images(models.Model):
-    post = models.ForeignKey(Post,related_name='img')
+    post = models.ForeignKey(Post,related_name='photos')
     img = models.ImageField('Images',upload_to='post_images')
     post_thumbnail = models.ImageField(upload_to='post_thumbnails',null=True,blank=True)
 
     def __unicode__(self):
         #return [u'/media/%s' % self.img.name,u'/media/%s' % self.post_thumbnail.name]
-        return u'/media/%s' % self.post_thumbnail.name
+        return u'[/media/%s,/media/%s]' % (self.img.name,self.post_thumbnail.name)
     class Meta:
         verbose_name_plural='Images'

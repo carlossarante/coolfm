@@ -12,7 +12,7 @@ import re
 class PostSerializer(serializers.ModelSerializer):
 	time_posted = serializers.SerializerMethodField('formatTime')
 	section = serializers.StringRelatedField(source='category',read_only=True)
-	img = serializers.StringRelatedField(many=True)
+	img = serializers.SerializerMethodField('getImages')
 	content = serializers.SerializerMethodField('getContent')
 	preview = serializers.SerializerMethodField('getPreview')
 	class Meta:
@@ -29,7 +29,12 @@ class PostSerializer(serializers.ModelSerializer):
 
 	def formatTime(self,obj):
 		return obj.date_posted.strftime('%d %B %Y %H:%M') 
-
+	
+	def getImages(self,obj):
+		data = []
+		for p in obj.photos.all():
+			data.append(['/media/%s' % p.img.name,'/media/%s' % p.post_thumbnail.name])
+		return data
 	
 	def getContent(self,obj):
 		#First, we have to remove the preview tag.
