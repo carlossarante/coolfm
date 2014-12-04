@@ -6,9 +6,12 @@ from rest_framework import serializers
 from news_Manager.models import Post
 
 import re
+
+
+
 class PostSerializer(serializers.ModelSerializer):
 	time_posted = serializers.SerializerMethodField('formatTime')
-	section = serializers.RelatedField(source='category')
+	section = serializers.StringRelatedField(source='category',read_only=True)
 	img = serializers.SerializerMethodField('getImages')
 	content = serializers.SerializerMethodField('getContent')
 	preview = serializers.SerializerMethodField('getPreview')
@@ -28,9 +31,10 @@ class PostSerializer(serializers.ModelSerializer):
 		return obj.date_posted.strftime('%d %B %Y %H:%M') 
 	
 	def getImages(self,obj):
-		pic = obj.images_set.all()
-		return pic
-
+		data = []
+		for p in obj.photos.all():
+			data.append(['/media/%s' % p.img.name,'/media/%s' % p.post_thumbnail.name])
+		return data
 	
 	def getContent(self,obj):
 		#First, we have to remove the preview tag.
