@@ -30,7 +30,7 @@
                         <img src="{{noticia.img[0][1]}}">
                         <div class="text-cont">
                             <h2 style="bottom: 0px;">{{noticia.title}}</h2>
-                            <p><strong ng-bind-html="noticia.content"></strong></p>
+                            <p><strong ng-bind-html="noticia.preview"></strong></p>
                         </div>
                     </div>
                 </article>                     
@@ -41,7 +41,7 @@
                         <img ng-if="sectionshow" src="{{noticia.img[0][1]}}">
                         <div ng-if="sectionshow" class="text-cont">
                             <h2>{{noticia.title}}</h2>
-                            <p ng-bind-html="noticia.content"></p>
+                            <p ng-bind-html="noticia.preview"></p>
                         </div>
                     </div>
                 </div>              
